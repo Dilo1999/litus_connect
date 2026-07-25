@@ -155,11 +155,11 @@ class HomeController extends Controller
     private function products(): array
     {
         return [
-            ['id' => 1, 'name' => 'iPhone 15 Pro 128GB', 'price' => 389900, 'original' => 429900, 'rating' => 4.9, 'reviews' => 128, 'badge' => 'SALE', 'img' => 'https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=280&h=280&fit=crop&auto=format'],
-            ['id' => 2, 'name' => 'AirPods Pro (2nd Gen)', 'price' => 74900, 'original' => 89900, 'rating' => 4.8, 'reviews' => 256, 'badge' => 'SALE', 'img' => 'https://images.unsplash.com/photo-1603351154351-5e2d0600bb77?w=280&h=280&fit=crop&auto=format'],
-            ['id' => 3, 'name' => 'Samsung Galaxy Watch 6', 'price' => 89900, 'original' => 109900, 'rating' => 4.7, 'reviews' => 94, 'badge' => 'SALE', 'img' => 'https://images.unsplash.com/photo-1544117519-31a4b719223d?w=280&h=280&fit=crop&auto=format'],
-            ['id' => 4, 'name' => 'Sony WH-1000XM5', 'price' => 119900, 'original' => 149900, 'rating' => 4.9, 'reviews' => 312, 'badge' => 'SALE', 'img' => 'https://images.unsplash.com/photo-1618366712010-f4ae9c647dcb?w=280&h=280&fit=crop&auto=format'],
-            ['id' => 5, 'name' => 'Anker PowerCore 20K', 'price' => 12990, 'original' => 15990, 'rating' => 4.6, 'reviews' => 187, 'badge' => 'SALE', 'img' => 'https://images.unsplash.com/photo-1609091839311-d5365f9ff1c5?w=280&h=280&fit=crop&auto=format'],
+            ['id' => 8, 'name' => 'iPhone 14 Pro 128GB', 'price' => 349900, 'original' => 379900, 'rating' => 4.9, 'reviews' => 128, 'badge' => 'SALE', 'img' => 'https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=280&h=280&fit=crop&auto=format'],
+            ['id' => 103, 'name' => 'AirPods Pro (2nd Gen)', 'price' => 74900, 'original' => 89900, 'rating' => 4.8, 'reviews' => 256, 'badge' => 'SALE', 'img' => 'https://images.unsplash.com/photo-1603351154351-5e2d0600bb77?w=280&h=280&fit=crop&auto=format'],
+            ['id' => 104, 'name' => 'Samsung Galaxy Watch 6', 'price' => 89900, 'original' => 109900, 'rating' => 4.7, 'reviews' => 94, 'badge' => 'SALE', 'img' => 'https://images.unsplash.com/photo-1544117519-31a4b719223d?w=280&h=280&fit=crop&auto=format'],
+            ['id' => 101, 'name' => 'Sony WH-1000XM5', 'price' => 119900, 'original' => 149900, 'rating' => 4.9, 'reviews' => 312, 'badge' => 'SALE', 'img' => 'https://images.unsplash.com/photo-1618366712010-f4ae9c647dcb?w=280&h=280&fit=crop&auto=format'],
+            ['id' => 112, 'name' => 'Anker PowerCore 20K', 'price' => 18990, 'original' => 22990, 'rating' => 4.6, 'reviews' => 187, 'badge' => 'SALE', 'img' => 'https://images.unsplash.com/photo-1609091839311-d5365f9ff1c5?w=280&h=280&fit=crop&auto=format'],
         ];
     }
 

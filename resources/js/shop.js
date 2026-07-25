@@ -146,20 +146,25 @@ function initShop() {
     return list;
   }
 
+  function productUrl(id) {
+    return `/product/${id}`;
+  }
+
   function gridCard(p) {
     if (isMobilePhones) {
       return `
         <div class="bg-white rounded-xl border border-border hover:shadow-md transition-all duration-200 group overflow-hidden flex flex-col" data-product-card>
           <div class="relative p-5 bg-white min-h-[190px] flex items-center justify-center">
             ${badgeHtml(p.badge)}
-            <button type="button" data-wishlist-toggle class="absolute top-3 right-3 w-8 h-8 rounded-full text-gray-300 hover:text-red-500 flex items-center justify-center transition-colors" aria-label="Wishlist">
+            <button type="button" data-wishlist-toggle class="absolute top-3 right-3 w-8 h-8 rounded-full text-gray-300 hover:text-red-500 flex items-center justify-center transition-colors z-20" aria-label="Wishlist">
               <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" data-wishlist-icon><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
             </button>
             ${!p.inStock ? '<div class="absolute inset-0 bg-white/65 flex items-center justify-center z-10"><span class="bg-gray-800 text-white text-xs font-bold px-3 py-1.5 rounded-lg">Out of Stock</span></div>' : ''}
-            <img src="${p.img}" alt="${p.name}" class="h-36 w-full object-contain group-hover:scale-105 transition-transform duration-300" loading="lazy">
+            <a href="${productUrl(p.id)}" class="absolute inset-0 z-0" aria-label="${p.name}"></a>
+            <img src="${p.img}" alt="${p.name}" class="relative z-10 pointer-events-none h-36 w-full object-contain group-hover:scale-105 transition-transform duration-300" loading="lazy">
           </div>
           <div class="px-4 pb-4 flex flex-col flex-1">
-            <h3 class="text-sm font-bold text-[#011848] line-clamp-2 mb-2 leading-snug min-h-[2.5rem]">${p.name}</h3>
+            <a href="${productUrl(p.id)}" class="text-sm font-bold text-[#011848] line-clamp-2 mb-2 leading-snug min-h-[2.5rem] hover:text-primary transition-colors">${p.name}</a>
             <div class="flex items-center gap-1.5 mb-2.5">
               ${stars(p.rating)}
               <span class="text-[11px] text-gray-400">(${p.reviews})</span>
@@ -169,7 +174,7 @@ function initShop() {
                 <span class="text-base font-extrabold text-primary">${formatPrice(p.price)}</span>
                 ${p.original ? `<span class="text-xs text-gray-400 line-through">${formatPrice(p.original)}</span>` : ''}
               </div>
-              <button type="button" data-add-to-cart ${!p.inStock ? 'disabled' : ''} class="w-9 h-9 flex-shrink-0 rounded-lg border border-border bg-white flex items-center justify-center transition-all ${!p.inStock ? 'text-gray-300 cursor-not-allowed' : 'text-primary hover:bg-primary hover:text-white hover:border-primary'}" aria-label="Add to cart">
+              <button type="button" data-add-to-cart ${!p.inStock ? 'disabled' : ''} class="relative z-10 w-9 h-9 flex-shrink-0 rounded-lg border border-border bg-white flex items-center justify-center transition-all ${!p.inStock ? 'text-gray-300 cursor-not-allowed' : 'text-primary hover:bg-primary hover:text-white hover:border-primary'}" aria-label="Add to cart">
                 ${!p.inStock ? '' : `
                   <span data-cart-default>
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
@@ -187,14 +192,15 @@ function initShop() {
       <div class="bg-white rounded-xl border border-border hover:shadow-md transition-all duration-200 group overflow-hidden flex flex-col" data-product-card>
         <div class="relative p-5 bg-white min-h-[190px] flex items-center justify-center">
           ${badgeHtml(p.badge)}
-          <button type="button" data-wishlist-toggle class="absolute top-3 right-3 w-8 h-8 rounded-full text-gray-300 hover:text-red-500 flex items-center justify-center transition-colors" aria-label="Wishlist">
+          <button type="button" data-wishlist-toggle class="absolute top-3 right-3 w-8 h-8 rounded-full text-gray-300 hover:text-red-500 flex items-center justify-center transition-colors z-20" aria-label="Wishlist">
             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" data-wishlist-icon><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
           </button>
           ${!p.inStock ? '<div class="absolute inset-0 bg-white/65 flex items-center justify-center z-10"><span class="bg-gray-800 text-white text-xs font-bold px-3 py-1.5 rounded-lg">Out of Stock</span></div>' : ''}
-          <img src="${p.img}" alt="${p.name}" class="h-36 w-full object-contain group-hover:scale-105 transition-transform duration-300" loading="lazy">
+          <a href="${productUrl(p.id)}" class="absolute inset-0 z-0" aria-label="${p.name}"></a>
+          <img src="${p.img}" alt="${p.name}" class="relative z-10 pointer-events-none h-36 w-full object-contain group-hover:scale-105 transition-transform duration-300" loading="lazy">
         </div>
         <div class="px-4 pb-4 flex flex-col flex-1">
-          <h3 class="text-sm font-bold text-[#011848] line-clamp-2 mb-2 leading-snug min-h-[2.5rem]">${p.name}</h3>
+          <a href="${productUrl(p.id)}" class="text-sm font-bold text-[#011848] line-clamp-2 mb-2 leading-snug min-h-[2.5rem] hover:text-primary transition-colors">${p.name}</a>
           <div class="flex items-center gap-1.5 mb-2.5">
             ${stars(p.rating)}
             <span class="text-[11px] text-gray-400">(${p.reviews})</span>
@@ -220,15 +226,15 @@ function initShop() {
   function listCard(p) {
     return `
       <div class="bg-white rounded-xl border border-border hover:shadow-md transition-all flex overflow-hidden group" data-product-card>
-        <div class="relative w-36 sm:w-44 flex-shrink-0 bg-[#f7f9fc] flex items-center justify-center p-4">
+        <a href="${productUrl(p.id)}" class="relative w-36 sm:w-44 flex-shrink-0 bg-[#f7f9fc] flex items-center justify-center p-4">
           ${badgeHtml(p.badge)}
           ${!p.inStock ? '<div class="absolute inset-0 bg-white/65 flex items-center justify-center z-10"><span class="bg-gray-800 text-white text-[10px] font-bold px-2 py-1 rounded-lg">Out of Stock</span></div>' : ''}
           <img src="${p.img}" alt="${p.name}" class="h-28 w-28 object-contain group-hover:scale-105 transition-transform" loading="lazy">
-        </div>
+        </a>
         <div class="flex-1 p-4 sm:p-5 flex flex-col justify-between min-w-0">
           <div>
             <p class="text-[11px] font-bold text-muted-foreground uppercase tracking-wider mb-1">${p.brand}${p.series || p.cat ? ` · ${p.series || p.cat}` : ''}</p>
-            <h3 class="font-bold text-sm sm:text-base text-[#0B1426] mb-2">${p.name}</h3>
+            <a href="${productUrl(p.id)}" class="font-bold text-sm sm:text-base text-[#0B1426] mb-2 hover:text-primary transition-colors inline-block">${p.name}</a>
             <div class="flex items-center gap-2 mb-2">${stars(p.rating)}<span class="text-xs text-muted-foreground">(${p.reviews})</span></div>
           </div>
           <div class="flex flex-wrap items-center justify-between gap-3 mt-3">

@@ -155,6 +155,7 @@
         <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
             @foreach ($products as $product)
                 <x-product-card
+                    :id="$product['id']"
                     :name="$product['name']"
                     :img="$product['img']"
                     :price="$product['price']"

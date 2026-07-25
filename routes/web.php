@@ -32,3 +32,4 @@ Route::match(['get', 'head'], 'storage/{path}', function () {
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/shop', [\App\Http\Controllers\ShopController::class, 'index'])->name('shop');
 Route::get('/mobile-phones', [\App\Http\Controllers\MobilePhonesController::class, 'index'])->name('mobile-phones');
+Route::get('/product/{id}', [\App\Http\Controllers\ProductController::class, 'show'])->whereNumber('id')->name('product.show');

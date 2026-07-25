@@ -1,4 +1,5 @@
 @props([
+    'id' => null,
     'name',
     'img',
     'price',
@@ -11,6 +12,7 @@
 
 @php
     $discount = $original ? (int) round((($original - $price) / $original) * 100) : null;
+    $href = $id ? route('product.show', $id) : null;
 @endphp
 
 <div
@@ -19,27 +21,35 @@
 >
     <div class="relative p-5 bg-[#f7f9fc] min-h-[190px] flex items-center justify-center">
         @if ($badge)
-            <span class="absolute top-3 left-3 text-white text-[10px] font-bold px-2 py-0.5 rounded bg-primary tracking-wide">
+            <span class="absolute top-3 left-3 text-white text-[10px] font-bold px-2 py-0.5 rounded bg-primary tracking-wide z-10">
                 {{ $badge }}
             </span>
         @endif
 
         @if ($discount)
-            <span class="absolute top-3 right-3 text-primary bg-white text-[10px] font-bold px-2 py-0.5 rounded border border-blue-100">
+            <span class="absolute top-3 right-3 text-primary bg-white text-[10px] font-bold px-2 py-0.5 rounded border border-blue-100 z-10">
                 -{{ $discount }}%
             </span>
+        @endif
+
+        @if ($href)
+            <a href="{{ $href }}" class="absolute inset-0 z-0" aria-label="{{ $name }}"></a>
         @endif
 
         <img
             src="{{ $img }}"
             alt="{{ $name }}"
-            class="h-36 w-full object-contain group-hover:scale-105 transition-transform duration-300"
+            class="relative z-[1] pointer-events-none h-36 w-full object-contain group-hover:scale-105 transition-transform duration-300"
             loading="lazy"
         >
     </div>
 
     <div class="p-4 flex flex-col flex-1">
-        <h3 class="text-sm font-semibold text-[#0B1426] line-clamp-2 mb-2 leading-snug min-h-[2.5rem]">{{ $name }}</h3>
+        @if ($href)
+            <a href="{{ $href }}" class="text-sm font-semibold text-[#0B1426] line-clamp-2 mb-2 leading-snug min-h-[2.5rem] hover:text-primary transition-colors">{{ $name }}</a>
+        @else
+            <h3 class="text-sm font-semibold text-[#0B1426] line-clamp-2 mb-2 leading-snug min-h-[2.5rem]">{{ $name }}</h3>
+        @endif
 
         <div class="flex items-baseline gap-2 mb-2">
             <span class="text-base font-extrabold text-[#0B1426]">LKR {{ number_format($price) }}</span>
@@ -57,7 +67,7 @@
             <button
                 type="button"
                 data-add-to-cart
-                class="w-9 h-9 rounded-lg bg-primary/10 hover:bg-primary text-primary hover:text-white transition-colors flex items-center justify-center"
+                class="relative z-10 w-9 h-9 rounded-lg bg-primary/10 hover:bg-primary text-primary hover:text-white transition-colors flex items-center justify-center"
                 aria-label="Add to cart"
             >
                 <span data-cart-default>
