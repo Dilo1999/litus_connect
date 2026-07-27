@@ -159,9 +159,6 @@ function initShop() {
         <div class="bg-white rounded-xl border border-border hover:shadow-md transition-all duration-200 group overflow-hidden flex flex-col" data-product-card>
           <div class="relative p-5 bg-white min-h-[190px] flex items-center justify-center">
             ${badgeHtml(p.badge)}
-            <button type="button" data-wishlist-toggle class="absolute top-3 right-3 w-8 h-8 rounded-full text-gray-300 hover:text-red-500 flex items-center justify-center transition-colors z-20" aria-label="Wishlist">
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" data-wishlist-icon><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
-            </button>
             ${!p.inStock ? '<div class="absolute inset-0 bg-white/65 flex items-center justify-center z-10"><span class="bg-gray-800 text-white text-xs font-bold px-3 py-1.5 rounded-lg">Out of Stock</span></div>' : ''}
             <a href="${productUrl(p.id)}" class="absolute inset-0 z-0" aria-label="${p.name}"></a>
             <img src="${p.img}" alt="${p.name}" class="relative z-10 pointer-events-none h-36 w-full object-contain group-hover:scale-105 transition-transform duration-300" loading="lazy">
@@ -195,9 +192,6 @@ function initShop() {
       <div class="bg-white rounded-xl border border-border hover:shadow-md transition-all duration-200 group overflow-hidden flex flex-col" data-product-card>
         <div class="relative p-5 bg-white min-h-[190px] flex items-center justify-center">
           ${badgeHtml(p.badge)}
-          <button type="button" data-wishlist-toggle class="absolute top-3 right-3 w-8 h-8 rounded-full text-gray-300 hover:text-red-500 flex items-center justify-center transition-colors z-20" aria-label="Wishlist">
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" data-wishlist-icon><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
-          </button>
           ${!p.inStock ? '<div class="absolute inset-0 bg-white/65 flex items-center justify-center z-10"><span class="bg-gray-800 text-white text-xs font-bold px-3 py-1.5 rounded-lg">Out of Stock</span></div>' : ''}
           <a href="${productUrl(p.id)}" class="absolute inset-0 z-0" aria-label="${p.name}"></a>
           <img src="${p.img}" alt="${p.name}" class="relative z-10 pointer-events-none h-36 w-full object-contain group-hover:scale-105 transition-transform duration-300" loading="lazy">
@@ -269,14 +263,6 @@ function initShop() {
       });
     });
 
-    root.querySelectorAll('[data-wishlist-toggle]').forEach((btn) => {
-      btn.addEventListener('click', () => {
-        const active = btn.classList.toggle('is-wished');
-        btn.classList.toggle('text-red-500', active);
-        btn.classList.toggle('border-red-200', active);
-        btn.querySelector('[data-wishlist-icon]')?.classList.toggle('fill-red-500', active);
-      });
-    });
   }
 
   function renderChips() {

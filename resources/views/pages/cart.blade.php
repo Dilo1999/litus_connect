@@ -120,9 +120,6 @@
                                     </div>
 
                                     <div class="flex md:justify-end items-center gap-1.5">
-                                        <button type="button" class="w-9 h-9 rounded-lg text-gray-400 hover:text-primary hover:bg-blue-light transition-colors flex items-center justify-center" aria-label="Add to wishlist">
-                                            <x-lucide name="heart" :size="16" />
-                                        </button>
                                         <button type="button" data-remove-item class="w-9 h-9 rounded-lg text-gray-400 hover:text-red-500 hover:bg-red-50 transition-colors flex items-center justify-center" aria-label="Remove item">
                                             <x-lucide name="trash" :size="16" />
                                         </button>

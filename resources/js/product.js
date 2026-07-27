@@ -130,15 +130,6 @@ function initProductPage() {
     addBtn?.click();
   });
 
-  page.querySelectorAll('[data-product-wishlist]').forEach((btn) => {
-    btn.addEventListener('click', () => {
-      const active = btn.classList.toggle('is-wished');
-      btn.classList.toggle('text-red-500', active);
-      btn.classList.toggle('border-red-200', active);
-      btn.querySelector('[data-wishlist-icon]')?.classList.toggle('fill-red-500', active);
-    });
-  });
-
   const showMoreBtn = page.querySelector('[data-show-more-desc]');
   showMoreBtn?.addEventListener('click', () => {
     const preview = page.querySelector('[data-desc-preview]');

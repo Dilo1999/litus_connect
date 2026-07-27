@@ -59,7 +59,7 @@
             <div>
                 <h4 class="text-white font-bold mb-4 text-sm tracking-wide">My Account</h4>
                 <ul class="flex flex-col gap-2.5">
-                    @foreach (['Login / Register', 'Order History', 'Wishlist', 'Compare Products', 'Loyalty Rewards'] as $link)
+                    @foreach (['Login / Register', 'Order History', 'Compare Products', 'Loyalty Rewards'] as $link)
                         <li><a href="#" class="text-sm hover:text-white transition-colors">{{ $link }}</a></li>
                     @endforeach
                 </ul>

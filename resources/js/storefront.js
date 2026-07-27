@@ -4,7 +4,7 @@
  * - Mobile menu
  * - Categories dropdown
  * - Hero slider
- * - Product card wishlist / add to cart
+ * - Product card add to cart
  * - Newsletter subscribe
  */
 
@@ -131,19 +131,7 @@ function initHeroSlider() {
 
 function initProductCards() {
   document.querySelectorAll('[data-product-card]').forEach((card) => {
-    const wishBtn = card.querySelector('[data-wishlist-toggle]');
     const addBtn = card.querySelector('[data-add-to-cart]');
-
-    wishBtn?.addEventListener('click', () => {
-      const active = wishBtn.classList.toggle('is-wished');
-      wishBtn.classList.toggle('bg-red-50', active);
-      wishBtn.classList.toggle('border-red-200', active);
-      wishBtn.classList.toggle('text-red-500', active);
-      wishBtn.classList.toggle('bg-white', !active);
-      wishBtn.classList.toggle('border-border', !active);
-      wishBtn.classList.toggle('text-gray-600', !active);
-      wishBtn.querySelector('[data-wishlist-icon]')?.classList.toggle('fill-red-500', active);
-    });
 
     addBtn?.addEventListener('click', () => {
       const def = addBtn.querySelector('[data-cart-default]');

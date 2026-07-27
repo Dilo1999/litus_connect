@@ -59,10 +59,6 @@
                                 ])>{{ $product['badge'] }}</span>
                             @endif
 
-                            <button type="button" data-product-wishlist class="absolute top-4 right-4 w-10 h-10 rounded-full bg-white border border-border text-gray-400 hover:text-red-500 hover:border-red-200 flex items-center justify-center transition-colors z-10 shadow-sm" aria-label="Wishlist">
-                                <x-lucide name="heart" :size="18" data-wishlist-icon />
-                            </button>
-
                             <img
                                 src="{{ $product['images'][0] }}"
                                 alt="{{ $product['name'] }}"
@@ -480,9 +476,6 @@
                                         'bg-primary' => ! in_array($item['badge'], ['SALE', 'NEW'], true),
                                     ])>{{ $item['badge'] === 'SALE' ? 'Sale' : $item['badge'] }}</span>
                                 @endif
-                                <button type="button" class="absolute top-3 right-3 w-8 h-8 rounded-full text-gray-300 hover:text-red-500 z-10" aria-label="Wishlist">
-                                    <x-lucide name="heart" :size="16" />
-                                </button>
                                 <a href="{{ route('product.show', $item['id']) }}" class="absolute inset-0 z-0" aria-label="{{ $item['name'] }}"></a>
                                 <img src="{{ $item['img'] }}" alt="{{ $item['name'] }}" class="relative z-[1] pointer-events-none h-28 w-full object-contain group-hover:scale-105 transition-transform duration-300" loading="lazy">
                             </div>
