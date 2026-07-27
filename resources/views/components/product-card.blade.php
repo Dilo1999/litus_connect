@@ -52,9 +52,9 @@
         @endif
 
         <div class="flex items-baseline gap-2 mb-2">
-            <span class="text-base font-extrabold text-[#0B1426]">LKR {{ number_format($price) }}</span>
+            <span class="text-base font-extrabold text-[#0B1426]">MVR {{ number_format($price) }}</span>
             @if ($original)
-                <span class="text-xs text-muted-foreground line-through">LKR {{ number_format($original) }}</span>
+                <span class="text-xs text-muted-foreground line-through">MVR {{ number_format($original) }}</span>
             @endif
         </div>
 

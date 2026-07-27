@@ -5,7 +5,7 @@
 @source '../**/*.blade.php';
 @source '../**/*.js';
 
-/* TechZone design tokens (from source theme.css) */
+/* LITUS Connect design tokens (from source theme.css) */
 :root {
   --font-size: 16px;
   --background: #f3f5f9;

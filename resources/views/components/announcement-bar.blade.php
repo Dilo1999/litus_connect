@@ -3,7 +3,7 @@
         <div class="flex flex-wrap items-center gap-x-5 gap-y-1 text-gray-300">
             <span class="inline-flex items-center gap-1.5">
                 <x-lucide name="truck" :size="13" class="text-primary" />
-                Free Delivery on orders over LKR 5,000
+                Free Delivery on orders over MVR 5,000
             </span>
             <span class="hidden sm:inline-flex items-center gap-1.5">
                 <x-lucide name="shield" :size="13" class="text-primary" />

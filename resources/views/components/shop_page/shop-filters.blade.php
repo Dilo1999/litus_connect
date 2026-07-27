@@ -35,7 +35,7 @@
         </button>
         <div data-filter-body class="px-4 py-4 space-y-3">
             <input type="range" data-filter-price-range min="0" max="{{ $maxCatalogPrice }}" value="{{ $maxCatalogPrice }}" step="1000" class="w-full h-1.5 rounded-full appearance-none cursor-pointer accent-primary">
-            <p class="text-xs text-muted-foreground text-center" data-filter-price-label>LKR 0 – LKR {{ number_format($maxCatalogPrice) }}</p>
+            <p class="text-xs text-muted-foreground text-center" data-filter-price-label>MVR 0 – MVR {{ number_format($maxCatalogPrice) }}</p>
             <div class="flex items-center gap-2">
                 <input type="number" data-filter-min-price value="0" min="0" placeholder="Min" class="w-full border border-border rounded-lg px-3 py-2 text-sm outline-none focus:border-primary">
                 <span class="text-muted-foreground text-xs">–</span>

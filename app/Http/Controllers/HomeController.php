@@ -61,7 +61,7 @@ class HomeController extends Controller
             [
                 'eyebrow' => 'NEW ARRIVAL',
                 'headline' => "iPhone 15 Pro\nTitanium. So strong.\nSo light. So Pro.",
-                'sub' => 'The ultimate iPhone experience. Now available at TechZone.',
+                'sub' => 'The ultimate iPhone experience. Now available at LITUS Connect.',
                 'cta' => 'Shop Now',
                 'bg' => 'linear-gradient(105deg, #0b1426 0%, #152a4a 45%, #1a3358 100%)',
                 'img' => 'https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=720&h=520&fit=crop&auto=format',
@@ -88,7 +88,7 @@ class HomeController extends Controller
     private function serviceFeatures(): array
     {
         return [
-            ['icon' => 'truck', 'title' => 'Free Delivery', 'sub' => 'For orders over LKR 5,000'],
+            ['icon' => 'truck', 'title' => 'Free Delivery', 'sub' => 'For orders over MVR 5,000'],
             ['icon' => 'shield-check', 'title' => '1 Year Warranty', 'sub' => 'Official product warranty'],
             ['icon' => 'headphones', 'title' => '24/7 Support', 'sub' => 'Always here to help'],
             ['icon' => 'refresh', 'title' => 'Easy Returns', 'sub' => '7 days return policy'],
@@ -123,7 +123,7 @@ class HomeController extends Controller
             ],
             [
                 'title' => 'Power Banks',
-                'sub' => 'From LKR 2,990',
+                'sub' => 'From MVR 2,990',
                 'cta' => 'Shop Now',
                 'bg' => '#F0E8FF',
                 'btn' => '#7C3AED',
@@ -208,7 +208,7 @@ class HomeController extends Controller
                 'name' => 'Dilshan Jay',
                 'role' => 'Verified Buyer',
                 'rating' => 5,
-                'text' => 'TechZone is my go-to for gadgets. Fast delivery, genuine products, and excellent after-sales service.',
+                'text' => 'LITUS Connect is my go-to for gadgets. Fast delivery, genuine products, and excellent after-sales service.',
                 'avatar' => 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=96&h=96&fit=crop&auto=format',
             ],
         ];
@@ -218,7 +218,7 @@ class HomeController extends Controller
     {
         return [
             [
-                'title' => 'Best Budget Smartphones in Sri Lanka — 2025 Guide',
+                'title' => 'Best Budget Smartphones in Maldives — 2025 Guide',
                 'date' => 'Jul 20, 2025',
                 'category' => 'TECH GUIDES',
                 'img' => 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=400&h=240&fit=crop&auto=format',
@@ -230,7 +230,7 @@ class HomeController extends Controller
                 'img' => 'https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=400&h=240&fit=crop&auto=format',
             ],
             [
-                'title' => 'Top Wireless Earbuds Under LKR 50,000',
+                'title' => 'Top Wireless Earbuds Under MVR 50,000',
                 'date' => 'Jul 10, 2025',
                 'category' => 'AUDIO',
                 'img' => 'https://images.unsplash.com/photo-1572536147248-ac59a8abfa4b?w=400&h=240&fit=crop&auto=format',

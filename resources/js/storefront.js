@@ -1,5 +1,5 @@
 /**
- * TechZone storefront interactions
+ * LITUS Connect storefront interactions
  * - Sticky header shadow
  * - Mobile menu
  * - Categories dropdown

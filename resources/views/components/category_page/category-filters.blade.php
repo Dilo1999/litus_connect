@@ -1,5 +1,10 @@
 @php
     $prefix = !empty($mobile) ? 'm-' : '';
+    $promoTitle = $promoTitle ?? 'Up to 20% Off';
+    $promoSub = $promoSub ?? 'On selected products';
+    $promoRoute = $promoRoute ?? 'shop';
+    $promoImage = $promoImage ?? 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=120&h=100&fit=crop&auto=format';
+    $promoAlt = $promoAlt ?? 'Offer';
 @endphp
 
 <div class="space-y-4" data-shop-sidebar>
@@ -50,48 +55,18 @@
             >
                 <div class="absolute left-0 right-0 h-1.5 rounded-full bg-[#E4E9F2]"></div>
                 <div class="absolute h-1.5 rounded-full bg-primary pointer-events-none" data-price-range-fill style="left: var(--range-min); right: calc(100% - var(--range-max));"></div>
-                <input
-                    type="range"
-                    data-filter-price-min-range
-                    min="{{ $minCatalogPrice ?? 0 }}"
-                    max="{{ $maxCatalogPrice }}"
-                    value="{{ $minCatalogPrice ?? 0 }}"
-                    step="1000"
-                    class="price-dual-thumb"
-                    aria-label="Minimum price"
-                >
-                <input
-                    type="range"
-                    data-filter-price-max-range
-                    min="{{ $minCatalogPrice ?? 0 }}"
-                    max="{{ $maxCatalogPrice }}"
-                    value="{{ $maxCatalogPrice }}"
-                    step="1000"
-                    class="price-dual-thumb"
-                    aria-label="Maximum price"
-                >
+                <input type="range" data-filter-price-min-range min="{{ $minCatalogPrice ?? 0 }}" max="{{ $maxCatalogPrice }}" value="{{ $minCatalogPrice ?? 0 }}" step="1000" class="price-dual-thumb" aria-label="Minimum price">
+                <input type="range" data-filter-price-max-range min="{{ $minCatalogPrice ?? 0 }}" max="{{ $maxCatalogPrice }}" value="{{ $maxCatalogPrice }}" step="1000" class="price-dual-thumb" aria-label="Maximum price">
             </div>
 
             <div class="flex items-center gap-2.5">
                 <div class="flex flex-1 min-w-0 items-stretch rounded-lg border border-border overflow-hidden bg-white focus-within:border-primary">
                     <span class="inline-flex items-center px-2.5 text-xs font-semibold text-muted-foreground bg-[#F7F8FA] border-r border-border">MVR</span>
-                    <input
-                        type="text"
-                        inputmode="numeric"
-                        data-filter-min-price
-                        value="{{ number_format($minCatalogPrice ?? 0) }}"
-                        class="w-full min-w-0 px-2.5 py-2.5 text-sm font-medium text-[#011848] outline-none"
-                    >
+                    <input type="text" inputmode="numeric" data-filter-min-price value="{{ number_format($minCatalogPrice ?? 0) }}" class="w-full min-w-0 px-2.5 py-2.5 text-sm font-medium text-[#011848] outline-none">
                 </div>
                 <div class="flex flex-1 min-w-0 items-stretch rounded-lg border border-border overflow-hidden bg-white focus-within:border-primary">
                     <span class="inline-flex items-center px-2.5 text-xs font-semibold text-muted-foreground bg-[#F7F8FA] border-r border-border">MVR</span>
-                    <input
-                        type="text"
-                        inputmode="numeric"
-                        data-filter-max-price
-                        value="{{ number_format($maxCatalogPrice) }}"
-                        class="w-full min-w-0 px-2.5 py-2.5 text-sm font-medium text-[#011848] outline-none"
-                    >
+                    <input type="text" inputmode="numeric" data-filter-max-price value="{{ number_format($maxCatalogPrice) }}" class="w-full min-w-0 px-2.5 py-2.5 text-sm font-medium text-[#011848] outline-none">
                 </div>
             </div>
 
@@ -162,19 +137,14 @@
     <div class="rounded-xl overflow-hidden relative p-5 text-white min-h-[190px] flex flex-col justify-between" style="background: linear-gradient(145deg, #011848 0%, #0a2a6e 100%)">
         <div>
             <span class="text-[10px] font-bold uppercase tracking-wider bg-white/15 px-2 py-0.5 rounded">Limited Time Offer</span>
-            <p class="font-extrabold text-xl mt-3 leading-tight">Up to 20% Off</p>
-            <p class="text-white/70 text-xs mt-1">On selected mobile phones</p>
+            <p class="font-extrabold text-xl mt-3 leading-tight">{{ $promoTitle }}</p>
+            <p class="text-white/70 text-xs mt-1">{{ $promoSub }}</p>
         </div>
         <div class="flex items-end justify-between gap-2 mt-4">
-            <a href="{{ route('mobile-phones') }}" class="inline-flex text-xs font-bold bg-primary text-white px-3.5 py-2 rounded-full hover:bg-[#0d4fc7] transition-colors">
+            <a href="{{ route($promoRoute) }}" class="inline-flex text-xs font-bold bg-primary text-white px-3.5 py-2 rounded-full hover:bg-[#0d4fc7] transition-colors">
                 Shop Now
             </a>
-            <img
-                src="https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=120&h=100&fit=crop&auto=format"
-                alt="Phone offer"
-                class="w-20 h-16 object-contain drop-shadow-lg"
-                loading="lazy"
-            >
+            <img src="{{ $promoImage }}" alt="{{ $promoAlt }}" class="w-20 h-16 object-contain drop-shadow-lg" loading="lazy">
         </div>
     </div>
 </div>

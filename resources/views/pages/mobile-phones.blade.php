@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
-@section('title', 'Mobile Phones — TechZone Technology Store')
-@section('meta_description', 'Shop the latest smartphones at TechZone. iPhone, Samsung, Xiaomi and more with official warranty and island-wide delivery.')
+@section('title', 'Mobile Phones — LITUS Connect')
+@section('meta_description', 'Shop the latest smartphones at LITUS Connect. iPhone, Samsung, Xiaomi and more with official warranty and island-wide delivery.')
 
 @section('content')
 
@@ -126,14 +126,14 @@
             <div class="flex items-center gap-4 text-white text-center md:text-left">
                 <x-lucide name="mail" :size="28" class="hidden sm:block text-white shrink-0" />
                 <div>
-                    <h2 class="text-xl md:text-2xl font-extrabold mb-1">Stay Updated With TechZone</h2>
+                    <h2 class="text-xl md:text-2xl font-extrabold mb-1">Stay Updated With LITUS Connect</h2>
                     <p class="text-white/70 text-sm">Subscribe to get special offers, free giveaways, and once-in-a-lifetime deals.</p>
                 </div>
             </div>
             <div class="w-full md:w-auto md:min-w-[420px] max-w-lg">
                 <div data-newsletter-success class="hidden items-center gap-2 text-white font-bold text-sm bg-white/10 px-5 py-3 rounded-full">
                     <x-lucide name="check-circle" :size="18" class="text-emerald-400" />
-                    You're subscribed! Welcome to TechZone.
+                    You're subscribed! Welcome to LITUS Connect.
                 </div>
                 <div data-newsletter-form class="flex w-full overflow-hidden rounded-full bg-white shadow-sm">
                     <input type="email" data-newsletter-email placeholder="Enter your email address" class="flex-1 min-w-0 px-5 py-3.5 text-sm outline-none bg-transparent text-gray-900 placeholder:text-gray-400">

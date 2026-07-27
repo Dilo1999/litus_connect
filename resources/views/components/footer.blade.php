@@ -8,12 +8,12 @@
                         <x-lucide name="lightbulb" :size="18" class="text-primary" />
                     </div>
                     <div class="leading-tight">
-                        <span class="block text-lg font-extrabold text-white">TechZone</span>
-                        <span class="block text-[9px] font-semibold tracking-[0.16em] text-gray-400 uppercase">Technology Store</span>
+                        <span class="block text-lg font-extrabold text-white">LITUS Connect</span>
+                        <span class="block text-[9px] font-semibold tracking-[0.16em] text-gray-400 uppercase">Connecting you to the future</span>
                     </div>
                 </a>
                 <p class="text-sm leading-relaxed text-gray-400 mb-5">
-                    Your trusted destination for authentic electronics, genuine accessories, and expert support across Sri Lanka.
+                    Your trusted destination for mobile phones, computers, accessories, and gadgets across the Maldives.
                 </p>
                 <div class="flex gap-2.5">
                     @foreach (['facebook', 'instagram', 'tiktok', 'youtube'] as $icon)
@@ -28,8 +28,17 @@
             <div>
                 <h4 class="text-white font-bold mb-4 text-sm tracking-wide">Shop</h4>
                 <ul class="flex flex-col gap-2.5">
-                    @foreach (['Mobile Phones', 'Headsets', 'Smart Watches', 'Accessories', 'Laptops', 'Speakers'] as $link)
-                        <li><a href="#" class="text-sm hover:text-white transition-colors">{{ $link }}</a></li>
+                    @foreach ([
+                        ['label' => 'Mobile Phones', 'route' => 'mobile-phones'],
+                        ['label' => 'Headsets', 'route' => 'headsets'],
+                        ['label' => 'Smart Watches', 'route' => 'smart-watches'],
+                        ['label' => 'Accessories', 'route' => 'accessories'],
+                        ['label' => 'Laptops', 'route' => null],
+                        ['label' => 'Speakers', 'route' => null],
+                    ] as $link)
+                        <li>
+                            <a href="{{ $link['route'] ? route($link['route']) : '#' }}" class="text-sm hover:text-white transition-colors">{{ $link['label'] }}</a>
+                        </li>
                     @endforeach
                 </ul>
             </div>
@@ -60,26 +69,26 @@
                 <ul class="flex flex-col gap-3 text-sm">
                     <li class="flex items-start gap-2.5">
                         <x-lucide name="phone" :size="14" class="text-primary mt-0.5 shrink-0" />
-                        <a href="tel:+94112345678" class="hover:text-white transition-colors">+94 11 234 5678</a>
+                        <a href="tel:+9603322295" class="hover:text-white transition-colors">+960 332 2295</a>
                     </li>
                     <li class="flex items-start gap-2.5">
                         <x-lucide name="mail" :size="14" class="text-primary mt-0.5 shrink-0" />
-                        <a href="mailto:support@techzone.lk" class="hover:text-white transition-colors">support@techzone.lk</a>
+                        <a href="mailto:sales@litusgroup.mv" class="hover:text-white transition-colors">sales@litusgroup.mv</a>
                     </li>
                     <li class="flex items-start gap-2.5">
                         <x-lucide name="clock" :size="14" class="text-primary mt-0.5 shrink-0" />
-                        <span>Mon – Sat: 9:00 AM – 7:00 PM</span>
+                        <span>Sun – Thu: 8:00 AM – 5:00 PM · Sat: 9:00 AM – 1:00 PM</span>
                     </li>
                     <li class="flex items-start gap-2.5">
                         <x-lucide name="map-pin" :size="14" class="text-primary mt-0.5 shrink-0" />
-                        <span>123 Galle Road, Colombo 03, Sri Lanka</span>
+                        <span>Ma. Elyzium, Buruzu Magu, Malé, Maldives</span>
                     </li>
                 </ul>
             </div>
         </div>
 
         <div class="border-t border-white/10 pt-6 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-gray-500">
-            <span>© {{ date('Y') }} TechZone Technology Store. All rights reserved.</span>
+            <span>© {{ date('Y') }} LITUS Connect. All rights reserved.</span>
             <div class="flex items-center gap-2">
                 <span class="text-gray-500 text-[11px] mr-1">We accept:</span>
                 @foreach (['VISA', 'MC', 'Amex', 'PayPal'] as $card)

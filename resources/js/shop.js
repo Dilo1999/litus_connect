@@ -1,6 +1,6 @@
 /**
  * Shop / Mobile Phones — filters, sort, grid/list, pagination
- * Matches TechZone shop layout
+ * Matches LITUS Connect shop layout
  */
 
 function initShop() {
@@ -14,7 +14,10 @@ function initShop() {
   const PER_PAGE = config.perPage || 12;
   const MAX_PRICE = config.maxPrice || 600000;
   const MIN_PRICE = config.minPrice ?? 0;
-  const isMobilePhones = config.mode === 'mobile-phones' || page.getAttribute('data-shop-mode') === 'mobile-phones';
+  const isMobilePhones = config.mode === 'mobile-phones'
+    || config.mode === 'category'
+    || page.getAttribute('data-shop-mode') === 'mobile-phones'
+    || page.getAttribute('data-shop-mode') === 'category';
 
   const state = {
     cats: [],
@@ -40,7 +43,7 @@ function initShop() {
   const drawer = document.querySelector('[data-shop-drawer]');
 
   function formatPrice(n) {
-    return `LKR ${Number(n).toLocaleString()}`;
+    return `MVR ${Number(n).toLocaleString()}`;
   }
 
   function formatNumber(n) {

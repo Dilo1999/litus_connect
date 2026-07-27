@@ -54,7 +54,7 @@ class MobilePhonesController extends Controller
                 'mode' => 'mobile-phones',
             ],
             'serviceFeatures' => [
-                ['icon' => 'truck', 'title' => 'Free Delivery', 'sub' => 'For orders over LKR 5,000'],
+                ['icon' => 'truck', 'title' => 'Free Delivery', 'sub' => 'For orders over MVR 5,000'],
                 ['icon' => 'shield-check', 'title' => '1 Year Warranty', 'sub' => 'Official product warranty'],
                 ['icon' => 'headphones', 'title' => '24/7 Support', 'sub' => 'Always here to help'],
                 ['icon' => 'refresh', 'title' => 'Easy Returns', 'sub' => '7 days return policy'],

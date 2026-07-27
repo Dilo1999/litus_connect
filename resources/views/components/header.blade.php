@@ -6,9 +6,9 @@
 @php
     $navCategories = [
         ['label' => 'Mobile Phones', 'icon' => 'smartphone', 'route' => 'mobile-phones'],
-        ['label' => 'Headsets', 'icon' => 'headphones'],
-        ['label' => 'Smart Watches', 'icon' => 'watch'],
-        ['label' => 'Accessories', 'icon' => 'package'],
+        ['label' => 'Headsets', 'icon' => 'headphones', 'route' => 'headsets'],
+        ['label' => 'Smart Watches', 'icon' => 'watch', 'route' => 'smart-watches'],
+        ['label' => 'Accessories', 'icon' => 'package', 'route' => 'accessories'],
         ['label' => 'Speakers', 'icon' => 'speaker'],
         ['label' => 'Laptops', 'icon' => 'laptop'],
         ['label' => 'Cables', 'icon' => 'battery'],
@@ -21,10 +21,10 @@
         ['label' => 'Home', 'route' => 'home'],
         ['label' => 'Shop', 'route' => 'shop'],
         ['label' => 'Mobile Phones', 'route' => 'mobile-phones'],
-        ['label' => 'Headsets', 'route' => null],
-        ['label' => 'Accessories', 'route' => null],
-        ['label' => 'Smart Watches', 'route' => null],
-        ['label' => 'Offers', 'route' => null],
+        ['label' => 'Headsets', 'route' => 'headsets'],
+        ['label' => 'Accessories', 'route' => 'accessories'],
+        ['label' => 'Smart Watches', 'route' => 'smart-watches'],
+        ['label' => 'Offers', 'route' => 'offers'],
         ['label' => 'Blog', 'route' => null],
         ['label' => 'Contact Us', 'route' => null],
     ];
@@ -42,8 +42,8 @@
                 <x-lucide name="lightbulb" :size="20" class="text-primary" />
             </div>
             <div class="leading-tight">
-                <span class="block text-xl font-extrabold text-[#0B1426] tracking-tight">TechZone</span>
-                <span class="block text-[10px] font-semibold tracking-[0.18em] text-gray-500 uppercase">Technology Store</span>
+                <span class="block text-xl font-extrabold text-[#0B1426] tracking-tight">LITUS Connect</span>
+                <span class="block text-[10px] font-semibold tracking-[0.18em] text-gray-500 uppercase">Connecting you to the future</span>
             </div>
         </a>
 

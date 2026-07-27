@@ -32,4 +32,8 @@ Route::match(['get', 'head'], 'storage/{path}', function () {
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/shop', [\App\Http\Controllers\ShopController::class, 'index'])->name('shop');
 Route::get('/mobile-phones', [\App\Http\Controllers\MobilePhonesController::class, 'index'])->name('mobile-phones');
+Route::get('/headsets', [\App\Http\Controllers\CategoryController::class, 'headsets'])->name('headsets');
+Route::get('/accessories', [\App\Http\Controllers\CategoryController::class, 'accessories'])->name('accessories');
+Route::get('/smart-watches', [\App\Http\Controllers\CategoryController::class, 'smartWatches'])->name('smart-watches');
+Route::get('/offers', [\App\Http\Controllers\OffersController::class, 'index'])->name('offers');
 Route::get('/product/{id}', [\App\Http\Controllers\ProductController::class, 'show'])->whereNumber('id')->name('product.show');

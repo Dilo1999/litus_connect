@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
-@section('title', 'TechZone Technology Store — Premium Electronics')
-@section('meta_description', 'Shop authentic electronics, mobile phones, headsets, accessories and more at TechZone. Free delivery on orders over LKR 5,000.')
+@section('title', 'LITUS Connect — Connecting you to the future')
+@section('meta_description', 'Shop authentic electronics, mobile phones, headsets, accessories and more at LITUS Connect. Free delivery on orders over MVR 5,000.')
 
 @section('content')
 
@@ -187,9 +187,9 @@
         </div>
     </section>
 
-    {{-- Why Shop With TechZone --}}
+    {{-- Why Shop With LITUS Connect --}}
     <section class="site-container pb-10">
-        <x-section-heading title="Why Shop With TechZone?" :show-link="false" />
+        <x-section-heading title="Why Shop With LITUS Connect?" :show-link="false" />
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             @foreach ($whyUs as $item)
@@ -269,7 +269,7 @@
             <div class="flex items-center gap-4 text-white text-center md:text-left">
                 <x-lucide name="mail" :size="28" class="hidden sm:block text-white shrink-0" />
                 <div>
-                    <h2 class="text-xl md:text-2xl font-extrabold mb-1">Stay Updated With TechZone</h2>
+                    <h2 class="text-xl md:text-2xl font-extrabold mb-1">Stay Updated With LITUS Connect</h2>
                     <p class="text-white/70 text-sm">Subscribe to get special offers, free giveaways, and once-in-a-lifetime deals.</p>
                 </div>
             </div>
@@ -277,7 +277,7 @@
             <div class="w-full md:w-auto md:min-w-[420px] max-w-lg">
                 <div data-newsletter-success class="hidden items-center gap-2 text-white font-bold text-sm bg-white/10 px-5 py-3 rounded-full">
                     <x-lucide name="check-circle" :size="18" class="text-emerald-400" />
-                    You're subscribed! Welcome to TechZone.
+                    You're subscribed! Welcome to LITUS Connect.
                 </div>
 
                 <div data-newsletter-form class="flex w-full overflow-hidden rounded-full bg-white shadow-sm">
