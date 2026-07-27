@@ -166,14 +166,13 @@ class HomeController extends Controller
     private function brands(): array
     {
         return [
-            ['name' => 'Apple', 'logo' => 'APPLE'],
-            ['name' => 'Samsung', 'logo' => 'SAMSUNG'],
-            ['name' => 'Sony', 'logo' => 'SONY'],
-            ['name' => 'JBL', 'logo' => 'JBL'],
-            ['name' => 'Anker', 'logo' => 'Anker'],
-            ['name' => 'Xiaomi', 'logo' => 'Xiaomi'],
-            ['name' => 'Bose', 'logo' => 'BOSE'],
-            ['name' => 'OnePlus', 'logo' => 'OnePlus'],
+            ['name' => 'Apple', 'logo' => 'images/logo/apple.png'],
+            ['name' => 'Samsung', 'logo' => 'images/logo/samsung.png'],
+            ['name' => 'Sony', 'logo' => 'images/logo/sony.png'],
+            ['name' => 'JBL', 'logo' => 'images/logo/JBL-Logo.svg.webp', 'compact' => true],
+            ['name' => 'Anker', 'logo' => 'images/logo/anker.png'],
+            ['name' => 'Xiaomi', 'logo' => 'images/logo/mi.png', 'compact' => true],
+            ['name' => 'Bose', 'logo' => 'images/logo/bose.png'],
         ];
     }
 

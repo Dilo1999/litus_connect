@@ -170,20 +170,53 @@
 
     {{-- Brands --}}
     <section class="site-container pb-10">
-        <x-section-heading title="Shop by Brand" :show-link="false" />
+        <x-section-heading title="Top Brands You Trust" link-text="View All" :href="route('shop')" />
 
-        <div class="bg-white rounded-xl border border-border px-4 py-6">
-            <div class="grid grid-cols-4 sm:grid-cols-8 gap-3">
-                @foreach ($brands as $brand)
-                    <a
-                        href="#"
-                        class="flex items-center justify-center h-16 px-2 rounded-lg border border-border hover:border-primary hover:bg-blue-light transition-all group"
-                        title="{{ $brand['name'] }}"
-                    >
-                        <span class="text-sm md:text-base font-extrabold tracking-wide text-gray-500 group-hover:text-primary transition-colors">{{ $brand['logo'] }}</span>
-                    </a>
-                @endforeach
+        <div class="relative" data-brands-slider>
+            <button
+                type="button"
+                data-brands-prev
+                class="absolute left-0 top-1/2 -translate-y-1/2 z-10 -ml-2 md:-ml-3 w-9 h-9 md:w-10 md:h-10 rounded-full bg-[#E8EAED] hover:bg-primary hover:text-white text-gray-500 flex items-center justify-center transition-colors shadow-sm"
+                aria-label="Previous brands"
+            >
+                <x-lucide name="chevron-left" :size="18" />
+            </button>
+
+            <div class="bg-[#F3F5F9] rounded-2xl px-12 md:px-16 py-8 md:py-10 overflow-hidden">
+                <div
+                    data-brands-track
+                    class="flex items-center justify-between gap-4 md:gap-6 overflow-x-auto scroll-smooth scrollbar-hide"
+                    style="scrollbar-width: none; -ms-overflow-style: none;"
+                >
+                    @foreach ($brands as $brand)
+                        <a
+                            href="{{ route('shop') }}"
+                            class="flex flex-1 items-center justify-center h-20 md:h-24 min-w-[120px] md:min-w-[140px] shrink-0 group"
+                            title="{{ $brand['name'] }}"
+                        >
+                            <img
+                                src="{{ asset($brand['logo']) }}"
+                                alt="{{ $brand['name'] }}"
+                                @class([
+                                    'w-auto object-contain opacity-90 group-hover:opacity-100 transition-opacity',
+                                    'h-12 md:h-14 max-w-[150px]' => empty($brand['compact']),
+                                    'h-14 md:h-16 max-w-[88px]' => ! empty($brand['compact']),
+                                ])
+                                loading="lazy"
+                            >
+                        </a>
+                    @endforeach
+                </div>
             </div>
+
+            <button
+                type="button"
+                data-brands-next
+                class="absolute right-0 top-1/2 -translate-y-1/2 z-10 -mr-2 md:-mr-3 w-9 h-9 md:w-10 md:h-10 rounded-full bg-[#E8EAED] hover:bg-primary hover:text-white text-gray-500 flex items-center justify-center transition-colors shadow-sm"
+                aria-label="Next brands"
+            >
+                <x-lucide name="chevron-right" :size="18" />
+            </button>
         </div>
     </section>
 

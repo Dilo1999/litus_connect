@@ -189,11 +189,32 @@ function initNewsletter() {
   });
 }
 
+function initBrandSlider() {
+  const root = document.querySelector('[data-brands-slider]');
+  if (!root) return;
+
+  const track = root.querySelector('[data-brands-track]');
+  const prev = root.querySelector('[data-brands-prev]');
+  const next = root.querySelector('[data-brands-next]');
+  if (!track) return;
+
+  const scrollByAmount = () => Math.max(track.clientWidth * 0.55, 180);
+
+  prev?.addEventListener('click', () => {
+    track.scrollBy({ left: -scrollByAmount(), behavior: 'smooth' });
+  });
+
+  next?.addEventListener('click', () => {
+    track.scrollBy({ left: scrollByAmount(), behavior: 'smooth' });
+  });
+}
+
 function initStorefront() {
   initHeader();
   initMobileMenu();
   initCategoriesDropdown();
   initHeroSlider();
+  initBrandSlider();
   initProductCards();
   initNewsletter();
 }
