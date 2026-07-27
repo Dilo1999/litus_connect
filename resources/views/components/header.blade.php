@@ -62,17 +62,29 @@
         </form>
 
         <div class="flex items-center gap-1 sm:gap-3 ml-auto">
-            <a href="#" class="hidden sm:flex items-center gap-2.5 px-2 py-1.5 rounded-lg hover:bg-blue-light transition-colors group">
-                <x-lucide name="user" :size="22" class="text-gray-600 group-hover:text-primary transition-colors" />
-                <span class="hidden lg:block leading-tight">
-                    <span class="block text-[11px] text-gray-500">My Account</span>
-                    <span class="block text-xs font-semibold text-[#0B1426]">
-                        <span class="hover:text-primary">Login</span>
-                        <span class="text-gray-400 font-normal"> / </span>
-                        <span class="hover:text-primary">Register</span>
+            @if (session('customer'))
+                <a href="{{ route('account') }}" class="hidden sm:flex items-center gap-2.5 px-2 py-1.5 rounded-lg hover:bg-blue-light transition-colors group">
+                    <x-lucide name="user" :size="22" class="text-gray-600 group-hover:text-primary transition-colors" />
+                    <span class="hidden lg:block leading-tight">
+                        <span class="block text-[11px] text-gray-500">My Account</span>
+                        <span class="block text-xs font-semibold text-[#0B1426] group-hover:text-primary truncate max-w-[120px]">{{ session('customer.name') }}</span>
                     </span>
-                </span>
-            </a>
+                </a>
+            @else
+                <div class="hidden sm:flex items-center gap-2.5 px-2 py-1.5 rounded-lg hover:bg-blue-light transition-colors group">
+                    <a href="{{ route('login') }}" class="text-gray-600 group-hover:text-primary transition-colors" aria-label="Login">
+                        <x-lucide name="user" :size="22" />
+                    </a>
+                    <span class="hidden lg:block leading-tight">
+                        <span class="block text-[11px] text-gray-500">My Account</span>
+                        <span class="block text-xs font-semibold text-[#0B1426]">
+                            <a href="{{ route('login') }}" class="hover:text-primary">Login</a>
+                            <span class="text-gray-400 font-normal"> / </span>
+                            <a href="{{ route('register') }}" class="hover:text-primary">Register</a>
+                        </span>
+                    </span>
+                </div>
+            @endif
 
             <a href="{{ route('cart') }}" class="relative flex flex-col items-center gap-0.5 px-2 py-1.5 rounded-lg hover:bg-blue-light group transition-colors">
                 <x-lucide name="shopping-cart" :size="22" class="text-gray-600 group-hover:text-primary transition-colors" />
@@ -171,5 +183,16 @@
                 {{ $link['label'] }}
             </a>
         @endforeach
+
+        @if (session('customer'))
+            <a href="{{ route('account') }}" class="block py-2.5 text-sm font-semibold border-b border-gray-100 text-gray-700">My Account</a>
+            <form action="{{ route('logout') }}" method="POST" class="py-2.5">
+                @csrf
+                <button type="submit" class="text-sm font-semibold text-red-500">Sign Out</button>
+            </form>
+        @else
+            <a href="{{ route('login') }}" class="block py-2.5 text-sm font-semibold border-b border-gray-100 text-gray-700">Login</a>
+            <a href="{{ route('register') }}" class="block py-2.5 text-sm font-semibold text-gray-700">Register</a>
+        @endif
     </div>
 </header>

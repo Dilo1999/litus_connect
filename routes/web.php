@@ -40,4 +40,13 @@ Route::get('/blog', [\App\Http\Controllers\BlogController::class, 'index'])->nam
 Route::get('/contact', [\App\Http\Controllers\ContactController::class, 'show'])->name('contact');
 Route::post('/contact', [\App\Http\Controllers\ContactController::class, 'store'])->name('contact.store');
 Route::get('/cart', [\App\Http\Controllers\CartController::class, 'index'])->name('cart');
+Route::get('/login', [\App\Http\Controllers\AuthController::class, 'showLogin'])->name('login');
+Route::post('/login', [\App\Http\Controllers\AuthController::class, 'login'])->name('login.store');
+Route::get('/register', [\App\Http\Controllers\AuthController::class, 'showRegister'])->name('register');
+Route::post('/register', [\App\Http\Controllers\AuthController::class, 'register'])->name('register.store');
+Route::get('/forgot-password', [\App\Http\Controllers\AuthController::class, 'showForgotPassword'])->name('password.request');
+Route::post('/forgot-password', [\App\Http\Controllers\AuthController::class, 'sendResetLink'])->name('password.email');
+Route::get('/account', [\App\Http\Controllers\AuthController::class, 'account'])->name('account');
+Route::post('/account/profile', [\App\Http\Controllers\AuthController::class, 'updateProfile'])->name('account.profile');
+Route::post('/logout', [\App\Http\Controllers\AuthController::class, 'logout'])->name('logout');
 Route::get('/product/{id}', [\App\Http\Controllers\ProductController::class, 'show'])->whereNumber('id')->name('product.show');

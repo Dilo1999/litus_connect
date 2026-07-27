@@ -7,3 +7,4 @@ import './offers';
 import './blog';
 import './contact';
 import './cart';
+import './auth';

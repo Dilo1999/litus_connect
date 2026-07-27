@@ -59,8 +59,15 @@
             <div>
                 <h4 class="text-white font-bold mb-4 text-sm tracking-wide">My Account</h4>
                 <ul class="flex flex-col gap-2.5">
-                    @foreach (['Login / Register', 'Order History', 'Compare Products', 'Loyalty Rewards'] as $link)
-                        <li><a href="#" class="text-sm hover:text-white transition-colors">{{ $link }}</a></li>
+                    @foreach ([
+                        ['label' => 'Login / Register', 'route' => 'login'],
+                        ['label' => 'Order History', 'route' => 'account'],
+                        ['label' => 'Compare Products', 'route' => null],
+                        ['label' => 'Loyalty Rewards', 'route' => null],
+                    ] as $link)
+                        <li>
+                            <a href="{{ $link['route'] ? route($link['route']) : '#' }}" class="text-sm hover:text-white transition-colors">{{ $link['label'] }}</a>
+                        </li>
                     @endforeach
                 </ul>
             </div>
