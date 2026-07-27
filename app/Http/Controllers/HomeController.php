@@ -64,7 +64,8 @@ class HomeController extends Controller
                 'sub' => 'The ultimate iPhone experience. Now available at LITUS Connect.',
                 'cta' => 'Shop Now',
                 'bg' => 'linear-gradient(105deg, #0b1426 0%, #152a4a 45%, #1a3358 100%)',
-                'img' => 'https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=720&h=520&fit=crop&auto=format',
+                'img' => asset('images/home/ChatGPT Image Jul 27, 2026, 01_59_44 PM.png'),
+                'fullBleed' => true,
             ],
             [
                 'eyebrow' => 'HOT DEAL',
@@ -72,7 +73,8 @@ class HomeController extends Controller
                 'sub' => 'AI-powered features that help you do more every day.',
                 'cta' => 'Shop Now',
                 'bg' => 'linear-gradient(105deg, #0a1628 0%, #122848 50%, #163058 100%)',
-                'img' => 'https://images.unsplash.com/photo-1610945264803-c22b62d2a7b3?w=720&h=520&fit=crop&auto=format',
+                'img' => asset('images/home/ChatGPT Image Jul 27, 2026, 02_05_43 PM.png'),
+                'fullBleed' => true,
             ],
             [
                 'eyebrow' => 'TOP RATED',
@@ -80,7 +82,8 @@ class HomeController extends Controller
                 'sub' => 'Industry-leading noise cancellation. Now in store.',
                 'cta' => 'Shop Now',
                 'bg' => 'linear-gradient(105deg, #0c0c14 0%, #16162a 50%, #1a1a32 100%)',
-                'img' => 'https://images.unsplash.com/photo-1618366712010-f4ae9c647dcb?w=720&h=520&fit=crop&auto=format',
+                'img' => asset('images/home/ChatGPT Image Jul 27, 2026, 02_07_47 PM.png'),
+                'fullBleed' => true,
             ],
         ];
     }
@@ -160,6 +163,11 @@ class HomeController extends Controller
             ['id' => 104, 'name' => 'Samsung Galaxy Watch 6', 'price' => 89900, 'original' => 109900, 'rating' => 4.7, 'reviews' => 94, 'badge' => 'SALE', 'img' => 'https://images.unsplash.com/photo-1544117519-31a4b719223d?w=280&h=280&fit=crop&auto=format'],
             ['id' => 101, 'name' => 'Sony WH-1000XM5', 'price' => 119900, 'original' => 149900, 'rating' => 4.9, 'reviews' => 312, 'badge' => 'SALE', 'img' => 'https://images.unsplash.com/photo-1618366712010-f4ae9c647dcb?w=280&h=280&fit=crop&auto=format'],
             ['id' => 112, 'name' => 'Anker PowerCore 20K', 'price' => 18990, 'original' => 22990, 'rating' => 4.6, 'reviews' => 187, 'badge' => 'SALE', 'img' => 'https://images.unsplash.com/photo-1609091839311-d5365f9ff1c5?w=280&h=280&fit=crop&auto=format'],
+            ['id' => 1, 'name' => 'iPhone 15 Pro Max 256GB', 'price' => 499990, 'original' => 529990, 'rating' => 4.9, 'reviews' => 210, 'badge' => 'NEW', 'img' => 'https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=280&h=280&fit=crop&auto=format&sat=-10'],
+            ['id' => 2, 'name' => 'Samsung Galaxy S24 Ultra', 'price' => 389900, 'original' => 419900, 'rating' => 4.8, 'reviews' => 176, 'badge' => 'SALE', 'img' => 'https://images.unsplash.com/photo-1610945264803-c22b62d2a7b3?w=280&h=280&fit=crop&auto=format'],
+            ['id' => 110, 'name' => 'Bose QuietComfort 45', 'price' => 99900, 'original' => 119900, 'rating' => 4.8, 'reviews' => 143, 'badge' => 'SALE', 'img' => 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=280&h=280&fit=crop&auto=format'],
+            ['id' => 105, 'name' => 'JBL Charge 5 Speaker', 'price' => 45900, 'original' => 55900, 'rating' => 4.7, 'reviews' => 198, 'badge' => 'SALE', 'img' => 'https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=280&h=280&fit=crop&auto=format'],
+            ['id' => 12, 'name' => 'Xiaomi Redmi Note 13 Pro', 'price' => 69900, 'original' => 79900, 'rating' => 4.5, 'reviews' => 162, 'badge' => 'SALE', 'img' => 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=280&h=280&fit=crop&auto=format'],
         ];
     }
 
@@ -169,9 +177,9 @@ class HomeController extends Controller
             ['name' => 'Apple', 'logo' => 'images/logo/apple.png'],
             ['name' => 'Samsung', 'logo' => 'images/logo/samsung.png'],
             ['name' => 'Sony', 'logo' => 'images/logo/sony.png'],
-            ['name' => 'JBL', 'logo' => 'images/logo/JBL-Logo.svg.webp', 'compact' => true],
+            ['name' => 'JBL', 'logo' => 'images/logo/JBL-Logo.svg.webp'],
             ['name' => 'Anker', 'logo' => 'images/logo/anker.png'],
-            ['name' => 'Xiaomi', 'logo' => 'images/logo/mi.png', 'compact' => true],
+            ['name' => 'Xiaomi', 'logo' => 'images/logo/mi.png'],
             ['name' => 'Bose', 'logo' => 'images/logo/bose.png'],
         ];
     }

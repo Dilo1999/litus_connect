@@ -8,16 +8,26 @@
     {{-- Hero --}}
     <section class="w-full">
         <div
-            class="relative w-full overflow-hidden min-h-[360px] md:min-h-[480px] lg:min-h-[520px]"
+            class="relative w-full overflow-hidden h-[360px] md:h-[480px] lg:h-[520px]"
             data-hero-slider
             style="background: {{ $heroSlides[0]['bg'] }}"
         >
             @foreach ($heroSlides as $index => $slide)
                 <div
                     data-hero-slide="{{ $index }}"
-                    class="{{ $index === 0 ? 'flex' : 'hidden' }} items-center w-full h-full min-h-[360px] md:min-h-[480px] lg:min-h-[520px]"
+                    class="{{ $index === 0 ? 'flex' : 'hidden' }} absolute inset-0 items-center w-full h-full"
                 >
-                    <div class="site-container flex items-center w-full gap-8 py-12 md:py-16">
+                    @if (!empty($slide['fullBleed']))
+                        <img
+                            src="{{ $slide['img'] }}"
+                            alt="{{ $slide['eyebrow'] }}"
+                            class="absolute inset-0 w-full h-full object-cover object-center md:object-right"
+                            data-hero-image
+                        >
+                        <div class="absolute inset-0 bg-gradient-to-r from-[#0b1426]/90 via-[#0b1426]/55 to-transparent"></div>
+                    @endif
+
+                    <div class="site-container relative z-10 flex items-center w-full h-full gap-8 py-10 md:py-14">
                         <div class="flex-1 text-white z-10 max-w-xl">
                             <span class="inline-block text-[11px] font-bold tracking-[0.2em] text-primary bg-white/10 border border-white/15 px-3 py-1 rounded mb-4">
                                 {{ $slide['eyebrow'] }}
@@ -26,19 +36,21 @@
                                 {{ $slide['headline'] }}
                             </h1>
                             <p class="text-white/70 text-sm md:text-base leading-relaxed mb-7 max-w-md">{{ $slide['sub'] }}</p>
-                            <a href="#" class="inline-flex items-center gap-2 bg-white text-[#0B1426] font-bold px-6 py-3 rounded-full text-sm hover:bg-gray-100 transition-all">
+                            <a href="{{ route('mobile-phones') }}" class="inline-flex items-center gap-2 bg-white text-[#0B1426] font-bold px-6 py-3 rounded-full text-sm hover:bg-gray-100 transition-all">
                                 {{ $slide['cta'] }}
                                 <x-lucide name="arrow-right" :size="15" />
                             </a>
                         </div>
-                        <div class="hidden sm:flex flex-1 justify-center items-center">
-                            <img
-                                src="{{ $slide['img'] }}"
-                                alt="{{ $slide['eyebrow'] }}"
-                                class="max-h-[300px] md:max-h-[400px] lg:max-h-[440px] object-contain drop-shadow-2xl animate-fade-slide"
-                                data-hero-image
-                            >
-                        </div>
+                        @if (empty($slide['fullBleed']))
+                            <div class="hidden sm:flex flex-1 justify-center items-center h-full">
+                                <img
+                                    src="{{ $slide['img'] }}"
+                                    alt="{{ $slide['eyebrow'] }}"
+                                    class="max-h-[72%] w-auto object-contain drop-shadow-2xl animate-fade-slide"
+                                    data-hero-image
+                                >
+                            </div>
+                        @endif
                     </div>
                 </div>
             @endforeach
@@ -150,7 +162,7 @@
 
     {{-- Best Selling Products --}}
     <section class="site-container pb-10">
-        <x-section-heading title="Best Selling Products" />
+        <x-section-heading title="Best Selling Products" link-text="View All" :href="route('shop')" />
 
         <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
             @foreach ($products as $product)
@@ -170,40 +182,29 @@
 
     {{-- Brands --}}
     <section class="site-container pb-10">
-        <x-section-heading title="Top Brands You Trust" link-text="View All" :href="route('shop')" />
+        <x-section-heading title="Top Brands You Trust" link-text="View All Reviews" :href="route('shop')" />
 
         <div class="relative" data-brands-slider>
-            <button
-                type="button"
-                data-brands-prev
-                class="absolute left-0 top-1/2 -translate-y-1/2 z-10 -ml-2 md:-ml-3 w-9 h-9 md:w-10 md:h-10 rounded-full bg-[#E8EAED] hover:bg-primary hover:text-white text-gray-500 flex items-center justify-center transition-colors shadow-sm"
-                aria-label="Previous brands"
-            >
-                <x-lucide name="chevron-left" :size="18" />
-            </button>
-
-            <div class="bg-[#F3F5F9] rounded-2xl px-12 md:px-16 py-8 md:py-10 overflow-hidden">
+            <div class="bg-[#F7F8FA] rounded-2xl overflow-hidden">
                 <div
                     data-brands-track
-                    class="flex items-center justify-between gap-4 md:gap-6 overflow-x-auto scroll-smooth scrollbar-hide"
+                    class="flex items-stretch overflow-x-auto scroll-smooth scrollbar-hide divide-x divide-[#E4E9F2]"
                     style="scrollbar-width: none; -ms-overflow-style: none;"
                 >
                     @foreach ($brands as $brand)
                         <a
                             href="{{ route('shop') }}"
-                            class="flex flex-1 items-center justify-center h-20 md:h-24 min-w-[120px] md:min-w-[140px] shrink-0 group"
+                            class="flex flex-1 items-center justify-center h-[72px] md:h-[80px] min-w-[140px] md:min-w-[160px] shrink-0 px-4 md:px-6 group"
                             title="{{ $brand['name'] }}"
                         >
-                            <img
-                                src="{{ asset($brand['logo']) }}"
-                                alt="{{ $brand['name'] }}"
-                                @class([
-                                    'w-auto object-contain opacity-90 group-hover:opacity-100 transition-opacity',
-                                    'h-12 md:h-14 max-w-[150px]' => empty($brand['compact']),
-                                    'h-14 md:h-16 max-w-[88px]' => ! empty($brand['compact']),
-                                ])
-                                loading="lazy"
-                            >
+                            <span class="flex items-center justify-center w-full h-14 md:h-16">
+                                <img
+                                    src="{{ asset($brand['logo']) }}"
+                                    alt="{{ $brand['name'] }}"
+                                    class="max-h-full max-w-[130px] md:max-w-[150px] w-auto h-auto object-contain opacity-90 group-hover:opacity-100 transition-opacity"
+                                    loading="lazy"
+                                >
+                            </span>
                         </a>
                     @endforeach
                 </div>
@@ -211,8 +212,17 @@
 
             <button
                 type="button"
+                data-brands-prev
+                class="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 z-10 w-9 h-9 md:w-10 md:h-10 rounded-full bg-white border border-border text-gray-500 hover:text-primary hover:border-primary flex items-center justify-center transition-colors shadow-sm"
+                aria-label="Previous brands"
+            >
+                <x-lucide name="chevron-left" :size="18" />
+            </button>
+
+            <button
+                type="button"
                 data-brands-next
-                class="absolute right-0 top-1/2 -translate-y-1/2 z-10 -mr-2 md:-mr-3 w-9 h-9 md:w-10 md:h-10 rounded-full bg-[#E8EAED] hover:bg-primary hover:text-white text-gray-500 flex items-center justify-center transition-colors shadow-sm"
+                class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 z-10 w-9 h-9 md:w-10 md:h-10 rounded-full bg-white border border-border text-gray-500 hover:text-primary hover:border-primary flex items-center justify-center transition-colors shadow-sm"
                 aria-label="Next brands"
             >
                 <x-lucide name="chevron-right" :size="18" />
