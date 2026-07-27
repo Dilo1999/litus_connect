@@ -47,8 +47,10 @@
             <div>
                 <h4 class="text-white font-bold mb-4 text-sm tracking-wide">Customer Service</h4>
                 <ul class="flex flex-col gap-2.5">
-                    @foreach (['Contact Us', 'Order Tracking', 'Returns & Exchanges', 'Shipping Info', 'FAQs', 'Store Locator'] as $link)
-                        <li><a href="#" class="text-sm hover:text-white transition-colors">{{ $link }}</a></li>
+                    @foreach (['Contact Us' => 'contact', 'Order Tracking' => null, 'Returns & Exchanges' => null, 'Shipping Info' => null, 'FAQs' => null, 'Store Locator' => null] as $label => $routeName)
+                        <li>
+                            <a href="{{ $routeName ? route($routeName) : '#' }}" class="text-sm hover:text-white transition-colors">{{ $label }}</a>
+                        </li>
                     @endforeach
                 </ul>
             </div>

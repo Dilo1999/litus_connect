@@ -37,4 +37,6 @@ Route::get('/accessories', [\App\Http\Controllers\CategoryController::class, 'ac
 Route::get('/smart-watches', [\App\Http\Controllers\CategoryController::class, 'smartWatches'])->name('smart-watches');
 Route::get('/offers', [\App\Http\Controllers\OffersController::class, 'index'])->name('offers');
 Route::get('/blog', [\App\Http\Controllers\BlogController::class, 'index'])->name('blog');
+Route::get('/contact', [\App\Http\Controllers\ContactController::class, 'show'])->name('contact');
+Route::post('/contact', [\App\Http\Controllers\ContactController::class, 'store'])->name('contact.store');
 Route::get('/product/{id}', [\App\Http\Controllers\ProductController::class, 'show'])->whereNumber('id')->name('product.show');

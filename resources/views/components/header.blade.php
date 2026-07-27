@@ -26,7 +26,7 @@
         ['label' => 'Smart Watches', 'route' => 'smart-watches'],
         ['label' => 'Offers', 'route' => 'offers'],
         ['label' => 'Blog', 'route' => 'blog'],
-        ['label' => 'Contact Us', 'route' => null],
+        ['label' => 'Contact Us', 'route' => 'contact'],
     ];
 @endphp
 
