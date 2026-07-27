@@ -39,4 +39,5 @@ Route::get('/offers', [\App\Http\Controllers\OffersController::class, 'index'])-
 Route::get('/blog', [\App\Http\Controllers\BlogController::class, 'index'])->name('blog');
 Route::get('/contact', [\App\Http\Controllers\ContactController::class, 'show'])->name('contact');
 Route::post('/contact', [\App\Http\Controllers\ContactController::class, 'store'])->name('contact.store');
+Route::get('/cart', [\App\Http\Controllers\CartController::class, 'index'])->name('cart');
 Route::get('/product/{id}', [\App\Http\Controllers\ProductController::class, 'show'])->whereNumber('id')->name('product.show');

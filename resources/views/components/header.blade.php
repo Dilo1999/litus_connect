@@ -79,7 +79,7 @@
                 <span class="hidden sm:block text-[10px] font-medium text-gray-500 group-hover:text-primary">Wishlist</span>
             </a>
 
-            <a href="#" class="relative flex flex-col items-center gap-0.5 px-2 py-1.5 rounded-lg hover:bg-blue-light group transition-colors">
+            <a href="{{ route('cart') }}" class="relative flex flex-col items-center gap-0.5 px-2 py-1.5 rounded-lg hover:bg-blue-light group transition-colors">
                 <x-lucide name="shopping-cart" :size="22" class="text-gray-600 group-hover:text-primary transition-colors" />
                 <span class="hidden sm:block text-[10px] font-medium text-gray-500 group-hover:text-primary">Cart</span>
                 @if ($cartCount > 0)

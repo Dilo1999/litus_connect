@@ -6,3 +6,4 @@ import './product';
 import './offers';
 import './blog';
 import './contact';
+import './cart';
