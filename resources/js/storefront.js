@@ -4,7 +4,6 @@
  * - Mobile menu
  * - Categories dropdown
  * - Hero slider
- * - Product card add to cart
  * - Newsletter subscribe
  */
 
@@ -129,25 +128,23 @@ function initHeroSlider() {
   start();
 }
 
-function initProductCards() {
-  document.querySelectorAll('[data-product-card]').forEach((card) => {
-    const addBtn = card.querySelector('[data-add-to-cart]');
+function initBrandSlider() {
+  const root = document.querySelector('[data-brands-slider]');
+  if (!root) return;
 
-    addBtn?.addEventListener('click', () => {
-      const def = addBtn.querySelector('[data-cart-default]');
-      const added = addBtn.querySelector('[data-cart-added]');
-      addBtn.classList.add('bg-emerald-500', 'text-white');
-      addBtn.classList.remove('bg-primary/10', 'text-primary');
-      def?.classList.add('hidden');
-      added?.classList.remove('hidden');
+  const track = root.querySelector('[data-brands-track]');
+  const prev = root.querySelector('[data-brands-prev]');
+  const next = root.querySelector('[data-brands-next]');
+  if (!track) return;
 
-      setTimeout(() => {
-        addBtn.classList.remove('bg-emerald-500', 'text-white');
-        addBtn.classList.add('bg-primary/10', 'text-primary');
-        def?.classList.remove('hidden');
-        added?.classList.add('hidden');
-      }, 1800);
-    });
+  const scrollByAmount = () => Math.max(track.clientWidth * 0.55, 180);
+
+  prev?.addEventListener('click', () => {
+    track.scrollBy({ left: -scrollByAmount(), behavior: 'smooth' });
+  });
+
+  next?.addEventListener('click', () => {
+    track.scrollBy({ left: scrollByAmount(), behavior: 'smooth' });
   });
 }
 
@@ -177,33 +174,12 @@ function initNewsletter() {
   });
 }
 
-function initBrandSlider() {
-  const root = document.querySelector('[data-brands-slider]');
-  if (!root) return;
-
-  const track = root.querySelector('[data-brands-track]');
-  const prev = root.querySelector('[data-brands-prev]');
-  const next = root.querySelector('[data-brands-next]');
-  if (!track) return;
-
-  const scrollByAmount = () => Math.max(track.clientWidth * 0.55, 180);
-
-  prev?.addEventListener('click', () => {
-    track.scrollBy({ left: -scrollByAmount(), behavior: 'smooth' });
-  });
-
-  next?.addEventListener('click', () => {
-    track.scrollBy({ left: scrollByAmount(), behavior: 'smooth' });
-  });
-}
-
 function initStorefront() {
   initHeader();
   initMobileMenu();
   initCategoriesDropdown();
   initHeroSlider();
   initBrandSlider();
-  initProductCards();
   initNewsletter();
 }
 

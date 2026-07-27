@@ -17,7 +17,7 @@
 </head>
 <body class="min-h-screen bg-background">
     <x-announcement-bar />
-    <x-header :cart-count="$cartCount ?? 3" :wish-count="$wishCount ?? 7" />
+    <x-header :cart-count="$cartCount ?? 0" :wish-count="$wishCount ?? 0" />
 
     <main>
         @yield('content')

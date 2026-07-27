@@ -1,5 +1,6 @@
 import './bootstrap';
 import './animations';
+import './cart-store';
 import './storefront';
 import './shop';
 import './product';

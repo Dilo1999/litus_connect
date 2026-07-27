@@ -18,6 +18,10 @@
 <div
     {{ $attributes->merge(['class' => 'bg-white rounded-xl border border-border hover:shadow-md hover:border-primary/30 transition-all duration-200 group overflow-hidden flex flex-col']) }}
     data-product-card
+    data-product-id="{{ $id }}"
+    data-product-name="{{ $name }}"
+    data-product-price="{{ $price }}"
+    data-product-img="{{ $img }}"
 >
     <div class="relative p-5 bg-[#f7f9fc] min-h-[190px] flex items-center justify-center">
         @if ($badge)

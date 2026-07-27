@@ -6,66 +6,13 @@ class CartController extends Controller
 {
     public function index()
     {
-        $items = [
-            [
-                'id' => 1,
-                'name' => 'iPhone 15 Pro Max 256GB',
-                'variant' => 'Natural Titanium',
-                'price' => 499990,
-                'qty' => 1,
-                'inStock' => true,
-                'freeDelivery' => true,
-                'img' => 'https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=160&h=160&fit=crop&auto=format',
-            ],
-            [
-                'id' => 101,
-                'name' => 'Sony WH-1000XM5 Headphones',
-                'variant' => 'Black',
-                'price' => 119900,
-                'qty' => 1,
-                'inStock' => true,
-                'freeDelivery' => true,
-                'img' => 'https://images.unsplash.com/photo-1618366712010-f4ae9c647dcb?w=160&h=160&fit=crop&auto=format',
-            ],
-            [
-                'id' => 102,
-                'name' => 'Apple Watch Series 9 GPS',
-                'variant' => 'Midnight Aluminum',
-                'price' => 129900,
-                'qty' => 1,
-                'inStock' => true,
-                'freeDelivery' => true,
-                'img' => 'https://images.unsplash.com/photo-1544117519-31a4b719223d?w=160&h=160&fit=crop&auto=format',
-            ],
-            [
-                'id' => 106,
-                'name' => 'Anker 65W USB-C Fast Charger',
-                'variant' => 'White',
-                'price' => 12990,
-                'qty' => 1,
-                'inStock' => true,
-                'freeDelivery' => true,
-                'img' => 'https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=160&h=160&fit=crop&auto=format',
-            ],
-        ];
-
-        $subtotal = collect($items)->sum(fn ($item) => $item['price'] * $item['qty']);
-        $discountCode = 'WELCOME10';
-        $discount = 10000;
-        $delivery = 0;
-        $freeDeliveryThreshold = 5000;
-        $total = max(0, $subtotal - $discount + $delivery);
-
         return view('pages.cart', [
-            'cartCount' => collect($items)->sum('qty'),
+            'cartCount' => 0,
             'wishCount' => 0,
-            'items' => $items,
-            'subtotal' => $subtotal,
-            'discountCode' => $discountCode,
-            'discount' => $discount,
-            'delivery' => $delivery,
-            'total' => $total,
-            'freeDeliveryThreshold' => $freeDeliveryThreshold,
+            'discountCode' => 'WELCOME10',
+            'discount' => 0,
+            'delivery' => 0,
+            'freeDeliveryThreshold' => 5000,
             'suggested' => [
                 ['id' => 103, 'name' => 'Apple AirPods Pro (2nd Gen)', 'price' => 74900, 'original' => 89900, 'rating' => 4.8, 'reviews' => 312, 'img' => 'https://images.unsplash.com/photo-1603351154351-5e2d0600bb77?w=280&h=280&fit=crop&auto=format'],
                 ['id' => 104, 'name' => 'Samsung Galaxy Watch 6', 'price' => 89900, 'original' => 109900, 'rating' => 4.7, 'reviews' => 94, 'img' => 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=280&h=280&fit=crop&auto=format'],

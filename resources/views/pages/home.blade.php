@@ -121,20 +121,20 @@
     <section class="site-container pb-4">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
             @foreach ($promoBanners as $banner)
-                <div class="rounded-2xl p-6 flex items-center justify-between gap-4 overflow-hidden" style="background: {{ $banner['bg'] }}">
+                <div class="rounded-2xl p-6 flex items-center justify-between gap-4 overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-lg cursor-pointer group" style="background: {{ $banner['bg'] }}">
                     <div class="min-w-0">
                         <h3 class="font-extrabold text-lg text-[#0B1426] leading-tight">{{ $banner['title'] }}</h3>
                         <p class="text-sm text-gray-600 mt-1 mb-4">{{ $banner['sub'] }}</p>
                         <a
                             href="#"
-                            class="inline-flex items-center gap-1.5 text-white text-xs font-bold px-4 py-2 rounded-full transition-opacity hover:opacity-90"
+                            class="inline-flex items-center gap-1.5 text-white text-xs font-bold px-4 py-2 rounded-full transition-all hover:opacity-90 group-hover:gap-2.5"
                             style="background: {{ $banner['btn'] }}"
                         >
                             {{ $banner['cta'] }}
                             <x-lucide name="arrow-right" :size="12" />
                         </a>
                     </div>
-                    <img src="{{ $banner['img'] }}" alt="{{ $banner['title'] }}" class="w-24 h-24 md:w-28 md:h-28 object-contain shrink-0" loading="lazy">
+                    <img src="{{ $banner['img'] }}" alt="{{ $banner['title'] }}" class="w-24 h-24 md:w-28 md:h-28 object-contain shrink-0 transition-transform duration-300 group-hover:scale-105" loading="lazy">
                 </div>
             @endforeach
         </div>

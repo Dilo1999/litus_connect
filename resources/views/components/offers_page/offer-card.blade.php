@@ -5,6 +5,11 @@
 <div
     class="bg-white rounded-xl border border-border hover:shadow-md transition-all group overflow-hidden flex flex-col"
     data-offer-card
+    data-product-card
+    data-product-id="{{ $deal['id'] }}"
+    data-product-name="{{ $deal['name'] }}"
+    data-product-price="{{ $deal['price'] }}"
+    data-product-img="{{ $deal['img'] }}"
     data-cat="{{ $deal['cat'] }}"
     data-brand="{{ $deal['brand'] }}"
     data-discount="{{ $deal['discount'] }}"

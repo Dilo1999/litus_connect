@@ -10,7 +10,14 @@
 
 @section('content')
 
-<div class="bg-[#F7F8FA]" data-product-page>
+<div class="bg-[#F7F8FA]"
+    data-product-page
+    data-product-id="{{ $product['id'] }}"
+    data-product-name="{{ $product['name'] }}"
+    data-product-price="{{ $product['price'] }}"
+    data-product-img="{{ $product['images'][0] ?? '' }}"
+    data-product-instock="{{ $product['inStock'] ? '1' : '0' }}"
+>
     <div class="site-container py-5 md:py-8">
         {{-- Breadcrumb --}}
         <div class="flex flex-wrap items-center gap-2 text-sm text-muted-foreground mb-5">
@@ -466,7 +473,14 @@
                 </div>
                 <div class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-4">
                     @foreach ($related as $item)
-                        <div class="bg-white rounded-xl border border-border hover:shadow-md transition-all group overflow-hidden flex flex-col" data-product-card>
+                        <div
+                            class="bg-white rounded-xl border border-border hover:shadow-md transition-all group overflow-hidden flex flex-col"
+                            data-product-card
+                            data-product-id="{{ $item['id'] }}"
+                            data-product-name="{{ $item['name'] }}"
+                            data-product-price="{{ $item['price'] }}"
+                            data-product-img="{{ $item['img'] }}"
+                        >
                             <div class="relative p-4 min-h-[160px] flex items-center justify-center">
                                 @if (!empty($item['badge']))
                                     <span @class([

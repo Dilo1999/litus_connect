@@ -5,20 +5,13 @@
 
 @section('content')
 
-@php
-    $itemCount = collect($items)->sum('qty');
-    $progress = $freeDeliveryThreshold > 0
-        ? min(100, (int) round(($subtotal / $freeDeliveryThreshold) * 100))
-        : 100;
-    $eligibleFreeDelivery = $subtotal >= $freeDeliveryThreshold;
-@endphp
-
 <div
     class="bg-[#F7F8FA]"
     data-cart-page
-    data-discount="{{ $discount }}"
+    data-discount="0"
     data-delivery="{{ $delivery }}"
     data-free-threshold="{{ $freeDeliveryThreshold }}"
+    data-shop-url="{{ route('shop') }}"
 >
     <div class="site-container py-5 md:py-8">
         <div class="flex flex-wrap items-center gap-2 text-sm text-muted-foreground mb-5">
@@ -29,7 +22,7 @@
 
         <div class="mb-6">
             <h1 class="text-2xl md:text-3xl font-extrabold text-[#011848]">
-                Shopping Cart (<span data-cart-count>{{ $itemCount }}</span>)
+                Shopping Cart (<span data-cart-count>0</span>)
             </h1>
             <p class="text-sm text-muted-foreground mt-1">Review your items and proceed to checkout</p>
         </div>
@@ -47,98 +40,17 @@
                     </div>
 
                     <div data-cart-list>
-                        @forelse ($items as $item)
-                            <div
-                                class="border-b border-border last:border-0 px-4 md:px-5 py-4 md:py-5"
-                                data-cart-item
-                                data-price="{{ $item['price'] }}"
-                                data-product-id="{{ $item['id'] }}"
-                            >
-                                <div class="grid grid-cols-1 md:grid-cols-[minmax(0,1fr)_110px_140px_110px_72px] gap-4 md:gap-3 items-center">
-                                    <div class="flex gap-3.5 min-w-0">
-                                        <a href="{{ route('product.show', $item['id']) }}" class="w-20 h-20 md:w-[88px] md:h-[88px] rounded-xl bg-[#F3F5F9] border border-border overflow-hidden shrink-0 flex items-center justify-center">
-                                            <img src="{{ $item['img'] }}" alt="{{ $item['name'] }}" class="w-full h-full object-contain p-1.5" loading="lazy">
-                                        </a>
-                                        <div class="min-w-0">
-                                            <a href="{{ route('product.show', $item['id']) }}" class="text-sm font-extrabold text-[#011848] hover:text-primary transition-colors line-clamp-2">
-                                                {{ $item['name'] }}
-                                            </a>
-                                            @if (!empty($item['variant']))
-                                                <p class="text-xs text-muted-foreground mt-0.5">{{ $item['variant'] }}</p>
-                                            @endif
-                                            <div class="flex flex-wrap items-center gap-x-3 gap-y-1 mt-2">
-                                                @if ($item['inStock'])
-                                                    <span class="inline-flex items-center gap-1.5 text-[11px] font-semibold text-emerald-600">
-                                                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-                                                        In Stock
-                                                    </span>
-                                                @else
-                                                    <span class="inline-flex items-center gap-1.5 text-[11px] font-semibold text-red-500">
-                                                        <span class="w-1.5 h-1.5 rounded-full bg-red-500"></span>
-                                                        Out of Stock
-                                                    </span>
-                                                @endif
-                                                @if (!empty($item['freeDelivery']))
-                                                    <span class="text-[11px] font-semibold text-primary">Eligible for FREE Delivery</span>
-                                                @endif
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="flex md:block items-center justify-between">
-                                        <span class="md:hidden text-xs text-muted-foreground font-semibold">Price</span>
-                                        <p class="text-sm font-extrabold text-[#011848] md:text-center" data-item-price>
-                                            MVR {{ number_format($item['price']) }}
-                                        </p>
-                                    </div>
-
-                                    <div class="flex md:justify-center items-center justify-between">
-                                        <span class="md:hidden text-xs text-muted-foreground font-semibold">Quantity</span>
-                                        <div class="inline-flex items-center border border-border rounded-lg overflow-hidden bg-white">
-                                            <button type="button" data-qty-minus class="w-9 h-9 flex items-center justify-center text-gray-500 hover:bg-[#F3F5F9] hover:text-primary transition-colors" aria-label="Decrease quantity">
-                                                <x-lucide name="minus" :size="14" />
-                                            </button>
-                                            <input
-                                                type="number"
-                                                min="1"
-                                                max="99"
-                                                value="{{ $item['qty'] }}"
-                                                data-qty-input
-                                                class="w-10 h-9 text-center text-sm font-bold text-[#011848] outline-none border-x border-border [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
-                                            >
-                                            <button type="button" data-qty-plus class="w-9 h-9 flex items-center justify-center text-gray-500 hover:bg-[#F3F5F9] hover:text-primary transition-colors" aria-label="Increase quantity">
-                                                <x-lucide name="plus" :size="14" />
-                                            </button>
-                                        </div>
-                                    </div>
-
-                                    <div class="flex md:block items-center justify-between">
-                                        <span class="md:hidden text-xs text-muted-foreground font-semibold">Total</span>
-                                        <p class="text-sm font-extrabold text-[#011848] md:text-right" data-item-total>
-                                            MVR {{ number_format($item['price'] * $item['qty']) }}
-                                        </p>
-                                    </div>
-
-                                    <div class="flex md:justify-end items-center gap-1.5">
-                                        <button type="button" data-remove-item class="w-9 h-9 rounded-lg text-gray-400 hover:text-red-500 hover:bg-red-50 transition-colors flex items-center justify-center" aria-label="Remove item">
-                                            <x-lucide name="trash" :size="16" />
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        @empty
-                            <div class="px-5 py-16 text-center" data-cart-empty>
-                                <p class="text-base font-bold text-[#011848] mb-1">Your cart is empty</p>
-                                <p class="text-sm text-muted-foreground mb-5">Browse our shop and add items you love.</p>
-                                <a href="{{ route('shop') }}" class="inline-flex items-center gap-2 bg-primary hover:bg-[#0d4fc7] text-white text-sm font-bold px-5 py-2.5 rounded-lg transition-colors">
-                                    Continue Shopping
-                                </a>
-                            </div>
-                        @endforelse
+                        <div class="px-5 py-16 text-center" data-cart-empty>
+                            <p class="text-base font-bold text-[#011848] mb-1">Your cart is empty</p>
+                            <p class="text-sm text-muted-foreground mb-5">Browse our shop and add items you love.</p>
+                            <a href="{{ route('shop') }}" class="inline-flex items-center gap-2 bg-primary hover:bg-[#0d4fc7] text-white text-sm font-bold px-5 py-2.5 rounded-lg transition-colors">
+                                Continue Shopping
+                            </a>
+                        </div>
                     </div>
                 </div>
 
-                <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 mt-4" data-cart-actions>
+                <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 mt-4 hidden" data-cart-actions>
                     <a href="{{ route('shop') }}" class="inline-flex items-center justify-center gap-2 h-11 px-5 rounded-lg border border-border bg-white text-sm font-bold text-[#011848] hover:border-primary hover:text-primary transition-colors">
                         <x-lucide name="arrow-left" :size="15" />
                         Continue Shopping
@@ -157,18 +69,16 @@
 
                     <div class="space-y-3 text-sm">
                         <div class="flex items-center justify-between">
-                            <span class="text-muted-foreground">Subtotal (<span data-summary-count>{{ $itemCount }}</span> items)</span>
-                            <span class="font-bold text-[#011848]" data-summary-subtotal>MVR {{ number_format($subtotal) }}</span>
+                            <span class="text-muted-foreground">Subtotal (<span data-summary-count>0</span> items)</span>
+                            <span class="font-bold text-[#011848]" data-summary-subtotal>MVR 0</span>
                         </div>
-                        <div class="flex items-center justify-between" data-discount-row @class(['hidden' => $discount <= 0])>
+                        <div class="flex items-center justify-between hidden" data-discount-row>
                             <span class="text-muted-foreground">Discount (<span data-discount-code>{{ $discountCode }}</span>)</span>
-                            <span class="font-bold text-emerald-600" data-summary-discount>- MVR {{ number_format($discount) }}</span>
+                            <span class="font-bold text-emerald-600" data-summary-discount>- MVR 0</span>
                         </div>
                         <div class="flex items-center justify-between">
                             <span class="text-muted-foreground">Delivery</span>
-                            <span class="font-bold text-emerald-600" data-summary-delivery>
-                                {{ $delivery > 0 ? 'MVR '.number_format($delivery) : 'FREE' }}
-                            </span>
+                            <span class="font-bold text-emerald-600" data-summary-delivery>FREE</span>
                         </div>
                     </div>
 
@@ -176,7 +86,7 @@
                         <div class="flex items-end justify-between gap-3">
                             <span class="text-base font-extrabold text-[#011848]">Total</span>
                             <div class="text-right">
-                                <p class="text-xl font-extrabold text-[#011848]" data-summary-total>MVR {{ number_format($total) }}</p>
+                                <p class="text-xl font-extrabold text-[#011848]" data-summary-total>MVR 0</p>
                                 <p class="text-[11px] text-muted-foreground">Includes VAT</p>
                             </div>
                         </div>
@@ -203,7 +113,7 @@
                         <input
                             type="text"
                             data-coupon-input
-                            value="{{ $discountCode }}"
+                            value=""
                             placeholder="Enter coupon code"
                             class="flex-1 min-w-0 h-11 px-3.5 rounded-lg border border-border text-sm outline-none focus:border-primary focus:ring-2 focus:ring-primary/15"
                         >
@@ -221,22 +131,18 @@
                         </div>
                         <div>
                             <p class="text-sm font-extrabold text-[#011848]" data-delivery-title>
-                                {{ $eligibleFreeDelivery ? 'You are eligible for FREE DELIVERY!' : 'Almost there for FREE delivery' }}
+                                Almost there for FREE delivery
                             </p>
                             <p class="text-xs text-muted-foreground mt-0.5" data-delivery-sub>
-                                @if ($eligibleFreeDelivery)
-                                    Orders over MVR {{ number_format($freeDeliveryThreshold) }} qualify for free delivery.
-                                @else
-                                    Add MVR {{ number_format(max(0, $freeDeliveryThreshold - $subtotal)) }} more to unlock free delivery.
-                                @endif
+                                Add MVR {{ number_format($freeDeliveryThreshold) }} more to unlock free delivery.
                             </p>
                         </div>
                     </div>
                     <div class="h-2 rounded-full bg-[#E8EAED] overflow-hidden">
                         <div
                             data-delivery-progress
-                            class="h-full rounded-full transition-all duration-300 {{ $eligibleFreeDelivery ? 'bg-emerald-500' : 'bg-primary' }}"
-                            style="width: {{ $progress }}%"
+                            class="h-full rounded-full transition-all duration-300 bg-primary"
+                            style="width: 0%"
                         ></div>
                     </div>
                 </div>

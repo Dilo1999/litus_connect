@@ -89,9 +89,7 @@
             <a href="{{ route('cart') }}" class="relative flex flex-col items-center gap-0.5 px-2 py-1.5 rounded-lg hover:bg-blue-light group transition-colors">
                 <x-lucide name="shopping-cart" :size="22" class="text-gray-600 group-hover:text-primary transition-colors" />
                 <span class="hidden sm:block text-[10px] font-medium text-gray-500 group-hover:text-primary">Cart</span>
-                @if ($cartCount > 0)
-                    <span class="absolute -top-0.5 right-0.5 min-w-[18px] h-[18px] px-1 bg-primary text-white text-[10px] font-bold rounded-full flex items-center justify-center">{{ $cartCount }}</span>
-                @endif
+                <span data-cart-badge class="absolute -top-0.5 right-0.5 min-w-[18px] h-[18px] px-1 bg-primary text-white text-[10px] font-bold rounded-full flex items-center justify-center {{ ($cartCount ?? 0) > 0 ? '' : 'hidden' }}">{{ $cartCount ?? 0 }}</span>
             </a>
 
             <button

@@ -185,22 +185,6 @@ function initOffersPage() {
     document.body.classList.remove('overflow-hidden');
   });
 
-  page.querySelectorAll('[data-add-to-cart]').forEach((btn) => {
-    btn.addEventListener('click', (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      const def = btn.querySelector('[data-cart-default]');
-      const added = btn.querySelector('[data-cart-added]');
-      if (!def || !added) return;
-      def.classList.add('hidden');
-      added.classList.remove('hidden');
-      setTimeout(() => {
-        def.classList.remove('hidden');
-        added.classList.add('hidden');
-      }, 1400);
-    });
-  });
-
   initCountdowns();
   updateDiscountUI();
   syncCatButtons();

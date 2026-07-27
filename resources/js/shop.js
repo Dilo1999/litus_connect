@@ -3,6 +3,10 @@
  * Matches LITUS Connect shop layout
  */
 
+function productAttrs(p) {
+  return `data-product-card data-product-id="${p.id}" data-product-name="${String(p.name).replace(/"/g, '&quot;')}" data-product-price="${p.price}" data-product-img="${String(p.img).replace(/"/g, '&quot;')}" data-product-instock="${p.inStock ? '1' : '0'}"`;
+}
+
 function initShop() {
   const page = document.querySelector('[data-shop-page]');
   if (!page) return;
@@ -156,7 +160,7 @@ function initShop() {
   function gridCard(p) {
     if (isMobilePhones) {
       return `
-        <div class="bg-white rounded-xl border border-border hover:shadow-md transition-all duration-200 group overflow-hidden flex flex-col" data-product-card>
+        <div class="bg-white rounded-xl border border-border hover:shadow-md transition-all duration-200 group overflow-hidden flex flex-col" ${productAttrs(p)}>
           <div class="relative p-5 bg-white min-h-[190px] flex items-center justify-center">
             ${badgeHtml(p.badge)}
             ${!p.inStock ? '<div class="absolute inset-0 bg-white/65 flex items-center justify-center z-10"><span class="bg-gray-800 text-white text-xs font-bold px-3 py-1.5 rounded-lg">Out of Stock</span></div>' : ''}
@@ -189,7 +193,7 @@ function initShop() {
     }
 
     return `
-      <div class="bg-white rounded-xl border border-border hover:shadow-md transition-all duration-200 group overflow-hidden flex flex-col" data-product-card>
+      <div class="bg-white rounded-xl border border-border hover:shadow-md transition-all duration-200 group overflow-hidden flex flex-col" ${productAttrs(p)}>
         <div class="relative p-5 bg-white min-h-[190px] flex items-center justify-center">
           ${badgeHtml(p.badge)}
           ${!p.inStock ? '<div class="absolute inset-0 bg-white/65 flex items-center justify-center z-10"><span class="bg-gray-800 text-white text-xs font-bold px-3 py-1.5 rounded-lg">Out of Stock</span></div>' : ''}
@@ -222,7 +226,7 @@ function initShop() {
 
   function listCard(p) {
     return `
-      <div class="bg-white rounded-xl border border-border hover:shadow-md transition-all flex overflow-hidden group" data-product-card>
+      <div class="bg-white rounded-xl border border-border hover:shadow-md transition-all flex overflow-hidden group" ${productAttrs(p)}>
         <a href="${productUrl(p.id)}" class="relative w-36 sm:w-44 flex-shrink-0 bg-[#f7f9fc] flex items-center justify-center p-4">
           ${badgeHtml(p.badge)}
           ${!p.inStock ? '<div class="absolute inset-0 bg-white/65 flex items-center justify-center z-10"><span class="bg-gray-800 text-white text-[10px] font-bold px-2 py-1 rounded-lg">Out of Stock</span></div>' : ''}
@@ -248,21 +252,8 @@ function initShop() {
     `;
   }
 
-  function bindCardActions(root) {
-    root.querySelectorAll('[data-add-to-cart]:not([disabled])').forEach((btn) => {
-      btn.addEventListener('click', () => {
-        const def = btn.querySelector('[data-cart-default]');
-        const added = btn.querySelector('[data-cart-added]');
-        if (!def || !added) return;
-        def.classList.add('hidden');
-        added.classList.remove('hidden');
-        setTimeout(() => {
-          def.classList.remove('hidden');
-          added.classList.add('hidden');
-        }, 1600);
-      });
-    });
-
+  function bindCardActions() {
+    // Add-to-cart is handled globally via cart-store.js event delegation
   }
 
   function renderChips() {
