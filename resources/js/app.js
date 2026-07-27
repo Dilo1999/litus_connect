@@ -4,3 +4,4 @@ import './storefront';
 import './shop';
 import './product';
 import './offers';
+import './blog';

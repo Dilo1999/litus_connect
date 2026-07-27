@@ -236,12 +236,12 @@
 
     {{-- Blog --}}
     <section class="site-container pb-10">
-        <x-section-heading title="Latest From Our Blog" link-text="View All" />
+        <x-section-heading title="Latest From Our Blog" link-text="View All" :href="route('blog')" />
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             @foreach ($blogPosts as $post)
                 <a
-                    href="#"
+                    href="{{ route('blog') }}"
                     class="bg-white rounded-xl border border-border overflow-hidden hover:shadow-md hover:-translate-y-0.5 transition-all group"
                 >
                     <div class="overflow-hidden h-40 bg-gray-100">

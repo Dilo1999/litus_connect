@@ -36,4 +36,5 @@ Route::get('/headsets', [\App\Http\Controllers\CategoryController::class, 'heads
 Route::get('/accessories', [\App\Http\Controllers\CategoryController::class, 'accessories'])->name('accessories');
 Route::get('/smart-watches', [\App\Http\Controllers\CategoryController::class, 'smartWatches'])->name('smart-watches');
 Route::get('/offers', [\App\Http\Controllers\OffersController::class, 'index'])->name('offers');
+Route::get('/blog', [\App\Http\Controllers\BlogController::class, 'index'])->name('blog');
 Route::get('/product/{id}', [\App\Http\Controllers\ProductController::class, 'show'])->whereNumber('id')->name('product.show');
