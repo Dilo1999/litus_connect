@@ -7,29 +7,70 @@
 
 <div class="bg-white" data-contact-page>
     {{-- Hero --}}
-    <section class="relative overflow-hidden border-b border-border/60 bg-gradient-to-br from-[#F0F5FF] via-[#F7F8FA] to-white">
-        <div class="site-container py-8 md:py-12">
-            <div class="flex flex-wrap items-center gap-2 text-sm text-muted-foreground mb-5">
-                <a href="{{ route('home') }}" class="hover:text-primary transition-colors font-medium">Home</a>
-                <x-lucide name="chevron-right" :size="13" class="text-gray-300" />
-                <span class="font-bold text-[#011848]">Contact Us</span>
+    <section class="relative overflow-hidden bg-[#011848]">
+        {{-- Dot grid --}}
+        <div
+            class="pointer-events-none absolute inset-0 opacity-[0.18]"
+            style="background-image: radial-gradient(rgba(255,255,255,0.55) 1px, transparent 1px); background-size: 22px 22px;"
+        ></div>
+        <div class="pointer-events-none absolute -left-24 top-1/2 -translate-y-1/2 w-[420px] h-[420px] rounded-full bg-primary/20 blur-3xl"></div>
+        <div class="pointer-events-none absolute -right-16 top-1/2 -translate-y-1/2 w-[520px] h-[520px] rounded-full bg-[#1a8cff]/25 blur-3xl"></div>
+
+        <div class="site-container relative z-10 py-10 md:py-14 lg:py-16">
+            <div class="flex flex-wrap items-center gap-2 text-sm text-white/55 mb-8">
+                <a href="{{ route('home') }}" class="hover:text-white transition-colors font-medium">Home</a>
+                <x-lucide name="chevron-right" :size="13" class="text-white/30" />
+                <span class="font-bold text-white">Contact Us</span>
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-                <div>
-                    <h1 class="text-3xl md:text-4xl font-extrabold text-[#011848] mb-3">Contact Us</h1>
-                    <p class="text-sm md:text-base text-muted-foreground max-w-lg leading-relaxed">
-                        We're here to help! Get in touch with us for any questions, support or feedback.
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-12 items-center">
+                {{-- Left copy --}}
+                <div class="max-w-xl">
+                    <p class="text-[11px] md:text-xs font-bold tracking-[0.22em] text-white/90 uppercase mb-4">
+                        Get In Touch
                     </p>
+                    <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white leading-[1.15] tracking-tight mb-4">
+                        We're Here To
+                        <span class="text-primary">Help You</span>
+                    </h1>
+                    <p class="text-sm md:text-base text-white/70 leading-relaxed max-w-md mb-8">
+                        Have questions, need support, or looking for the perfect tech solution? Our team is ready to assist you anytime.
+                    </p>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-5 sm:gap-4">
+                        @foreach ([
+                            ['icon' => 'clock', 'title' => 'Fast Response', 'sub' => 'We reply quickly'],
+                            ['icon' => 'headphones', 'title' => 'Expert Support', 'sub' => 'Get professional help'],
+                            ['icon' => 'shield-check', 'title' => 'Customer First', 'sub' => 'Your satisfaction matters'],
+                        ] as $item)
+                            <div class="flex items-start gap-3">
+                                <div class="w-10 h-10 rounded-full bg-primary/20 border border-primary/40 text-primary flex items-center justify-center shrink-0">
+                                    <x-lucide :name="$item['icon']" :size="18" />
+                                </div>
+                                <div>
+                                    <p class="text-sm font-bold text-white leading-tight">{{ $item['title'] }}</p>
+                                    <p class="text-[11px] text-white/60 mt-0.5 leading-snug">{{ $item['sub'] }}</p>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
                 </div>
-                <div class="relative hidden sm:flex justify-end">
-                    <div class="relative w-full max-w-md aspect-[5/3] rounded-2xl overflow-hidden bg-[#E8F0FE]">
+
+                {{-- Right product showcase --}}
+                <div class="relative flex items-center justify-center min-h-[280px] md:min-h-[360px] lg:min-h-[420px]">
+                    {{-- Glow ring --}}
+                    <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+                        <div class="w-[280px] h-[280px] md:w-[380px] md:h-[380px] rounded-full border-[3px] border-[#3BA7FF]/70 shadow-[0_0_60px_rgba(59,167,255,0.45)]"></div>
+                        <div class="absolute w-[220px] h-[220px] md:w-[300px] md:h-[300px] rounded-full border border-[#3BA7FF]/25"></div>
+                    </div>
+
+                    <div class="relative z-10 w-full max-w-[520px] flex items-center justify-center px-2">
                         <img
-                            src="https://images.unsplash.com/photo-1603351154351-5e2d0600bb77?w=640&h=400&fit=crop&auto=format"
+                            src="{{ asset('images/contact/ChatGPT Image Jul 28, 2026, 04_08_06 PM.png') }}"
                             alt="LITUS Connect products"
-                            class="absolute inset-0 w-full h-full object-cover"
+                            class="w-full h-auto object-contain drop-shadow-[0_24px_45px_rgba(0,0,0,0.45)]"
+                            loading="lazy"
                         >
-                        <div class="absolute inset-0 bg-gradient-to-tr from-primary/25 via-transparent to-[#011848]/20"></div>
                     </div>
                 </div>
             </div>
