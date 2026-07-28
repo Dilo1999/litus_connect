@@ -8,6 +8,10 @@
     <title>@yield('title', 'LITUS Connect — Connecting you to the future')</title>
     <meta name="description" content="@yield('meta_description', 'Your trusted destination for premium, authentic electronics — with unbeatable prices and expert support.')">
 
+    <link rel="icon" href="{{ asset('images/favicon/Favicon.webp') }}" type="image/webp">
+    <link rel="shortcut icon" href="{{ asset('images/favicon/Favicon.webp') }}" type="image/webp">
+    <link rel="apple-touch-icon" href="{{ asset('images/favicon/Favicon.webp') }}">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">

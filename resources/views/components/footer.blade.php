@@ -3,14 +3,12 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-10 mb-10">
             {{-- Brand --}}
             <div class="sm:col-span-2 lg:col-span-1">
-                <a href="{{ route('home') }}" class="flex items-center gap-2.5 mb-4">
-                    <div class="w-9 h-9 rounded-full bg-primary/20 flex items-center justify-center">
-                        <x-lucide name="lightbulb" :size="18" class="text-primary" />
-                    </div>
-                    <div class="leading-tight">
-                        <span class="block text-lg font-extrabold text-white">LITUS Connect</span>
-                        <span class="block text-[9px] font-semibold tracking-[0.16em] text-gray-400 uppercase">Connecting you to the future</span>
-                    </div>
+                <a href="{{ route('home') }}" class="inline-flex items-center mb-4">
+                    <img
+                        src="{{ asset('images/site_logo/Logo.webp') }}"
+                        alt="LITUS Connect"
+                        class="h-10 w-auto object-contain"
+                    >
                 </a>
                 <p class="text-sm leading-relaxed text-gray-400 mb-5">
                     Your trusted destination for mobile phones, computers, accessories, and gadgets across the Maldives.

@@ -37,14 +37,12 @@
 >
     {{-- Main header row --}}
     <div class="site-container py-4 flex items-center gap-4 lg:gap-8">
-        <a href="{{ route('home') }}" class="flex items-center gap-2.5 flex-shrink-0">
-            <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
-                <x-lucide name="lightbulb" :size="20" class="text-primary" />
-            </div>
-            <div class="leading-tight">
-                <span class="block text-xl font-extrabold text-[#0B1426] tracking-tight">LITUS Connect</span>
-                <span class="block text-[10px] font-semibold tracking-[0.18em] text-gray-500 uppercase">Connecting you to the future</span>
-            </div>
+        <a href="{{ route('home') }}" class="flex items-center flex-shrink-0">
+            <img
+                src="{{ asset('images/site_logo/Logo.webp') }}"
+                alt="LITUS Connect"
+                class="h-10 md:h-12 w-auto object-contain"
+            >
         </a>
 
         <form action="#" method="get" class="flex-1 max-w-2xl hidden md:flex">
