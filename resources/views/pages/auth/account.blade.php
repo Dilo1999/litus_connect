@@ -103,7 +103,7 @@
                             <a href="{{ route('account', ['tab' => 'orders']) }}" class="text-sm font-bold text-primary hover:underline">View all</a>
                         </div>
                         <div class="space-y-3">
-                            @foreach (array_slice($orders, 0, 2) as $order)
+                            @forelse (array_slice($orders, 0, 2) as $order)
                                 <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 rounded-xl border border-border px-4 py-3.5">
                                     <div>
                                         <p class="text-sm font-extrabold text-[#011848]">#{{ $order['id'] }}</p>
@@ -114,7 +114,9 @@
                                         <span class="text-sm font-extrabold text-[#011848]">MVR {{ number_format($order['total']) }}</span>
                                     </div>
                                 </div>
-                            @endforeach
+                            @empty
+                                <p class="text-sm text-muted-foreground py-2">No orders yet. Start shopping to see them here.</p>
+                            @endforelse
                         </div>
                     </div>
 
@@ -139,7 +141,7 @@
                             <p class="text-sm text-muted-foreground mt-0.5">Track and review your past purchases.</p>
                         </div>
                         <div class="divide-y divide-border">
-                            @foreach ($orders as $order)
+                            @forelse ($orders as $order)
                                 <div class="px-5 md:px-6 py-4 flex flex-col md:flex-row md:items-center justify-between gap-3">
                                     <div>
                                         <p class="text-sm font-extrabold text-[#011848]">Order #{{ $order['id'] }}</p>
@@ -151,7 +153,13 @@
                                         <button type="button" class="h-9 px-3.5 rounded-lg border border-border text-xs font-bold text-[#011848] hover:border-primary hover:text-primary transition-colors">View Details</button>
                                     </div>
                                 </div>
-                            @endforeach
+                            @empty
+                                <div class="px-5 md:px-6 py-10 text-center">
+                                    <p class="text-sm font-bold text-[#011848] mb-1">No orders yet</p>
+                                    <p class="text-sm text-muted-foreground mb-4">When you place an order, it will appear here.</p>
+                                    <a href="{{ route('shop') }}" class="inline-flex items-center gap-2 h-10 px-4 rounded-lg bg-primary hover:bg-[#0d4fc7] text-white text-sm font-bold transition-colors">Browse Shop</a>
+                                </div>
+                            @endforelse
                         </div>
                     </div>
                 @endif
@@ -204,7 +212,7 @@
                             </button>
                         </div>
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            @foreach ($addresses as $address)
+                            @forelse ($addresses as $address)
                                 <div class="rounded-xl border border-border p-4 relative">
                                     @if ($address['default'])
                                         <span class="absolute top-3 right-3 text-[10px] font-bold uppercase tracking-wide bg-blue-light text-primary px-2 py-0.5 rounded">Default</span>
@@ -218,7 +226,12 @@
                                         <button type="button" class="h-9 px-3 rounded-lg border border-border text-xs font-bold text-red-500 hover:bg-red-50 transition-colors">Remove</button>
                                     </div>
                                 </div>
-                            @endforeach
+                            @empty
+                                <div class="sm:col-span-2 rounded-xl border border-dashed border-border p-8 text-center">
+                                    <p class="text-sm font-bold text-[#011848] mb-1">No saved addresses</p>
+                                    <p class="text-sm text-muted-foreground">Add a delivery address for faster checkout.</p>
+                                </div>
+                            @endforelse
                         </div>
                     </div>
                 @endif

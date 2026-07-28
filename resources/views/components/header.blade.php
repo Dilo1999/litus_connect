@@ -62,12 +62,12 @@
         </form>
 
         <div class="flex items-center gap-1 sm:gap-3 ml-auto">
-            @if (session('customer'))
+            @auth('member')
                 <a href="{{ route('account') }}" class="hidden sm:flex items-center gap-2.5 px-2 py-1.5 rounded-lg hover:bg-blue-light transition-colors group">
                     <x-lucide name="user" :size="22" class="text-gray-600 group-hover:text-primary transition-colors" />
                     <span class="hidden lg:block leading-tight">
                         <span class="block text-[11px] text-gray-500">My Account</span>
-                        <span class="block text-xs font-semibold text-[#0B1426] group-hover:text-primary truncate max-w-[120px]">{{ session('customer.name') }}</span>
+                        <span class="block text-xs font-semibold text-[#0B1426] group-hover:text-primary truncate max-w-[120px]">{{ auth('member')->user()->name }}</span>
                     </span>
                 </a>
             @else
@@ -84,7 +84,7 @@
                         </span>
                     </span>
                 </div>
-            @endif
+            @endauth
 
             <a href="{{ route('cart') }}" class="relative flex flex-col items-center gap-0.5 px-2 py-1.5 rounded-lg hover:bg-blue-light group transition-colors">
                 <x-lucide name="shopping-cart" :size="22" class="text-gray-600 group-hover:text-primary transition-colors" />
@@ -182,7 +182,7 @@
             </a>
         @endforeach
 
-        @if (session('customer'))
+        @auth('member')
             <a href="{{ route('account') }}" class="block py-2.5 text-sm font-semibold border-b border-gray-100 text-gray-700">My Account</a>
             <form action="{{ route('logout') }}" method="POST" class="py-2.5">
                 @csrf
@@ -191,6 +191,6 @@
         @else
             <a href="{{ route('login') }}" class="block py-2.5 text-sm font-semibold border-b border-gray-100 text-gray-700">Login</a>
             <a href="{{ route('register') }}" class="block py-2.5 text-sm font-semibold text-gray-700">Register</a>
-        @endif
+        @endauth
     </div>
 </header>
