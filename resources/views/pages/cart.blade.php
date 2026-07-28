@@ -64,6 +64,7 @@
 
             {{-- Order summary --}}
             <aside class="lg:sticky lg:top-28 space-y-4">
+                {{-- 1. Order Summary --}}
                 <div class="bg-white rounded-2xl border border-border p-5 md:p-6">
                     <h2 class="text-lg font-extrabold text-[#011848] mb-4">Order Summary</h2>
 
@@ -73,7 +74,7 @@
                             <span class="font-bold text-[#011848]" data-summary-subtotal>MVR 0</span>
                         </div>
                         <div class="flex items-center justify-between hidden" data-discount-row>
-                            <span class="text-muted-foreground">Discount (<span data-discount-code>{{ $discountCode }}</span>)</span>
+                            <span class="font-medium text-emerald-600">Discount (<span data-discount-code>{{ $discountCode }}</span>)</span>
                             <span class="font-bold text-emerald-600" data-summary-discount>- MVR 0</span>
                         </div>
                         <div class="flex items-center justify-between">
@@ -83,12 +84,12 @@
                     </div>
 
                     <div class="border-t border-border mt-4 pt-4 mb-5">
-                        <div class="flex items-end justify-between gap-3">
-                            <span class="text-base font-extrabold text-[#011848]">Total</span>
-                            <div class="text-right">
-                                <p class="text-xl font-extrabold text-[#011848]" data-summary-total>MVR 0</p>
-                                <p class="text-[11px] text-muted-foreground">Includes VAT</p>
+                        <div class="flex items-start justify-between gap-3">
+                            <div>
+                                <p class="text-base font-extrabold text-[#011848]">Total</p>
+                                <p class="text-[11px] text-muted-foreground mt-0.5">(Includes VAT)</p>
                             </div>
+                            <p class="text-xl font-extrabold text-[#011848]" data-summary-total>MVR 0</p>
                         </div>
                     </div>
 
@@ -96,17 +97,45 @@
                         <x-lucide name="lock" :size="15" />
                         Proceed to Checkout
                     </button>
+                </div>
 
-                    <div class="mt-5 pt-4 border-t border-border">
-                        <p class="text-[11px] font-bold uppercase tracking-wide text-muted-foreground mb-2.5">We Accept</p>
-                        <div class="flex flex-wrap gap-2">
-                            @foreach (['VISA', 'MC', 'Amex', 'PayPal'] as $card)
-                                <span class="px-2.5 py-1.5 rounded-md bg-[#F3F5F9] border border-border text-[10px] font-extrabold text-[#011848]">{{ $card }}</span>
-                            @endforeach
-                        </div>
+                {{-- 2. We Accept --}}
+                <div class="bg-white rounded-2xl border border-border p-5">
+                    <h3 class="text-sm font-extrabold text-[#011848] mb-3">We Accept</h3>
+                    <div class="flex flex-wrap items-center gap-3">
+                        {{-- Visa --}}
+                        <span class="inline-flex items-center justify-center h-9 px-2.5 rounded-md bg-white border border-border" title="Visa" aria-label="Visa">
+                            <svg width="38" height="14" viewBox="0 0 48 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <path d="M18.3 1.2h-3.7l-2.3 13.6h3.7L18.3 1.2zm12.2 8.8l1.9-5.3.9 5.3h-2.8zm3.8 4.8h3.4L35.4 1.2h-3.1c-.7 0-1.2.4-1.5 1L26 14.8h3.8l.6-1.6h4.6l.3 1.6zm-8.9-4.4c0-3.5-4.9-3.7-4.8-5.3.1-.5.5-.9 1.5-.9 1.3 0 2.5.3 3.4.8l.6-2.9c-1-.4-2.3-.7-3.8-.7-4 0-6.8 2.1-6.9 5.2-.1 2.2 2 3.5 3.5 4.2 1.5.8 2.1 1.3 2 2-.1 1.1-1.3 1.5-2.5 1.5-1.5 0-2.9-.4-3.8-.8l-.7 3c1 .4 2.7.8 4.5.8 4.3.1 7.1-2.1 7.2-5.4zM11.2 1.2L7.6 10.4l-.4-1.9C6.5 5.7 4.3 2.8 1.8 1.4l3.3 13.4h3.8L15 1.2h-3.8z" fill="#1A1F71"/>
+                                <path d="M5.7 1.2H.1L0 1.5C4.3 2.6 7.2 5.2 8.3 8.5L7 1.8c-.1-.4-.5-.6-1.3-.6z" fill="#F7B600"/>
+                            </svg>
+                        </span>
+                        {{-- Mastercard --}}
+                        <span class="inline-flex items-center justify-center h-9 px-2 rounded-md bg-white border border-border" title="Mastercard" aria-label="Mastercard">
+                            <svg width="32" height="20" viewBox="0 0 32 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <circle cx="12" cy="10" r="7.5" fill="#EB001B"/>
+                                <circle cx="20" cy="10" r="7.5" fill="#F79E1B"/>
+                                <path d="M16 4.4a7.5 7.5 0 0 1 0 11.2 7.5 7.5 0 0 1 0-11.2z" fill="#FF5F00"/>
+                            </svg>
+                        </span>
+                        {{-- American Express --}}
+                        <span class="inline-flex items-center justify-center h-9 px-2 rounded-md bg-[#016FD0]" title="American Express" aria-label="American Express">
+                            <svg width="34" height="12" viewBox="0 0 34 12" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <text x="0" y="10" fill="white" font-size="9" font-family="Arial, Helvetica, sans-serif" font-weight="700">AMEX</text>
+                            </svg>
+                        </span>
+                        {{-- PayPal --}}
+                        <span class="inline-flex items-center justify-center h-9 px-2.5 rounded-md bg-white border border-border" title="PayPal" aria-label="PayPal">
+                            <svg width="52" height="14" viewBox="0 0 52 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <text x="0" y="11" font-size="11" font-family="Arial, Helvetica, sans-serif" font-weight="700">
+                                    <tspan fill="#003087">Pay</tspan><tspan fill="#009CDE">Pal</tspan>
+                                </text>
+                            </svg>
+                        </span>
                     </div>
                 </div>
 
+                {{-- 3. Coupon --}}
                 <div class="bg-white rounded-2xl border border-border p-5">
                     <h3 class="text-sm font-extrabold text-[#011848] mb-3">Have a Coupon?</h3>
                     <div class="flex gap-2">
@@ -117,33 +146,38 @@
                             placeholder="Enter coupon code"
                             class="flex-1 min-w-0 h-11 px-3.5 rounded-lg border border-border text-sm outline-none focus:border-primary focus:ring-2 focus:ring-primary/15"
                         >
-                        <button type="button" data-coupon-apply class="h-11 px-4 rounded-lg bg-[#011848] hover:bg-[#0a2258] text-white text-sm font-bold transition-colors shrink-0">
+                        <button type="button" data-coupon-apply class="h-11 px-4 rounded-lg border border-border bg-white text-primary hover:border-primary hover:bg-blue-light text-sm font-bold transition-colors shrink-0">
                             Apply
                         </button>
                     </div>
                     <p data-coupon-msg class="hidden text-xs font-semibold mt-2"></p>
                 </div>
 
-                <div class="bg-white rounded-2xl border border-border p-5">
-                    <div class="flex items-start gap-3 mb-3">
-                        <div class="w-10 h-10 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0">
-                            <x-lucide name="truck" :size="18" />
+                {{-- 4. Free delivery progress --}}
+                <div class="rounded-2xl border border-border bg-[#F3F5F9] p-5">
+                    <div class="flex items-start gap-3 mb-4">
+                        <div class="text-[#011848] shrink-0 mt-0.5">
+                            <x-lucide name="truck" :size="22" />
                         </div>
-                        <div>
-                            <p class="text-sm font-extrabold text-[#011848]" data-delivery-title>
-                                Almost there for FREE delivery
-                            </p>
-                            <p class="text-xs text-muted-foreground mt-0.5" data-delivery-sub>
-                                Add MVR {{ number_format($freeDeliveryThreshold) }} more to unlock free delivery.
+                        <div class="min-w-0">
+                            <p class="text-sm text-[#011848]" data-delivery-lead>Almost there for</p>
+                            <p class="text-base font-extrabold tracking-wide text-primary" data-delivery-highlight>FREE DELIVERY!</p>
+                            <p class="text-xs text-muted-foreground mt-1" data-delivery-sub>
+                                Add MVR {{ number_format($freeDeliveryThreshold) }} more to get free delivery.
                             </p>
                         </div>
                     </div>
-                    <div class="h-2 rounded-full bg-[#E8EAED] overflow-hidden">
-                        <div
-                            data-delivery-progress
-                            class="h-full rounded-full transition-all duration-300 bg-primary"
-                            style="width: 0%"
-                        ></div>
+                    <div>
+                        <div class="h-2.5 rounded-full bg-white overflow-hidden border border-border/60">
+                            <div
+                                data-delivery-progress
+                                class="h-full rounded-full transition-all duration-300 bg-primary"
+                                style="width: 0%"
+                            ></div>
+                        </div>
+                        <div class="flex justify-end mt-1.5">
+                            <span class="text-xs font-bold text-emerald-600" data-delivery-threshold>MVR {{ number_format($freeDeliveryThreshold) }}</span>
+                        </div>
                     </div>
                 </div>
             </aside>
@@ -209,29 +243,7 @@
         </div>
     </section>
 
-    <section class="w-full bg-[#011848]" data-newsletter>
-        <div class="site-container py-8 md:py-10 flex flex-col md:flex-row items-center justify-between gap-6">
-            <div class="flex items-center gap-4 text-white text-center md:text-left">
-                <x-lucide name="mail" :size="28" class="hidden sm:block text-white shrink-0" />
-                <div>
-                    <h2 class="text-xl md:text-2xl font-extrabold mb-1">Stay Updated With LITUS Connect</h2>
-                    <p class="text-white/70 text-sm">Subscribe to get special offers, free giveaways, and once-in-a-lifetime deals.</p>
-                </div>
-            </div>
-            <div class="w-full md:w-auto md:min-w-[420px] max-w-lg">
-                <div data-newsletter-success class="hidden items-center gap-2 text-white font-bold text-sm bg-white/10 px-5 py-3 rounded-full">
-                    <x-lucide name="check-circle" :size="18" class="text-emerald-400" />
-                    You're subscribed! Welcome to LITUS Connect.
-                </div>
-                <div data-newsletter-form class="flex w-full overflow-hidden rounded-full bg-white shadow-sm">
-                    <input type="email" data-newsletter-email placeholder="Enter your email address" class="flex-1 min-w-0 px-5 py-3.5 text-sm outline-none bg-transparent text-gray-900 placeholder:text-gray-400">
-                    <button type="button" data-newsletter-submit class="bg-primary hover:bg-[#0d4fc7] text-white font-bold px-6 py-3.5 text-sm transition-colors whitespace-nowrap rounded-full">
-                        Subscribe
-                    </button>
-                </div>
-            </div>
-        </div>
-    </section>
+    <x-newsletter />
 </div>
 
 @endsection

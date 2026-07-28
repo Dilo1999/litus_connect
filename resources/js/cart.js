@@ -103,9 +103,11 @@ function initCartPage() {
   const summaryDelivery = root.querySelector('[data-summary-delivery]');
   const summaryTotal = root.querySelector('[data-summary-total]');
   const discountRow = root.querySelector('[data-discount-row]');
-  const deliveryTitle = root.querySelector('[data-delivery-title]');
+  const deliveryLead = root.querySelector('[data-delivery-lead]');
+  const deliveryHighlight = root.querySelector('[data-delivery-highlight]');
   const deliverySub = root.querySelector('[data-delivery-sub]');
   const deliveryProgress = root.querySelector('[data-delivery-progress]');
+  const deliveryThreshold = root.querySelector('[data-delivery-threshold]');
   const list = root.querySelector('[data-cart-list]');
   const actions = root.querySelector('[data-cart-actions]');
 
@@ -122,7 +124,8 @@ function initCartPage() {
 
     const appliedDiscount = items.length ? discount : 0;
     const total = Math.max(0, subtotal - appliedDiscount + delivery);
-    const eligible = subtotal >= freeThreshold;
+    const remaining = Math.max(0, freeThreshold - subtotal);
+    const eligible = remaining <= 0;
     const progress = freeThreshold > 0 ? Math.min(100, Math.round((subtotal / freeThreshold) * 100)) : 100;
 
     if (countEl) countEl.textContent = String(qtyTotal);
@@ -139,16 +142,24 @@ function initCartPage() {
       deliveryProgress.classList.toggle('bg-primary', !eligible);
     }
 
-    if (deliveryTitle) {
-      deliveryTitle.textContent = eligible
-        ? 'You are eligible for FREE DELIVERY!'
-        : 'Almost there for FREE delivery';
+    if (deliveryLead) {
+      deliveryLead.textContent = eligible ? 'You are eligible for' : 'Almost there for';
+    }
+
+    if (deliveryHighlight) {
+      deliveryHighlight.textContent = 'FREE DELIVERY!';
+      deliveryHighlight.classList.toggle('text-emerald-600', eligible);
+      deliveryHighlight.classList.toggle('text-primary', !eligible);
     }
 
     if (deliverySub) {
-      deliverySub.textContent = eligible
-        ? `Orders over ${formatMvr(freeThreshold)} qualify for free delivery.`
-        : `Add ${formatMvr(Math.max(0, freeThreshold - subtotal))} more to unlock free delivery.`;
+      deliverySub.textContent = `Add ${formatMvr(remaining)} more to get free delivery.`;
+    }
+
+    if (deliveryThreshold) {
+      deliveryThreshold.textContent = formatMvr(freeThreshold);
+      deliveryThreshold.classList.toggle('text-emerald-600', eligible);
+      deliveryThreshold.classList.toggle('text-primary', !eligible);
     }
 
     updateCartBadge();
