@@ -4,7 +4,7 @@
 @section('meta_description', 'Sign in to your LITUS Connect account to track orders, manage addresses, and checkout faster.')
 
 @section('content')
-<div class="bg-[#F7F8FA] min-h-[70vh]" data-auth-page>
+<div class="bg-white min-h-[70vh]" data-auth-page>
     <div class="site-container py-8 md:py-12">
         <div class="flex flex-wrap items-center gap-2 text-sm text-muted-foreground mb-6">
             <a href="{{ route('home') }}" class="hover:text-primary transition-colors font-medium">Home</a>
@@ -89,7 +89,7 @@
                         <span class="font-medium">Remember me</span>
                     </label>
 
-                    <button type="submit" class="w-full h-12 rounded-lg bg-primary hover:bg-[#0d4fc7] text-white text-sm font-bold transition-colors inline-flex items-center justify-center gap-2">
+                    <button type="submit" class="w-full h-12 rounded-lg bg-primary hover:bg-[#005266] text-white text-sm font-bold transition-colors inline-flex items-center justify-center gap-2">
                         <x-lucide name="lock" :size="15" />
                         Sign In
                     </button>

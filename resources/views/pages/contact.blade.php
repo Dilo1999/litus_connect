@@ -5,7 +5,7 @@
 
 @section('content')
 
-<div class="bg-[#F7F8FA]" data-contact-page>
+<div class="bg-white" data-contact-page>
     {{-- Hero --}}
     <section class="relative overflow-hidden border-b border-border/60 bg-gradient-to-br from-[#F0F5FF] via-[#F7F8FA] to-white">
         <div class="site-container py-8 md:py-12">
@@ -134,7 +134,7 @@
                         >{{ old('message') }}</textarea>
                     </div>
 
-                    <button type="submit" class="w-full inline-flex items-center justify-center gap-2 h-12 rounded-lg bg-primary hover:bg-[#0d4fc7] text-white text-sm font-bold transition-colors">
+                    <button type="submit" class="w-full inline-flex items-center justify-center gap-2 h-12 rounded-lg bg-primary hover:bg-[#005266] text-white text-sm font-bold transition-colors">
                         Send Message
                         <x-lucide name="send" :size="16" />
                     </button>
@@ -186,7 +186,7 @@
                     href="{{ $mapDirectionsUrl }}"
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="inline-flex items-center gap-2 w-full justify-center bg-primary hover:bg-[#0d4fc7] text-white text-xs font-bold px-4 py-2.5 rounded-lg transition-colors"
+                    class="inline-flex items-center gap-2 w-full justify-center bg-primary hover:bg-[#005266] text-white text-xs font-bold px-4 py-2.5 rounded-lg transition-colors"
                 >
                     <x-lucide name="map-pin" :size="14" />
                     Get Directions
@@ -249,7 +249,7 @@
                     <div class="relative z-10 max-w-[70%]">
                         <h3 class="text-lg font-extrabold text-[#011848] mb-1.5">Need Immediate Help?</h3>
                         <p class="text-sm text-muted-foreground mb-4 leading-relaxed">Chat with our support team for quick answers about orders, products, and warranty.</p>
-                        <a href="tel:+9603322295" class="inline-flex items-center gap-2 bg-primary hover:bg-[#0d4fc7] text-white text-sm font-bold px-5 py-2.5 rounded-lg transition-colors">
+                        <a href="tel:+9603322295" class="inline-flex items-center gap-2 bg-primary hover:bg-[#005266] text-white text-sm font-bold px-5 py-2.5 rounded-lg transition-colors">
                             <x-lucide name="message-circle" :size="15" />
                             Start Live Chat
                         </a>

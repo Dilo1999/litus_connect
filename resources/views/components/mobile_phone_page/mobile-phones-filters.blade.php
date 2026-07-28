@@ -95,7 +95,7 @@
                 </div>
             </div>
 
-            <button type="button" data-filter-price-apply class="w-full py-2.5 rounded-lg text-sm font-bold text-white bg-primary hover:bg-[#0d4fc7] transition-colors">
+            <button type="button" data-filter-price-apply class="w-full py-2.5 rounded-lg text-sm font-bold text-white bg-primary hover:bg-[#005266] transition-colors">
                 Apply Filter
             </button>
         </div>
@@ -166,7 +166,7 @@
             <p class="text-white/70 text-xs mt-1">On selected mobile phones</p>
         </div>
         <div class="flex items-end justify-between gap-2 mt-4">
-            <a href="{{ route('mobile-phones') }}" class="inline-flex text-xs font-bold bg-primary text-white px-3.5 py-2 rounded-full hover:bg-[#0d4fc7] transition-colors">
+            <a href="{{ route('mobile-phones') }}" class="inline-flex text-xs font-bold bg-primary text-white px-3.5 py-2 rounded-full hover:bg-[#005266] transition-colors">
                 Shop Now
             </a>
             <img

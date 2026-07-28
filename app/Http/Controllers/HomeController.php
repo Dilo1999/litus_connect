@@ -121,7 +121,7 @@ class HomeController extends Controller
                 'sub' => 'On Selected Headsets',
                 'cta' => 'Shop Now',
                 'bg' => '#E8F1FF',
-                'btn' => '#1464F4',
+                'btn' => '#006786',
                 'img' => 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=220&h=160&fit=crop&auto=format',
             ],
             [

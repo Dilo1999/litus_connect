@@ -6,7 +6,7 @@
 @section('content')
 
 <div
-    class="bg-[#F7F8FA]"
+    class="bg-white"
     data-cart-page
     data-discount="0"
     data-delivery="{{ $delivery }}"
@@ -43,7 +43,7 @@
                         <div class="px-5 py-16 text-center" data-cart-empty>
                             <p class="text-base font-bold text-[#011848] mb-1">Your cart is empty</p>
                             <p class="text-sm text-muted-foreground mb-5">Browse our shop and add items you love.</p>
-                            <a href="{{ route('shop') }}" class="inline-flex items-center gap-2 bg-primary hover:bg-[#0d4fc7] text-white text-sm font-bold px-5 py-2.5 rounded-lg transition-colors">
+                            <a href="{{ route('shop') }}" class="inline-flex items-center gap-2 bg-primary hover:bg-[#005266] text-white text-sm font-bold px-5 py-2.5 rounded-lg transition-colors">
                                 Continue Shopping
                             </a>
                         </div>
@@ -93,7 +93,7 @@
                         </div>
                     </div>
 
-                    <button type="button" class="w-full inline-flex items-center justify-center gap-2 h-12 rounded-lg bg-primary hover:bg-[#0d4fc7] text-white text-sm font-bold transition-colors">
+                    <button type="button" class="w-full inline-flex items-center justify-center gap-2 h-12 rounded-lg bg-primary hover:bg-[#005266] text-white text-sm font-bold transition-colors">
                         <x-lucide name="lock" :size="15" />
                         Proceed to Checkout
                     </button>

@@ -41,7 +41,7 @@
                 <span class="text-muted-foreground text-xs">–</span>
                 <input type="number" data-filter-max-price value="{{ $maxCatalogPrice }}" min="0" placeholder="Max" class="w-full border border-border rounded-lg px-3 py-2 text-sm outline-none focus:border-primary">
             </div>
-            <button type="button" data-filter-price-apply class="w-full py-2.5 rounded-lg text-sm font-bold text-white bg-primary hover:bg-[#0d4fc7] transition-colors">
+            <button type="button" data-filter-price-apply class="w-full py-2.5 rounded-lg text-sm font-bold text-white bg-primary hover:bg-[#005266] transition-colors">
                 Filter
             </button>
         </div>
@@ -102,7 +102,7 @@
     </div>
 
     {{-- Daily Deals promo --}}
-    <div class="rounded-xl overflow-hidden relative p-5 text-white min-h-[180px] flex flex-col justify-between" style="background: linear-gradient(145deg, #1464F4 0%, #0a3eb8 100%)">
+    <div class="rounded-xl overflow-hidden relative p-5 text-white min-h-[180px] flex flex-col justify-between" style="background: linear-gradient(145deg, #006786 0%, #0a3eb8 100%)">
         <div>
             <span class="text-[10px] font-bold uppercase tracking-wider bg-white/20 px-2 py-0.5 rounded">Daily Deals</span>
             <p class="font-extrabold text-lg mt-3 leading-tight">Up to 40% Off</p>

@@ -8,29 +8,29 @@
 /* LITUS Connect design tokens (from source theme.css) */
 :root {
   --font-size: 16px;
-  --background: #f3f5f9;
+  --background: #ffffff;
   --foreground: #0b1426;
   --card: #ffffff;
   --card-foreground: #0b1426;
   --popover: #ffffff;
   --popover-foreground: #0b1426;
-  --primary: #1464f4;
+  --primary: #006786;
   --primary-foreground: #ffffff;
   --secondary: #e8f1ff;
-  --secondary-foreground: #1464f4;
+  --secondary-foreground: #006786;
   --muted: #eef1f6;
   --muted-foreground: #6b7a99;
-  --accent: #1464f4;
+  --accent: #006786;
   --accent-foreground: #ffffff;
   --destructive: #e53e3e;
   --destructive-foreground: #ffffff;
   --border: #e4e9f2;
   --input: transparent;
   --input-background: #ffffff;
-  --ring: #1464f4;
+  --ring: #006786;
   --radius: 0.5rem;
   --navy: #0b1426;
-  --blue: #1464f4;
+  --blue: #006786;
   --blue-light: #e8f1ff;
 }
 
@@ -181,7 +181,7 @@
   height: 18px;
   border-radius: 9999px;
   background: #fff;
-  border: 3px solid #1464f4;
+  border: 3px solid #006786;
   box-shadow: 0 1px 3px rgba(11, 20, 38, 0.15);
   cursor: pointer;
   margin-top: 3px;
@@ -193,7 +193,7 @@
   height: 18px;
   border-radius: 9999px;
   background: #fff;
-  border: 3px solid #1464f4;
+  border: 3px solid #006786;
   box-shadow: 0 1px 3px rgba(11, 20, 38, 0.15);
   cursor: pointer;
 }

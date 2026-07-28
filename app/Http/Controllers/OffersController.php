@@ -65,7 +65,7 @@ class OffersController extends Controller
                     'title' => 'Smart Watch Deals',
                     'sub' => 'Up to 20% Off',
                     'route' => 'smart-watches',
-                    'bg' => 'linear-gradient(135deg, #1464F4 0%, #0d4fc7 100%)',
+                    'bg' => 'linear-gradient(135deg, #006786 0%, #006786 100%)',
                     'img' => 'https://images.unsplash.com/photo-1544117519-31a4b719223d?w=200&h=160&fit=crop&auto=format',
                 ],
                 [

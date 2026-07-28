@@ -10,7 +10,7 @@
 
 @section('content')
 
-<div class="bg-[#F7F8FA]"
+<div class="bg-white"
     data-product-page
     data-product-id="{{ $product['id'] }}"
     data-product-name="{{ $product['name'] }}"
@@ -203,7 +203,7 @@
                             @disabled(! $product['inStock'])
                             @class([
                                 'flex-1 h-12 rounded-lg text-sm font-bold transition-colors inline-flex items-center justify-center gap-2',
-                                'bg-primary text-white hover:bg-[#0d4fc7]' => $product['inStock'],
+                                'bg-primary text-white hover:bg-[#005266]' => $product['inStock'],
                                 'bg-gray-200 text-gray-500 cursor-not-allowed' => ! $product['inStock'],
                             ])
                         >

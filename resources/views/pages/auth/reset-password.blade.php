@@ -4,7 +4,7 @@
 @section('meta_description', 'Choose a new password for your LITUS Connect account.')
 
 @section('content')
-<div class="bg-[#F7F8FA] min-h-[60vh]" data-auth-page>
+<div class="bg-white min-h-[60vh]" data-auth-page>
     <div class="site-container py-8 md:py-12">
         <div class="flex flex-wrap items-center gap-2 text-sm text-muted-foreground mb-6">
             <a href="{{ route('home') }}" class="hover:text-primary transition-colors font-medium">Home</a>
@@ -56,7 +56,7 @@
                     <input id="password_confirmation" type="password" name="password_confirmation" required placeholder="Re-enter your password" class="w-full h-11 px-3.5 rounded-lg border border-border bg-white text-sm outline-none focus:border-primary focus:ring-2 focus:ring-primary/15 transition-all">
                 </div>
 
-                <button type="submit" class="w-full h-12 rounded-lg bg-primary hover:bg-[#0d4fc7] text-white text-sm font-bold transition-colors">
+                <button type="submit" class="w-full h-12 rounded-lg bg-primary hover:bg-[#005266] text-white text-sm font-bold transition-colors">
                     Update Password
                 </button>
             </form>

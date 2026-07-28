@@ -47,7 +47,7 @@
                     <span class="inline-flex items-center px-2.5 text-xs font-semibold text-muted-foreground bg-[#F7F8FA] border-l border-border">%</span>
                 </div>
             </div>
-            <button type="button" data-discount-apply class="w-full py-2.5 rounded-lg text-sm font-bold text-white bg-primary hover:bg-[#0d4fc7] transition-colors">
+            <button type="button" data-discount-apply class="w-full py-2.5 rounded-lg text-sm font-bold text-white bg-primary hover:bg-[#005266] transition-colors">
                 Apply Filter
             </button>
         </div>

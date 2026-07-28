@@ -112,7 +112,7 @@ class ProductController extends Controller
             'colors' => $product['colors'] ?? [
                 ['name' => 'Black', 'hex' => '#111827'],
                 ['name' => 'Silver', 'hex' => '#D1D5DB'],
-                ['name' => 'Blue', 'hex' => '#1464F4'],
+                ['name' => 'Blue', 'hex' => '#006786'],
             ],
             'storageOptions' => $product['storageOptions'] ?? ['128GB', '256GB', '512GB'],
             'selectedStorage' => $product['selectedStorage'] ?? '256GB',

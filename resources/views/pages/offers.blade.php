@@ -5,7 +5,7 @@
 
 @section('content')
 
-<div class="bg-[#F7F8FA]" data-offers-page>
+<div class="bg-white" data-offers-page>
     <div class="site-container py-5 md:py-7">
         <div class="flex flex-wrap items-center gap-2 text-sm text-muted-foreground mb-5">
             <a href="{{ route('home') }}" class="hover:text-primary transition-colors font-medium">Home</a>
@@ -50,12 +50,12 @@
                 </div>
 
                 {{-- Hero banner --}}
-                <div class="relative overflow-hidden rounded-2xl mb-6 min-h-[200px] md:min-h-[240px] flex items-center" style="background: linear-gradient(120deg, #011848 0%, #0a2a6e 55%, #1464F4 100%)">
+                <div class="relative overflow-hidden rounded-2xl mb-6 min-h-[200px] md:min-h-[240px] flex items-center" style="background: linear-gradient(120deg, #011848 0%, #0a2a6e 55%, #006786 100%)">
                     <div class="relative z-10 px-6 md:px-10 py-8 max-w-lg">
                         <span class="inline-flex text-[10px] font-bold uppercase tracking-wider bg-red-500 text-white px-2.5 py-1 rounded-md mb-3">Limited Time Only!</span>
                         <h2 class="text-2xl md:text-3xl font-extrabold text-white leading-tight mb-2">Mega Tech Sale<br>Up to 50% Off</h2>
                         <p class="text-white/75 text-sm mb-5">Phones, watches, audio & accessories — exclusive LITUS Connect deals this week.</p>
-                        <a href="#top-deals" class="inline-flex items-center gap-2 bg-primary hover:bg-[#0d4fc7] text-white text-sm font-bold px-5 py-2.5 rounded-full transition-colors">
+                        <a href="#top-deals" class="inline-flex items-center gap-2 bg-primary hover:bg-[#005266] text-white text-sm font-bold px-5 py-2.5 rounded-full transition-colors">
                             Shop All Offers
                             <x-lucide name="arrow-right" :size="15" />
                         </a>
@@ -128,7 +128,7 @@
                         </div>
                         <h3 class="font-bold text-base text-foreground mb-1">No offers match your filters</h3>
                         <p class="text-sm text-muted-foreground mb-4">Try adjusting discount range, category, or brand.</p>
-                        <button type="button" data-offers-reset class="px-5 py-2.5 rounded-lg text-sm font-bold text-white bg-primary hover:bg-[#0d4fc7] transition-colors">
+                        <button type="button" data-offers-reset class="px-5 py-2.5 rounded-lg text-sm font-bold text-white bg-primary hover:bg-[#005266] transition-colors">
                             Reset Filters
                         </button>
                     </div>

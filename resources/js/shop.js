@@ -243,7 +243,7 @@ function initShop() {
               <span class="text-lg font-extrabold text-primary">${formatPrice(p.price)}</span>
               ${p.original ? `<span class="text-sm text-muted-foreground line-through">${formatPrice(p.original)}</span>` : ''}
             </div>
-            <button type="button" data-add-to-cart ${!p.inStock ? 'disabled' : ''} class="inline-flex items-center gap-1.5 text-sm font-semibold ${!p.inStock ? 'text-gray-400' : 'text-primary hover:text-[#0d4fc7]'}">
+            <button type="button" data-add-to-cart ${!p.inStock ? 'disabled' : ''} class="inline-flex items-center gap-1.5 text-sm font-semibold ${!p.inStock ? 'text-gray-400' : 'text-primary hover:text-[#005266]'}">
               ${!p.inStock ? 'Out of Stock' : '<span data-cart-default>Add to Cart</span><span data-cart-added class="hidden text-emerald-600">Added!</span>'}
             </button>
           </div>

@@ -80,7 +80,7 @@ function emptyHtml(shopUrl) {
     <div class="px-5 py-16 text-center" data-cart-empty>
       <p class="text-base font-bold text-[#011848] mb-1">Your cart is empty</p>
       <p class="text-sm text-muted-foreground mb-5">Browse our shop and add items you love.</p>
-      <a href="${shopUrl}" class="inline-flex items-center gap-2 bg-primary hover:bg-[#0d4fc7] text-white text-sm font-bold px-5 py-2.5 rounded-lg transition-colors">
+      <a href="${shopUrl}" class="inline-flex items-center gap-2 bg-primary hover:bg-[#005266] text-white text-sm font-bold px-5 py-2.5 rounded-lg transition-colors">
         Continue Shopping
       </a>
     </div>

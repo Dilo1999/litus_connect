@@ -53,7 +53,7 @@
                     placeholder="Search for products, brands and more..."
                     class="flex-1 px-4 text-sm outline-none bg-transparent text-foreground placeholder:text-muted-foreground"
                 >
-                <button type="submit" class="w-12 flex items-center justify-center bg-primary hover:bg-[#0d4fc7] text-white transition-colors" aria-label="Search">
+                <button type="submit" class="w-12 flex items-center justify-center bg-primary hover:bg-[#005266] text-white transition-colors" aria-label="Search">
                     <x-lucide name="search" :size="18" />
                 </button>
             </div>
@@ -109,7 +109,7 @@
             <div class="relative" data-categories-dropdown>
                 <button
                     type="button"
-                    class="flex items-center gap-2 text-white text-sm font-semibold px-4 py-3 my-2 rounded-md bg-primary hover:bg-[#0d4fc7] transition-colors"
+                    class="flex items-center gap-2 text-white text-sm font-semibold px-4 py-3 my-2 rounded-md bg-primary hover:bg-[#005266] transition-colors"
                     data-categories-toggle
                     aria-expanded="false"
                 >

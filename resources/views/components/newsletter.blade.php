@@ -28,7 +28,7 @@
                 <button
                     type="button"
                     data-newsletter-submit
-                    class="bg-primary hover:bg-[#0d4fc7] text-white font-bold px-6 py-3.5 text-sm transition-colors whitespace-nowrap rounded-full"
+                    class="bg-primary hover:bg-[#005266] text-white font-bold px-6 py-3.5 text-sm transition-colors whitespace-nowrap rounded-full"
                 >
                     Subscribe
                 </button>

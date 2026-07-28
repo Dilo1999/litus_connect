@@ -20,7 +20,7 @@
     ];
 @endphp
 
-<div class="bg-[#F7F8FA]" data-account-page>
+<div class="bg-white" data-account-page>
     <div class="site-container py-6 md:py-10">
         <div class="flex flex-wrap items-center gap-2 text-sm text-muted-foreground mb-5">
             <a href="{{ route('home') }}" class="hover:text-primary transition-colors font-medium">Home</a>
@@ -157,7 +157,7 @@
                                 <div class="px-5 md:px-6 py-10 text-center">
                                     <p class="text-sm font-bold text-[#011848] mb-1">No orders yet</p>
                                     <p class="text-sm text-muted-foreground mb-4">When you place an order, it will appear here.</p>
-                                    <a href="{{ route('shop') }}" class="inline-flex items-center gap-2 h-10 px-4 rounded-lg bg-primary hover:bg-[#0d4fc7] text-white text-sm font-bold transition-colors">Browse Shop</a>
+                                    <a href="{{ route('shop') }}" class="inline-flex items-center gap-2 h-10 px-4 rounded-lg bg-primary hover:bg-[#005266] text-white text-sm font-bold transition-colors">Browse Shop</a>
                                 </div>
                             @endforelse
                         </div>
@@ -193,7 +193,7 @@
                                 <label for="phone" class="block text-xs font-bold text-[#011848] mb-1.5">Phone Number</label>
                                 <input id="phone" type="tel" name="phone" value="{{ old('phone', $customer['phone'] ?? '') }}" class="w-full h-11 px-3.5 rounded-lg border border-border text-sm outline-none focus:border-primary focus:ring-2 focus:ring-primary/15">
                             </div>
-                            <button type="submit" class="h-11 px-5 rounded-lg bg-primary hover:bg-[#0d4fc7] text-white text-sm font-bold transition-colors">
+                            <button type="submit" class="h-11 px-5 rounded-lg bg-primary hover:bg-[#005266] text-white text-sm font-bold transition-colors">
                                 Save Changes
                             </button>
                         </form>
@@ -207,7 +207,7 @@
                                 <h2 class="text-lg font-extrabold text-[#011848]">Saved Addresses</h2>
                                 <p class="text-sm text-muted-foreground mt-0.5">Manage where we deliver your orders.</p>
                             </div>
-                            <button type="button" class="h-10 px-4 rounded-lg bg-primary hover:bg-[#0d4fc7] text-white text-sm font-bold transition-colors">
+                            <button type="button" class="h-10 px-4 rounded-lg bg-primary hover:bg-[#005266] text-white text-sm font-bold transition-colors">
                                 Add Address
                             </button>
                         </div>

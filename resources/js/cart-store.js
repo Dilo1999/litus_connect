@@ -100,11 +100,11 @@ export function flashAddButton(btn) {
     const original = label.textContent;
     label.textContent = 'Added!';
     btn.classList.add('bg-emerald-600');
-    btn.classList.remove('bg-primary', 'hover:bg-[#0d4fc7]');
+    btn.classList.remove('bg-primary', 'hover:bg-[#005266]');
     setTimeout(() => {
       label.textContent = original;
       btn.classList.remove('bg-emerald-600');
-      btn.classList.add('bg-primary', 'hover:bg-[#0d4fc7]');
+      btn.classList.add('bg-primary', 'hover:bg-[#005266]');
     }, 1600);
     return;
   }
@@ -112,13 +112,37 @@ export function flashAddButton(btn) {
   if (def && added) {
     def.classList.add('hidden');
     added.classList.remove('hidden');
-    btn.classList.add('bg-emerald-500', 'text-white');
-    btn.classList.remove('bg-primary/10', 'text-primary');
+
+    const softBtn = btn.classList.contains('bg-primary/10') || btn.classList.contains('text-primary');
+    if (softBtn) {
+      btn.classList.add('bg-emerald-500', 'text-white');
+      btn.classList.remove('bg-primary/10', 'text-primary');
+    } else {
+      btn.classList.add('bg-emerald-600');
+      btn.classList.remove('bg-primary', 'hover:bg-[#005266]');
+    }
+
     setTimeout(() => {
       def.classList.remove('hidden');
       added.classList.add('hidden');
-      btn.classList.remove('bg-emerald-500', 'text-white');
-      btn.classList.add('bg-primary/10', 'text-primary');
+      if (softBtn) {
+        btn.classList.remove('bg-emerald-500', 'text-white');
+        btn.classList.add('bg-primary/10', 'text-primary');
+      } else {
+        btn.classList.remove('bg-emerald-600');
+        btn.classList.add('bg-primary', 'hover:bg-[#005266]');
+      }
+    }, 1600);
+    return;
+  }
+
+  // Icon-only cart button without an "added" icon
+  if (def) {
+    btn.classList.add('bg-emerald-600');
+    btn.classList.remove('bg-primary', 'hover:bg-[#005266]');
+    setTimeout(() => {
+      btn.classList.remove('bg-emerald-600');
+      btn.classList.add('bg-primary', 'hover:bg-[#005266]');
     }, 1600);
   }
 }

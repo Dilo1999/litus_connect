@@ -17,7 +17,7 @@
     $featuredCatClass = $featuredColorMap[$featured['categoryColor'] ?? 'blue'] ?? 'text-primary';
 @endphp
 
-<div class="bg-[#F7F8FA]" data-blog-page>
+<div class="bg-white" data-blog-page>
     <div class="site-container py-5 md:py-7">
         <div class="flex flex-wrap items-center gap-2 text-sm text-muted-foreground mb-5">
             <a href="{{ route('home') }}" class="hover:text-primary transition-colors font-medium">Home</a>
@@ -81,7 +81,7 @@
                                 <span class="text-gray-300">·</span>
                                 <span class="text-xs text-muted-foreground font-medium">{{ $featured['readTime'] }}</span>
                             </div>
-                            <a href="#" class="inline-flex items-center gap-2 self-start bg-primary hover:bg-[#0d4fc7] text-white text-sm font-bold px-5 py-2.5 rounded-lg transition-colors">
+                            <a href="#" class="inline-flex items-center gap-2 self-start bg-primary hover:bg-[#005266] text-white text-sm font-bold px-5 py-2.5 rounded-lg transition-colors">
                                 Read More
                                 <x-lucide name="arrow-right" :size="15" />
                             </a>

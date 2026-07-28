@@ -74,7 +74,7 @@
                     </div>
                     <h3 class="font-bold text-lg text-foreground mb-2">No phones found</h3>
                     <p class="text-sm text-muted-foreground mb-5">Try adjusting your filters to find what you are looking for.</p>
-                    <button type="button" data-shop-reset class="px-6 py-2.5 rounded-lg text-sm font-bold text-white bg-primary hover:bg-[#0d4fc7] transition-colors">
+                    <button type="button" data-shop-reset class="px-6 py-2.5 rounded-lg text-sm font-bold text-white bg-primary hover:bg-[#005266] transition-colors">
                         Reset Filters
                     </button>
                 </div>
