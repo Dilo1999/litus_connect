@@ -15,8 +15,8 @@ class HomeController extends Controller
             'serviceFeatures' => $this->serviceFeatures(),
             'quickCategories' => $this->quickCategories(),
             'promoBanners' => $this->promoBanners(),
-            'categories' => $this->categories(),
             'products' => $this->products(),
+            'randomProducts' => collect($this->products())->shuffle()->values()->all(),
             'brands' => $this->brands(),
             'whyUs' => $this->whyUs(),
             'testimonials' => $this->testimonials(),
@@ -140,18 +140,6 @@ class HomeController extends Controller
                 'btn' => '#059669',
                 'img' => 'https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=220&h=160&fit=crop&auto=format',
             ],
-        ];
-    }
-
-    private function categories(): array
-    {
-        return [
-            ['name' => 'Smartphones', 'discount' => 'Up to 30% OFF', 'img' => 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=200&h=200&fit=crop&auto=format'],
-            ['name' => 'Laptops', 'discount' => 'Up to 20% OFF', 'img' => 'https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=200&h=200&fit=crop&auto=format'],
-            ['name' => 'Headsets', 'discount' => 'Up to 35% OFF', 'img' => 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=200&h=200&fit=crop&auto=format'],
-            ['name' => 'Smart Watches', 'discount' => 'Up to 25% OFF', 'img' => 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=200&h=200&fit=crop&auto=format'],
-            ['name' => 'Accessories', 'discount' => 'Up to 40% OFF', 'img' => 'https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=200&h=200&fit=crop&auto=format'],
-            ['name' => 'Speakers', 'discount' => 'Up to 15% OFF', 'img' => 'https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=200&h=200&fit=crop&auto=format'],
         ];
     }
 

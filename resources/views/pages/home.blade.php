@@ -140,32 +140,53 @@
         </div>
     </section>
 
-    {{-- Popular Categories --}}
+    {{-- Best Selling Products --}}
     <section class="site-container py-10">
-        <x-section-heading title="Popular Categories" />
+        <x-section-heading title="Best Selling Products" link-text="View All" :href="route('shop')" />
 
-        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
-            @foreach ($categories as $cat)
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+            @foreach ($products as $product)
                 <a
-                    href="#"
+                    href="{{ route('product.show', $product['id']) }}"
                     class="flex flex-col items-center text-center p-5 bg-white rounded-xl border border-border hover:border-primary hover:shadow-md transition-all group"
+                    data-product-card
+                    data-product-id="{{ $product['id'] }}"
+                    data-product-name="{{ $product['name'] }}"
+                    data-product-price="{{ $product['price'] }}"
+                    data-product-img="{{ $product['img'] }}"
                 >
-                    <div class="w-20 h-20 mb-3 rounded-xl bg-[#F7F9FC] flex items-center justify-center overflow-hidden">
-                        <img src="{{ $cat['img'] }}" alt="{{ $cat['name'] }}" class="w-16 h-16 object-contain group-hover:scale-105 transition-transform" loading="lazy">
+                    <div class="relative w-20 h-20 mb-3 rounded-xl bg-[#F7F9FC] flex items-center justify-center overflow-hidden">
+                        @if (!empty($product['badge']))
+                            <span @class([
+                                'absolute top-1 left-1 text-white text-[9px] font-bold px-1.5 py-0.5 rounded z-10',
+                                'bg-red-500' => $product['badge'] === 'SALE',
+                                'bg-violet-600' => $product['badge'] === 'NEW',
+                                'bg-primary' => ! in_array($product['badge'], ['SALE', 'NEW'], true),
+                            ])>{{ $product['badge'] }}</span>
+                        @endif
+                        <img
+                            src="{{ $product['img'] }}"
+                            alt="{{ $product['name'] }}"
+                            class="w-16 h-16 object-contain group-hover:scale-105 transition-transform"
+                            loading="lazy"
+                        >
                     </div>
-                    <span class="text-sm font-bold text-[#0B1426] group-hover:text-primary transition-colors">{{ $cat['name'] }}</span>
-                    <span class="text-[11px] font-semibold text-primary mt-1">{{ $cat['discount'] }}</span>
+                    <span class="text-sm font-bold text-[#0B1426] group-hover:text-primary transition-colors line-clamp-2 min-h-[2.5rem]">{{ $product['name'] }}</span>
+                    <span class="text-[11px] font-semibold text-primary mt-1">MVR {{ number_format($product['price']) }}</span>
+                    @if (!empty($product['original']))
+                        <span class="text-[10px] text-muted-foreground line-through">MVR {{ number_format($product['original']) }}</span>
+                    @endif
                 </a>
             @endforeach
         </div>
     </section>
 
-    {{-- Best Selling Products --}}
+    {{-- Featured Products (random) --}}
     <section class="site-container pb-10">
-        <x-section-heading title="Best Selling Products" link-text="View All" :href="route('shop')" />
+        <x-section-heading title="Featured Products" link-text="View All" :href="route('shop')" />
 
         <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
-            @foreach ($products as $product)
+            @foreach ($randomProducts as $product)
                 <x-product-card
                     :id="$product['id']"
                     :name="$product['name']"
