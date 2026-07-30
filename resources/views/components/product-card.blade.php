@@ -44,7 +44,7 @@
     </div>
 
     {{-- Info --}}
-    <div class="bg-[#EDEDED] px-2.5 sm:px-4 pt-3 sm:pt-4 pb-3 sm:pb-4 flex flex-col flex-1">
+    <div class="bg-[#F7F4ED] px-2.5 sm:px-4 pt-3 sm:pt-4 pb-3 sm:pb-4 flex flex-col flex-1">
         @if ($href)
             <a href="{{ $href }}" class="text-xs sm:text-base font-extrabold text-[#011848] leading-snug line-clamp-2 min-h-8 sm:min-h-0 hover:text-primary transition-colors">
                 {{ $name }}
