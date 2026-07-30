@@ -195,7 +195,50 @@
             </p>
         </div>
 
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-3 md:gap-4 lg:h-[500px]">
+        {{-- Mobile/tablet category slider --}}
+        <div class="lg:hidden" data-categories-slider>
+            <div
+                data-categories-track
+                class="flex gap-3 overflow-x-auto scroll-smooth snap-x snap-mandatory scrollbar-hide"
+            >
+                @foreach ($quickCategories as $category)
+                    <a
+                        href="{{ route($category['route']) }}"
+                        data-category-slide
+                        class="relative min-w-[88%] sm:min-w-[65%] h-[300px] sm:h-[340px] snap-start overflow-hidden rounded-xl group"
+                    >
+                        <img
+                            src="{{ $category['img'] }}"
+                            alt="{{ $category['label'] }}"
+                            class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                            loading="lazy"
+                        >
+                        <span class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/15 to-black/5"></span>
+                        <span class="absolute inset-0 flex flex-col items-center justify-center p-5 text-center text-white">
+                            <span class="text-2xl font-extrabold">{{ $category['label'] }}</span>
+                            <span class="inline-flex items-center gap-1.5 mt-3 text-xs font-bold">
+                                Explore <x-lucide name="arrow-right" :size="13" />
+                            </span>
+                        </span>
+                    </a>
+                @endforeach
+            </div>
+
+            <div class="flex items-center justify-center gap-2 pt-4" aria-label="Category slides">
+                @foreach ($quickCategories as $index => $category)
+                    <button
+                        type="button"
+                        data-category-dot="{{ $index }}"
+                        class="h-2 rounded-full transition-all {{ $index === 0 ? 'w-6 bg-primary' : 'w-2 bg-gray-300' }}"
+                        aria-label="Show {{ $category['label'] }}"
+                        aria-current="{{ $index === 0 ? 'true' : 'false' }}"
+                    ></button>
+                @endforeach
+            </div>
+        </div>
+
+        {{-- Desktop category mosaic --}}
+        <div class="hidden lg:grid lg:grid-cols-2 gap-3 md:gap-4 lg:h-[500px]">
             <a
                 href="{{ route($quickCategories[0]['route']) }}"
                 class="relative min-h-[360px] lg:min-h-0 overflow-hidden rounded-xl group"

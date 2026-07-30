@@ -360,6 +360,92 @@ function initTestimonialsSlider() {
   handleViewportChange();
 }
 
+function initCategoriesSlider() {
+  const root = document.querySelector('[data-categories-slider]');
+  if (!root) return;
+
+  const track = root.querySelector('[data-categories-track]');
+  const slides = [...root.querySelectorAll('[data-category-slide]')];
+  const dots = [...root.querySelectorAll('[data-category-dot]')];
+  if (!track || slides.length < 2) return;
+
+  const sliderQuery = window.matchMedia('(max-width: 1023px)');
+  const reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+  let index = 0;
+  let timer;
+  let scrollFrame;
+
+  const updateDots = () => {
+    dots.forEach((dot, dotIndex) => {
+      const active = dotIndex === index;
+      dot.classList.toggle('w-6', active);
+      dot.classList.toggle('bg-primary', active);
+      dot.classList.toggle('w-2', !active);
+      dot.classList.toggle('bg-gray-300', !active);
+      dot.setAttribute('aria-current', String(active));
+    });
+  };
+
+  const goTo = (nextIndex, smooth = true) => {
+    index = (nextIndex + slides.length) % slides.length;
+    const trackRect = track.getBoundingClientRect();
+    const slideRect = slides[index].getBoundingClientRect();
+    track.scrollTo({
+      left: track.scrollLeft + slideRect.left - trackRect.left,
+      behavior: smooth ? 'smooth' : 'auto',
+    });
+    updateDots();
+  };
+
+  const stop = () => clearInterval(timer);
+  const start = () => {
+    stop();
+    if (!sliderQuery.matches || reducedMotionQuery.matches || document.hidden) return;
+    timer = setInterval(() => goTo(index + 1), 4000);
+  };
+
+  dots.forEach((dot) => {
+    dot.addEventListener('click', () => {
+      goTo(Number(dot.getAttribute('data-category-dot')));
+      start();
+    });
+  });
+
+  track.addEventListener('scroll', () => {
+    cancelAnimationFrame(scrollFrame);
+    scrollFrame = requestAnimationFrame(() => {
+      const trackCenter = track.getBoundingClientRect().left + track.clientWidth / 2;
+      index = slides.reduce((closest, slide, slideIndex) => {
+        const rect = slide.getBoundingClientRect();
+        const distance = Math.abs(rect.left + rect.width / 2 - trackCenter);
+        return distance < closest.distance ? { index: slideIndex, distance } : closest;
+      }, { index: 0, distance: Number.POSITIVE_INFINITY }).index;
+      updateDots();
+    });
+  }, { passive: true });
+
+  track.addEventListener('touchstart', stop, { passive: true });
+  track.addEventListener('touchend', start, { passive: true });
+  track.addEventListener('pointerenter', stop);
+  track.addEventListener('pointerleave', start);
+
+  const handleViewportChange = () => {
+    if (!sliderQuery.matches) {
+      stop();
+      track.scrollTo({ left: 0, behavior: 'auto' });
+      index = 0;
+      updateDots();
+      return;
+    }
+    goTo(index, false);
+    start();
+  };
+
+  sliderQuery.addEventListener('change', handleViewportChange);
+  document.addEventListener('visibilitychange', start);
+  handleViewportChange();
+}
+
 function initNewsletter() {
   const root = document.querySelector('[data-newsletter]');
   if (!root) return;
@@ -392,6 +478,7 @@ function initStorefront() {
   initCategoriesDropdown();
   initHeroSlider();
   initPromoSlider();
+  initCategoriesSlider();
   initTestimonialsSlider();
   initBrandSlider();
   initNewsletter();
