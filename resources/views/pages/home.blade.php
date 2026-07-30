@@ -472,7 +472,7 @@
                         href="{{ $media['permalink'] }}"
                         target="_blank"
                         rel="noopener noreferrer"
-                        class="relative min-w-[42%] sm:min-w-0 aspect-square snap-start overflow-hidden rounded-lg group border border-black/5"
+                        class="relative min-w-[42%] sm:min-w-0 aspect-[9/16] snap-start overflow-hidden rounded-lg group border border-black/5"
                         style="background: {{ $hasLiveInstagramMedia ? '#E9EDF3' : $instagramBackgrounds[$index % count($instagramBackgrounds)] }}"
                         aria-label="View {{ \Illuminate\Support\Str::limit(strip_tags($media['caption']), 60) }} on Instagram"
                     >
