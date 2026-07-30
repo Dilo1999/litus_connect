@@ -106,14 +106,26 @@ class HomeController extends Controller
     private function quickCategories(): array
     {
         return [
-            ['label' => 'Mobile Phones', 'img' => 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=120&h=120&fit=crop&auto=format'],
-            ['label' => 'Headsets', 'img' => 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=120&h=120&fit=crop&auto=format'],
-            ['label' => 'Smart Watches', 'img' => 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=120&h=120&fit=crop&auto=format'],
-            ['label' => 'Accessories', 'img' => 'https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=120&h=120&fit=crop&auto=format'],
-            ['label' => 'Speakers', 'img' => 'https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=120&h=120&fit=crop&auto=format'],
-            ['label' => 'Laptops', 'img' => 'https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=120&h=120&fit=crop&auto=format'],
-            ['label' => 'Cables', 'img' => 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=120&h=120&fit=crop&auto=format'],
-            ['label' => 'View All', 'img' => null, 'icon' => 'arrow-right'],
+            [
+                'label' => 'Apple Products',
+                'img' => 'https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=1000&h=1000&fit=crop&auto=format',
+                'route' => 'mobile-phones',
+            ],
+            [
+                'label' => 'Speakers',
+                'img' => 'https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=1200&h=650&fit=crop&auto=format',
+                'route' => 'shop',
+            ],
+            [
+                'label' => 'Cameras',
+                'img' => 'https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=700&h=700&fit=crop&auto=format',
+                'route' => 'shop',
+            ],
+            [
+                'label' => 'Accessories',
+                'img' => 'https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=700&h=700&fit=crop&auto=format',
+                'route' => 'accessories',
+            ],
         ];
     }
 

@@ -5,6 +5,7 @@
 
 @section('content')
 
+<div class="bg-[#F5F5F5]">
     {{-- Hero --}}
     <section class="w-full">
         <div
@@ -99,26 +100,8 @@
         </div>
     </section>
 
-    {{-- Quick Categories --}}
-    <section class="site-container py-10">
-        <div class="grid grid-cols-4 sm:grid-cols-8 gap-4 md:gap-6">
-            @foreach ($quickCategories as $item)
-                <a href="#" class="flex flex-col items-center gap-2.5 group">
-                    <div class="w-16 h-16 md:w-[72px] md:h-[72px] rounded-full bg-[#F3F5F9] border border-border group-hover:border-primary group-hover:bg-blue-light transition-all flex items-center justify-center overflow-hidden shadow-sm">
-                        @if (!empty($item['img']))
-                            <img src="{{ $item['img'] }}" alt="{{ $item['label'] }}" class="w-10 h-10 md:w-12 md:h-12 object-contain" loading="lazy">
-                        @else
-                            <x-lucide :name="$item['icon'] ?? 'arrow-right'" :size="22" class="text-primary" />
-                        @endif
-                    </div>
-                    <span class="text-[11px] md:text-xs font-semibold text-center text-gray-700 group-hover:text-primary transition-colors leading-tight">{{ $item['label'] }}</span>
-                </a>
-            @endforeach
-        </div>
-    </section>
-
     {{-- Promo Banners --}}
-    <section class="site-container pb-4" data-promo-slider>
+    <section class="site-container pt-12 md:pt-16 pb-4" data-promo-slider>
         <div
             data-promo-track
             class="flex md:grid md:grid-cols-3 gap-4 overflow-x-auto md:overflow-visible scroll-smooth snap-x snap-mandatory md:snap-none scrollbar-hide"
@@ -167,14 +150,14 @@
             @foreach ($products as $product)
                 <a
                     href="{{ route('product.show', $product['id']) }}"
-                    class="flex flex-col items-center text-center p-3 sm:p-5 bg-white rounded-xl border border-border hover:border-primary hover:shadow-md transition-all group"
+                    class="flex flex-col items-center text-center p-3 sm:p-5 bg-[#FFFFFF] rounded-xl border border-border hover:border-primary hover:shadow-md transition-all group"
                     data-product-card
                     data-product-id="{{ $product['id'] }}"
                     data-product-name="{{ $product['name'] }}"
                     data-product-price="{{ $product['price'] }}"
                     data-product-img="{{ $product['img'] }}"
                 >
-                    <div class="relative w-20 h-20 mb-3 rounded-xl bg-[#F7F9FC] flex items-center justify-center">
+                    <div class="relative w-20 h-20 mb-3 rounded-xl bg-[#FFFFFF] flex items-center justify-center">
                         @if (!empty($product['badge']))
                             <span @class([
                                 'absolute top-1 left-1 text-white text-[9px] font-bold px-1.5 py-0.5 rounded z-10',
@@ -197,6 +180,82 @@
                     @endif
                 </a>
             @endforeach
+        </div>
+    </section>
+
+    {{-- Popular Categories --}}
+    <section class="site-container pb-10 md:pb-14">
+        <div class="text-center mb-7 md:mb-9">
+            <h2 class="text-2xl md:text-3xl font-extrabold text-[#0B1426]">
+                Popular Categories
+            </h2>
+            <span class="block w-24 h-1 bg-primary rounded-full mx-auto mt-2"></span>
+            <p class="text-sm font-semibold text-muted-foreground mt-3">
+                Shop electronics in every department
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-3 md:gap-4 lg:h-[500px]">
+            <a
+                href="{{ route($quickCategories[0]['route']) }}"
+                class="relative min-h-[360px] lg:min-h-0 overflow-hidden rounded-xl group"
+            >
+                <img
+                    src="{{ $quickCategories[0]['img'] }}"
+                    alt="{{ $quickCategories[0]['label'] }}"
+                    class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                    loading="lazy"
+                >
+                <span class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/15 to-black/5"></span>
+                <span class="absolute inset-0 flex flex-col items-center justify-center p-6 text-center text-white">
+                    <span class="text-2xl md:text-3xl font-extrabold">{{ $quickCategories[0]['label'] }}</span>
+                    <span class="inline-flex items-center gap-1.5 mt-4 text-xs font-bold">
+                        Explore <x-lucide name="arrow-right" :size="13" />
+                    </span>
+                </span>
+            </a>
+
+            <div class="grid grid-cols-2 gap-3 md:gap-4">
+                <a
+                    href="{{ route($quickCategories[1]['route']) }}"
+                    class="relative col-span-2 min-h-[220px] overflow-hidden rounded-xl group"
+                >
+                    <img
+                        src="{{ $quickCategories[1]['img'] }}"
+                        alt="{{ $quickCategories[1]['label'] }}"
+                        class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                        loading="lazy"
+                    >
+                    <span class="absolute inset-0 bg-gradient-to-r from-black/70 via-black/20 to-black/5"></span>
+                    <span class="absolute inset-0 flex flex-col justify-center p-6 md:p-8 text-white">
+                        <span class="text-2xl font-extrabold">{{ $quickCategories[1]['label'] }}</span>
+                        <span class="inline-flex items-center gap-1.5 mt-3 text-xs font-bold">
+                            Explore <x-lucide name="arrow-right" :size="13" />
+                        </span>
+                    </span>
+                </a>
+
+                @foreach (array_slice($quickCategories, 2, 2) as $category)
+                    <a
+                        href="{{ route($category['route']) }}"
+                        class="relative min-h-[190px] overflow-hidden rounded-xl group"
+                    >
+                        <img
+                            src="{{ $category['img'] }}"
+                            alt="{{ $category['label'] }}"
+                            class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                            loading="lazy"
+                        >
+                        <span class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/15 to-black/5"></span>
+                        <span class="absolute inset-0 flex flex-col items-center justify-center p-3 text-center text-white">
+                            <span class="text-lg md:text-2xl font-extrabold">{{ $category['label'] }}</span>
+                            <span class="inline-flex items-center gap-1 mt-3 text-[11px] font-bold">
+                                Explore <x-lucide name="arrow-right" :size="12" />
+                            </span>
+                        </span>
+                    </a>
+                @endforeach
+            </div>
         </div>
     </section>
 
@@ -479,5 +538,6 @@
     </section>
 
     <x-newsletter />
+</div>
 
 @endsection
