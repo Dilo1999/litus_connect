@@ -23,14 +23,14 @@
     data-product-img="{{ $img }}"
 >
     {{-- Image --}}
-    <div class="relative p-6 bg-white min-h-[200px] flex items-center justify-center">
+    <div class="relative p-3 bg-white min-h-[200px] flex items-center justify-center">
         @if ($href)
             <a href="{{ $href }}" class="absolute inset-0 z-0" aria-label="{{ $name }}"></a>
         @endif
         <img
             src="{{ $img }}"
             alt="{{ $name }}"
-            class="relative z-[1] pointer-events-none h-40 w-full object-contain group-hover:scale-105 transition-transform duration-300"
+            class="relative z-[1] pointer-events-none h-44 w-full object-contain group-hover:scale-105 transition-transform duration-300"
             loading="lazy"
         >
     </div>

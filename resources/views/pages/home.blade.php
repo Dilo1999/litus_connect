@@ -8,7 +8,7 @@
     {{-- Hero --}}
     <section class="w-full">
         <div
-            class="relative w-full overflow-hidden h-[360px] md:h-[480px] lg:h-[520px]"
+            class="relative w-full overflow-hidden h-[430px] md:h-[560px] lg:h-[620px]"
             data-hero-slider
             style="background: {{ $heroSlides[0]['bg'] }}"
         >
@@ -167,7 +167,7 @@
                         <img
                             src="{{ $product['img'] }}"
                             alt="{{ $product['name'] }}"
-                            class="w-16 h-16 object-contain group-hover:scale-105 transition-transform"
+                            class="w-20 h-20 object-contain group-hover:scale-105 transition-transform"
                             loading="lazy"
                         >
                     </div>

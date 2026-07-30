@@ -146,16 +146,16 @@ class HomeController extends Controller
     private function products(): array
     {
         return [
-            ['id' => 8, 'name' => 'iPhone 14 Pro 128GB', 'price' => 349900, 'original' => 379900, 'rating' => 4.9, 'reviews' => 128, 'badge' => 'SALE', 'img' => 'https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=280&h=280&fit=crop&auto=format'],
-            ['id' => 103, 'name' => 'AirPods Pro (2nd Gen)', 'price' => 74900, 'original' => 89900, 'rating' => 4.8, 'reviews' => 256, 'badge' => 'SALE', 'img' => 'https://images.unsplash.com/photo-1603351154351-5e2d0600bb77?w=280&h=280&fit=crop&auto=format'],
-            ['id' => 104, 'name' => 'Samsung Galaxy Watch 6', 'price' => 89900, 'original' => 109900, 'rating' => 4.7, 'reviews' => 94, 'badge' => 'SALE', 'img' => 'https://images.unsplash.com/photo-1544117519-31a4b719223d?w=280&h=280&fit=crop&auto=format'],
-            ['id' => 101, 'name' => 'Sony WH-1000XM5', 'price' => 119900, 'original' => 149900, 'rating' => 4.9, 'reviews' => 312, 'badge' => 'SALE', 'img' => 'https://images.unsplash.com/photo-1618366712010-f4ae9c647dcb?w=280&h=280&fit=crop&auto=format'],
-            ['id' => 112, 'name' => 'Anker PowerCore 20K', 'price' => 18990, 'original' => 22990, 'rating' => 4.6, 'reviews' => 187, 'badge' => 'SALE', 'img' => 'https://images.unsplash.com/photo-1609091839311-d5365f9ff1c5?w=280&h=280&fit=crop&auto=format'],
-            ['id' => 1, 'name' => 'iPhone 15 Pro Max 256GB', 'price' => 499990, 'original' => 529990, 'rating' => 4.9, 'reviews' => 210, 'badge' => 'NEW', 'img' => 'https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=280&h=280&fit=crop&auto=format&sat=-10'],
-            ['id' => 2, 'name' => 'Samsung Galaxy S24 Ultra', 'price' => 389900, 'original' => 419900, 'rating' => 4.8, 'reviews' => 176, 'badge' => 'SALE', 'img' => 'https://images.unsplash.com/photo-1610945264803-c22b62d2a7b3?w=280&h=280&fit=crop&auto=format'],
-            ['id' => 110, 'name' => 'Bose QuietComfort 45', 'price' => 99900, 'original' => 119900, 'rating' => 4.8, 'reviews' => 143, 'badge' => 'SALE', 'img' => 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=280&h=280&fit=crop&auto=format'],
-            ['id' => 105, 'name' => 'JBL Charge 5 Speaker', 'price' => 45900, 'original' => 55900, 'rating' => 4.7, 'reviews' => 198, 'badge' => 'SALE', 'img' => 'https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=280&h=280&fit=crop&auto=format'],
-            ['id' => 12, 'name' => 'Xiaomi Redmi Note 13 Pro', 'price' => 69900, 'original' => 79900, 'rating' => 4.5, 'reviews' => 162, 'badge' => 'SALE', 'img' => 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=280&h=280&fit=crop&auto=format'],
+            ['id' => 8, 'name' => 'iPhone 14 Pro 128GB', 'price' => 349900, 'original' => 379900, 'rating' => 4.9, 'reviews' => 128, 'badge' => 'SALE', 'img' => asset('images/products/transparent/iphone-14-pro.png')],
+            ['id' => 103, 'name' => 'AirPods Pro (2nd Gen)', 'price' => 74900, 'original' => 89900, 'rating' => 4.8, 'reviews' => 256, 'badge' => 'SALE', 'img' => asset('images/products/transparent/airpods-pro.png')],
+            ['id' => 104, 'name' => 'Samsung Galaxy Watch 6', 'price' => 89900, 'original' => 109900, 'rating' => 4.7, 'reviews' => 94, 'badge' => 'SALE', 'img' => asset('images/products/transparent/galaxy-watch-6.png')],
+            ['id' => 101, 'name' => 'Sony WH-1000XM5', 'price' => 119900, 'original' => 149900, 'rating' => 4.9, 'reviews' => 312, 'badge' => 'SALE', 'img' => asset('images/products/transparent/sony-wh-1000xm5.png')],
+            ['id' => 112, 'name' => 'Anker PowerCore 20K', 'price' => 18990, 'original' => 22990, 'rating' => 4.6, 'reviews' => 187, 'badge' => 'SALE', 'img' => asset('images/products/transparent/anker-powercore-20k.png')],
+            ['id' => 1, 'name' => 'iPhone 15 Pro Max 256GB', 'price' => 499990, 'original' => 529990, 'rating' => 4.9, 'reviews' => 210, 'badge' => 'NEW', 'img' => asset('images/products/transparent/iphone-15-pro-max.png')],
+            ['id' => 2, 'name' => 'Samsung Galaxy S24 Ultra', 'price' => 389900, 'original' => 419900, 'rating' => 4.8, 'reviews' => 176, 'badge' => 'SALE', 'img' => asset('images/products/transparent/galaxy-s24-ultra.png')],
+            ['id' => 110, 'name' => 'Bose QuietComfort 45', 'price' => 99900, 'original' => 119900, 'rating' => 4.8, 'reviews' => 143, 'badge' => 'SALE', 'img' => asset('images/products/transparent/bose-quietcomfort-45.png')],
+            ['id' => 105, 'name' => 'JBL Charge 5 Speaker', 'price' => 45900, 'original' => 55900, 'rating' => 4.7, 'reviews' => 198, 'badge' => 'SALE', 'img' => asset('images/products/transparent/jbl-charge-5.png')],
+            ['id' => 12, 'name' => 'Xiaomi Redmi Note 13 Pro', 'price' => 69900, 'original' => 79900, 'rating' => 4.5, 'reviews' => 162, 'badge' => 'SALE', 'img' => asset('images/products/transparent/redmi-note-13-pro.png')],
         ];
     }
 
