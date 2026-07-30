@@ -161,29 +161,30 @@ function initShop() {
     if (isMobilePhones) {
       return `
         <div class="bg-white rounded-xl border border-border hover:shadow-md transition-all duration-200 group overflow-hidden flex flex-col" ${productAttrs(p)}>
-          <div class="relative p-5 bg-white min-h-[190px] flex items-center justify-center">
+          <div class="relative px-3 pb-3 pt-10 sm:px-5 sm:pb-5 sm:pt-10 bg-white min-h-[164px] sm:min-h-[204px] flex items-center justify-center">
             ${badgeHtml(p.badge)}
             ${!p.inStock ? '<div class="absolute inset-0 bg-white/65 flex items-center justify-center z-10"><span class="bg-gray-800 text-white text-xs font-bold px-3 py-1.5 rounded-lg">Out of Stock</span></div>' : ''}
             <a href="${productUrl(p.id)}" class="absolute inset-0 z-0" aria-label="${p.name}"></a>
-            <img src="${p.img}" alt="${p.name}" class="relative z-10 pointer-events-none h-36 w-full object-contain group-hover:scale-105 transition-transform duration-300" loading="lazy">
+            <img src="${p.img}" alt="${p.name}" class="relative z-10 pointer-events-none h-28 sm:h-36 w-full object-contain group-hover:scale-105 transition-transform duration-300" loading="lazy">
           </div>
-          <div class="px-4 pb-4 flex flex-col flex-1">
+          <div class="px-3 sm:px-4 pb-4 flex flex-col flex-1">
             <a href="${productUrl(p.id)}" class="text-sm font-bold text-[#011848] line-clamp-2 mb-2 leading-snug min-h-[2.5rem] hover:text-primary transition-colors">${p.name}</a>
             <div class="flex items-center gap-1.5 mb-2.5">
               ${stars(p.rating)}
               <span class="text-[11px] text-gray-400">(${p.reviews})</span>
             </div>
-            <div class="mt-auto flex items-end justify-between gap-2">
-              <div class="flex items-baseline gap-2 flex-wrap">
-                <span class="text-base font-extrabold text-primary">${formatPrice(p.price)}</span>
-                ${p.original ? `<span class="text-xs text-gray-400 line-through">${formatPrice(p.original)}</span>` : ''}
+            <div class="mt-auto space-y-2">
+              <div class="flex items-baseline gap-1.5 flex-wrap min-w-0">
+                <span class="text-sm sm:text-base font-extrabold text-primary">${formatPrice(p.price)}</span>
+                ${p.original ? `<span class="text-[11px] sm:text-xs text-gray-400 line-through">${formatPrice(p.original)}</span>` : ''}
               </div>
-              <button type="button" data-add-to-cart ${!p.inStock ? 'disabled' : ''} class="relative z-10 w-9 h-9 flex-shrink-0 rounded-lg border border-border bg-white flex items-center justify-center transition-all ${!p.inStock ? 'text-gray-300 cursor-not-allowed' : 'text-primary hover:bg-primary hover:text-white hover:border-primary'}" aria-label="Add to cart">
-                ${!p.inStock ? '' : `
-                  <span data-cart-default>
+              <button type="button" data-add-to-cart ${!p.inStock ? 'disabled' : ''} class="relative z-10 w-full min-h-11 rounded-lg border border-border bg-white flex items-center justify-center gap-2 text-sm font-semibold transition-all ${!p.inStock ? 'text-gray-300 cursor-not-allowed' : 'text-primary hover:bg-primary hover:text-white hover:border-primary'}" aria-label="Add to cart">
+                ${!p.inStock ? 'Out of Stock' : `
+                  <span data-cart-default class="inline-flex items-center gap-2">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
+                    Add to Cart
                   </span>
-                  <span data-cart-added class="hidden text-emerald-600 text-xs font-bold">✓</span>
+                  <span data-cart-added class="hidden text-emerald-600 text-xs font-bold">Added!</span>
                 `}
               </button>
             </div>
@@ -194,23 +195,23 @@ function initShop() {
 
     return `
       <div class="bg-white rounded-xl border border-border hover:shadow-md transition-all duration-200 group overflow-hidden flex flex-col" ${productAttrs(p)}>
-        <div class="relative p-5 bg-white min-h-[190px] flex items-center justify-center">
+        <div class="relative px-3 pb-3 pt-10 sm:px-5 sm:pb-5 sm:pt-10 bg-white min-h-[164px] sm:min-h-[204px] flex items-center justify-center">
           ${badgeHtml(p.badge)}
           ${!p.inStock ? '<div class="absolute inset-0 bg-white/65 flex items-center justify-center z-10"><span class="bg-gray-800 text-white text-xs font-bold px-3 py-1.5 rounded-lg">Out of Stock</span></div>' : ''}
           <a href="${productUrl(p.id)}" class="absolute inset-0 z-0" aria-label="${p.name}"></a>
-          <img src="${p.img}" alt="${p.name}" class="relative z-10 pointer-events-none h-36 w-full object-contain group-hover:scale-105 transition-transform duration-300" loading="lazy">
+          <img src="${p.img}" alt="${p.name}" class="relative z-10 pointer-events-none h-28 sm:h-36 w-full object-contain group-hover:scale-105 transition-transform duration-300" loading="lazy">
         </div>
-        <div class="px-4 pb-4 flex flex-col flex-1">
+        <div class="px-3 sm:px-4 pb-4 flex flex-col flex-1">
           <a href="${productUrl(p.id)}" class="text-sm font-bold text-[#011848] line-clamp-2 mb-2 leading-snug min-h-[2.5rem] hover:text-primary transition-colors">${p.name}</a>
           <div class="flex items-center gap-1.5 mb-2.5">
             ${stars(p.rating)}
             <span class="text-[11px] text-gray-400">(${p.reviews})</span>
           </div>
-          <div class="flex items-baseline gap-2 mb-4">
-            <span class="text-base font-extrabold text-primary">${formatPrice(p.price)}</span>
-            ${p.original ? `<span class="text-xs text-gray-400 line-through">${formatPrice(p.original)}</span>` : ''}
+          <div class="flex items-baseline gap-1.5 flex-wrap mb-3 min-w-0">
+            <span class="text-sm sm:text-base font-extrabold text-primary">${formatPrice(p.price)}</span>
+            ${p.original ? `<span class="text-[11px] sm:text-xs text-gray-400 line-through">${formatPrice(p.original)}</span>` : ''}
           </div>
-          <button type="button" data-add-to-cart ${!p.inStock ? 'disabled' : ''} class="mt-auto w-full py-2.5 rounded-lg text-sm font-semibold border border-border bg-white transition-all flex items-center justify-center gap-2 ${!p.inStock ? 'text-gray-400 cursor-not-allowed' : 'text-[#011848] hover:border-primary hover:text-primary'}">
+          <button type="button" data-add-to-cart ${!p.inStock ? 'disabled' : ''} class="mt-auto w-full min-h-11 py-2.5 rounded-lg text-sm font-semibold border border-border bg-white transition-all flex items-center justify-center gap-2 ${!p.inStock ? 'text-gray-400 cursor-not-allowed' : 'text-[#011848] hover:border-primary hover:text-primary'}">
             ${!p.inStock ? 'Out of Stock' : `
               <span data-cart-default class="inline-flex items-center gap-2">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
@@ -227,23 +228,23 @@ function initShop() {
   function listCard(p) {
     return `
       <div class="bg-white rounded-xl border border-border hover:shadow-md transition-all flex overflow-hidden group" ${productAttrs(p)}>
-        <a href="${productUrl(p.id)}" class="relative w-36 sm:w-44 flex-shrink-0 bg-[#f7f9fc] flex items-center justify-center p-4">
+        <a href="${productUrl(p.id)}" class="relative w-28 sm:w-44 flex-shrink-0 bg-[#f7f9fc] flex items-center justify-center p-3 sm:p-4">
           ${badgeHtml(p.badge)}
           ${!p.inStock ? '<div class="absolute inset-0 bg-white/65 flex items-center justify-center z-10"><span class="bg-gray-800 text-white text-[10px] font-bold px-2 py-1 rounded-lg">Out of Stock</span></div>' : ''}
-          <img src="${p.img}" alt="${p.name}" class="h-28 w-28 object-contain group-hover:scale-105 transition-transform" loading="lazy">
+          <img src="${p.img}" alt="${p.name}" class="h-24 sm:h-28 w-24 sm:w-28 object-contain group-hover:scale-105 transition-transform" loading="lazy">
         </a>
-        <div class="flex-1 p-4 sm:p-5 flex flex-col justify-between min-w-0">
+        <div class="flex-1 p-3 sm:p-5 flex flex-col justify-between min-w-0">
           <div>
             <p class="text-[11px] font-bold text-muted-foreground uppercase tracking-wider mb-1">${p.brand}${p.series || p.cat ? ` · ${p.series || p.cat}` : ''}</p>
-            <a href="${productUrl(p.id)}" class="font-bold text-sm sm:text-base text-[#0B1426] mb-2 hover:text-primary transition-colors inline-block">${p.name}</a>
+            <a href="${productUrl(p.id)}" class="font-bold text-sm sm:text-base text-[#0B1426] mb-2 hover:text-primary transition-colors inline-block line-clamp-2">${p.name}</a>
             <div class="flex items-center gap-2 mb-2">${stars(p.rating)}<span class="text-xs text-muted-foreground">(${p.reviews})</span></div>
           </div>
           <div class="flex flex-wrap items-center justify-between gap-3 mt-3">
-            <div class="flex items-baseline gap-2">
-              <span class="text-lg font-extrabold text-primary">${formatPrice(p.price)}</span>
+            <div class="flex items-baseline gap-2 min-w-0">
+              <span class="text-base sm:text-lg font-extrabold text-primary">${formatPrice(p.price)}</span>
               ${p.original ? `<span class="text-sm text-muted-foreground line-through">${formatPrice(p.original)}</span>` : ''}
             </div>
-            <button type="button" data-add-to-cart ${!p.inStock ? 'disabled' : ''} class="inline-flex items-center gap-1.5 text-sm font-semibold ${!p.inStock ? 'text-gray-400' : 'text-primary hover:text-[#005266]'}">
+            <button type="button" data-add-to-cart ${!p.inStock ? 'disabled' : ''} class="inline-flex items-center justify-center min-h-10 px-3 rounded-lg border border-border text-sm font-semibold ${!p.inStock ? 'text-gray-400' : 'text-primary hover:border-primary hover:bg-blue-light'}">
               ${!p.inStock ? 'Out of Stock' : '<span data-cart-default>Add to Cart</span><span data-cart-added class="hidden text-emerald-600">Added!</span>'}
             </button>
           </div>
@@ -281,7 +282,7 @@ function initShop() {
       chips
         .map(
           (c) =>
-            `<button type="button" data-chip-remove="${c.key}" class="flex items-center gap-1.5 text-xs font-bold bg-blue-light text-primary px-3 py-1.5 rounded-full hover:bg-blue-100 transition-colors">${c.label} <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button>`
+            `<button type="button" data-chip-remove="${c.key}" class="max-w-full flex items-center gap-1.5 text-xs font-bold bg-blue-light text-primary px-3 py-1.5 rounded-full hover:bg-blue-100 transition-colors"><span class="truncate">${c.label}</span> <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="shrink-0"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button>`
         )
         .join('') +
       `<button type="button" data-shop-reset class="text-xs font-bold text-red-500 hover:text-red-600 px-2 py-1.5">Clear all</button>`;
@@ -312,24 +313,32 @@ function initShop() {
       return;
     }
 
-    let html = '';
-    const maxShown = 6;
+    let html = `<button type="button" data-page-prev class="min-w-10 h-10 px-3 rounded-lg border border-border bg-white text-gray-500 hover:border-primary hover:text-primary disabled:opacity-40 shrink-0" ${state.page === 1 ? 'disabled' : ''} aria-label="Previous">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 18-6-6 6-6"/></svg>
+    </button>`;
+    const maxShown = 4;
     for (let i = 1; i <= totalPages; i += 1) {
       if (totalPages > maxShown && i === maxShown && i < totalPages) {
-        html += `<span class="min-w-10 h-10 flex items-center justify-center text-sm text-gray-400">…</span>`;
-        html += `<button type="button" data-page="${totalPages}" class="min-w-10 h-10 px-3 rounded-lg text-sm font-bold transition-all border border-border text-gray-600 hover:border-primary hover:text-primary bg-white">${totalPages}</button>`;
+        html += `<span class="min-w-10 h-10 flex items-center justify-center text-sm text-gray-400 shrink-0">…</span>`;
+        html += `<button type="button" data-page="${totalPages}" class="min-w-10 h-10 px-3 rounded-lg text-sm font-bold transition-all border border-border text-gray-600 hover:border-primary hover:text-primary bg-white shrink-0">${totalPages}</button>`;
         break;
       }
       if (totalPages > maxShown && i > maxShown) break;
       const active = i === state.page;
-      html += `<button type="button" data-page="${i}" class="min-w-10 h-10 px-3 rounded-lg text-sm font-bold transition-all border ${active ? 'bg-primary text-white border-primary' : 'border-border text-gray-600 hover:border-primary hover:text-primary bg-white'}">${i}</button>`;
+      html += `<button type="button" data-page="${i}" class="min-w-10 h-10 px-3 rounded-lg text-sm font-bold transition-all border shrink-0 ${active ? 'bg-primary text-white border-primary' : 'border-border text-gray-600 hover:border-primary hover:text-primary bg-white'}">${i}</button>`;
     }
-    html += `<button type="button" data-page-next class="min-w-10 h-10 px-3 rounded-lg border border-border bg-white text-gray-500 hover:border-primary hover:text-primary disabled:opacity-40" ${state.page === totalPages ? 'disabled' : ''} aria-label="Next">
+    html += `<button type="button" data-page-next class="min-w-10 h-10 px-3 rounded-lg border border-border bg-white text-gray-500 hover:border-primary hover:text-primary disabled:opacity-40 shrink-0" ${state.page === totalPages ? 'disabled' : ''} aria-label="Next">
       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
     </button>`;
 
+    paginationEl.classList.add('overflow-x-auto', 'scrollbar-hide', 'justify-start', 'sm:justify-center');
     paginationEl.innerHTML = html;
 
+    paginationEl.querySelector('[data-page-prev]')?.addEventListener('click', () => {
+      state.page = Math.max(1, state.page - 1);
+      render();
+      window.scrollTo({ top: page.offsetTop - 80, behavior: 'smooth' });
+    });
     paginationEl.querySelector('[data-page-next]')?.addEventListener('click', () => {
       state.page = Math.min(totalPages, state.page + 1);
       render();
@@ -641,17 +650,24 @@ function initShop() {
     });
   });
 
+  const closeDrawer = () => {
+    drawer?.classList.add('hidden');
+    document.body.classList.remove('overflow-hidden');
+  };
+
   document.querySelector('[data-shop-mobile-filters]')?.addEventListener('click', () => {
     drawer?.classList.remove('hidden');
     document.body.classList.add('overflow-hidden');
   });
-  document.querySelector('[data-shop-drawer-close]')?.addEventListener('click', () => {
-    drawer?.classList.add('hidden');
-    document.body.classList.remove('overflow-hidden');
+  document.querySelector('[data-shop-drawer-close]')?.addEventListener('click', closeDrawer);
+  document.querySelector('[data-shop-drawer-overlay]')?.addEventListener('click', closeDrawer);
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') closeDrawer();
   });
-  document.querySelector('[data-shop-drawer-overlay]')?.addEventListener('click', () => {
-    drawer?.classList.add('hidden');
-    document.body.classList.remove('overflow-hidden');
+  drawer?.querySelectorAll('[data-filter-price-apply], [data-shop-reset]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      if (window.innerWidth < 768) closeDrawer();
+    });
   });
 
   syncControls();

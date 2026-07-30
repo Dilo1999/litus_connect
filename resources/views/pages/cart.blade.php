@@ -89,11 +89,11 @@
                                 <p class="text-base font-extrabold text-[#011848]">Total</p>
                                 <p class="text-[11px] text-muted-foreground mt-0.5">(Includes VAT)</p>
                             </div>
-                            <p class="text-xl font-extrabold text-[#011848]" data-summary-total>MVR 0</p>
+                            <p class="text-xl font-extrabold text-[#011848] text-right break-words" data-summary-total>MVR 0</p>
                         </div>
                     </div>
 
-                    <button type="button" class="w-full inline-flex items-center justify-center gap-2 h-12 rounded-lg bg-primary hover:bg-[#005266] text-white text-sm font-bold transition-colors">
+                    <button type="button" data-checkout-btn class="w-full inline-flex items-center justify-center gap-2 h-12 rounded-lg bg-primary hover:bg-[#005266] text-white text-sm font-bold transition-colors">
                         <x-lucide name="lock" :size="15" />
                         Proceed to Checkout
                     </button>
@@ -138,7 +138,7 @@
                 {{-- 3. Coupon --}}
                 <div class="bg-white rounded-2xl border border-border p-5">
                     <h3 class="text-sm font-extrabold text-[#011848] mb-3">Have a Coupon?</h3>
-                    <div class="flex gap-2">
+                    <div class="flex flex-col min-[380px]:flex-row gap-2">
                         <input
                             type="text"
                             data-coupon-input
@@ -227,7 +227,7 @@
 
     <section class="bg-white border-y border-border/60">
         <div class="site-container">
-            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-y-6 gap-x-4 py-7 md:py-8">
+            <div class="grid grid-cols-1 min-[420px]:grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-y-5 md:gap-y-6 gap-x-4 py-7 md:py-8">
                 @foreach ($serviceFeatures as $feature)
                     <div class="flex items-center gap-3.5">
                         <div class="w-11 h-11 rounded-full bg-[#F3F5F9] flex items-center justify-center flex-shrink-0 text-[#011848]">
@@ -244,6 +244,19 @@
     </section>
 
     <x-newsletter />
+
+    <div data-mobile-checkout class="lg:hidden fixed inset-x-0 bottom-0 z-40 hidden border-t border-border bg-white/95 backdrop-blur px-4 py-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] shadow-[0_-8px_24px_rgba(11,20,38,0.12)]">
+        <div class="flex items-center gap-3">
+            <div class="min-w-0 flex-1">
+                <p class="text-[11px] text-muted-foreground font-semibold">Total</p>
+                <p class="text-base font-extrabold text-[#011848] truncate" data-mobile-checkout-total>MVR 0</p>
+            </div>
+            <button type="button" data-checkout-btn class="inline-flex items-center justify-center gap-2 min-h-11 px-4 rounded-lg bg-primary hover:bg-[#005266] text-white text-sm font-bold transition-colors shrink-0">
+                <x-lucide name="lock" :size="15" />
+                Checkout
+            </button>
+        </div>
+    </div>
 </div>
 
 @endsection

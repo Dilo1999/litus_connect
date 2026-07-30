@@ -14,7 +14,7 @@
             <span class="font-bold text-[#011848]">Forgot Password</span>
         </div>
 
-        <div class="max-w-lg mx-auto bg-white rounded-2xl border border-border p-6 md:p-8 shadow-sm">
+        <div class="max-w-lg mx-auto bg-white rounded-2xl border border-border p-4 sm:p-6 md:p-8 shadow-sm">
             <div class="w-12 h-12 rounded-full bg-primary/10 text-primary flex items-center justify-center mb-4">
                 <x-lucide name="lock" :size="22" />
             </div>

@@ -58,9 +58,9 @@ function itemRow(item) {
         <div class="flex md:justify-center items-center justify-between">
           <span class="md:hidden text-xs text-muted-foreground font-semibold">Quantity</span>
           <div class="inline-flex items-center border border-border rounded-lg overflow-hidden bg-white">
-            <button type="button" data-qty-minus class="w-9 h-9 flex items-center justify-center text-gray-500 hover:bg-[#F3F5F9] hover:text-primary transition-colors" aria-label="Decrease quantity">−</button>
-            <input type="number" min="1" max="99" value="${qty}" data-qty-input class="w-10 h-9 text-center text-sm font-bold text-[#011848] outline-none border-x border-border [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none">
-            <button type="button" data-qty-plus class="w-9 h-9 flex items-center justify-center text-gray-500 hover:bg-[#F3F5F9] hover:text-primary transition-colors" aria-label="Increase quantity">+</button>
+            <button type="button" data-qty-minus class="w-11 h-11 flex items-center justify-center text-gray-500 hover:bg-[#F3F5F9] hover:text-primary transition-colors" aria-label="Decrease quantity">−</button>
+            <input type="number" min="1" max="99" value="${qty}" data-qty-input class="w-11 h-11 text-center text-sm font-bold text-[#011848] outline-none border-x border-border [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none">
+            <button type="button" data-qty-plus class="w-11 h-11 flex items-center justify-center text-gray-500 hover:bg-[#F3F5F9] hover:text-primary transition-colors" aria-label="Increase quantity">+</button>
           </div>
         </div>
         <div class="flex md:block items-center justify-between">
@@ -68,7 +68,9 @@ function itemRow(item) {
           <p class="text-sm font-extrabold text-[#011848] md:text-right" data-item-total>${formatMvr(price * qty)}</p>
         </div>
         <div class="flex md:justify-end items-center gap-1.5">
-          <button type="button" data-remove-item class="w-9 h-9 rounded-lg text-gray-400 hover:text-red-500 hover:bg-red-50 transition-colors flex items-center justify-center" aria-label="Remove item">✕</button>
+          <button type="button" data-remove-item class="min-h-11 px-3 md:px-0 md:w-11 rounded-lg text-red-500 md:text-gray-400 hover:text-red-500 hover:bg-red-50 transition-colors flex items-center justify-center gap-2 text-xs font-bold" aria-label="Remove item">
+            <span aria-hidden="true">✕</span><span class="md:hidden">Remove</span>
+          </button>
         </div>
       </div>
     </div>
@@ -110,6 +112,8 @@ function initCartPage() {
   const deliveryThreshold = root.querySelector('[data-delivery-threshold]');
   const list = root.querySelector('[data-cart-list]');
   const actions = root.querySelector('[data-cart-actions]');
+  const mobileCheckout = root.querySelector('[data-mobile-checkout]');
+  const mobileCheckoutTotal = root.querySelector('[data-mobile-checkout-total]');
 
   function updateSummary(items) {
     let subtotal = 0;
@@ -133,6 +137,8 @@ function initCartPage() {
     if (summarySubtotal) summarySubtotal.textContent = formatMvr(subtotal);
     if (summaryDiscount) summaryDiscount.textContent = `- ${formatMvr(appliedDiscount)}`;
     if (summaryTotal) summaryTotal.textContent = formatMvr(total);
+    if (mobileCheckoutTotal) mobileCheckoutTotal.textContent = formatMvr(total);
+    if (mobileCheckout) mobileCheckout.classList.toggle('hidden', !items.length);
     if (summaryDelivery) summaryDelivery.textContent = delivery > 0 ? formatMvr(delivery) : 'FREE';
     if (discountRow) discountRow.classList.toggle('hidden', appliedDiscount <= 0 || items.length === 0);
 
@@ -202,6 +208,7 @@ function initCartPage() {
     if (!items.length) {
       list.innerHTML = emptyHtml(shopUrl);
       actions?.classList.add('hidden');
+      root.classList.remove('pb-24');
       discount = 0;
       root.setAttribute('data-discount', '0');
       updateSummary([]);
@@ -210,6 +217,7 @@ function initCartPage() {
 
     list.innerHTML = items.map(itemRow).join('');
     actions?.classList.remove('hidden');
+    root.classList.add('pb-24', 'lg:pb-0');
     bindItemEvents();
     updateSummary(items);
   }

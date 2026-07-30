@@ -74,10 +74,45 @@
   html {
     font-size: var(--font-size);
     scroll-behavior: smooth;
+    overflow-x: clip;
   }
 
   body {
     @apply bg-background text-foreground font-sans antialiased;
+    min-width: 320px;
+    overflow-x: clip;
+  }
+
+  button,
+  a,
+  input,
+  select,
+  textarea {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+  }
+
+  @media (max-width: 767px) {
+    input,
+    select,
+    textarea {
+      font-size: 16px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      scroll-behavior: auto !important;
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 }
 
@@ -177,20 +212,20 @@
 .price-dual-thumb::-webkit-slider-thumb {
   pointer-events: auto;
   appearance: none;
-  width: 18px;
-  height: 18px;
+  width: 28px;
+  height: 28px;
   border-radius: 9999px;
   background: #fff;
   border: 3px solid #006786;
   box-shadow: 0 1px 3px rgba(11, 20, 38, 0.15);
   cursor: pointer;
-  margin-top: 3px;
+  margin-top: -2px;
 }
 
 .price-dual-thumb::-moz-range-thumb {
   pointer-events: auto;
-  width: 18px;
-  height: 18px;
+  width: 28px;
+  height: 28px;
   border-radius: 9999px;
   background: #fff;
   border: 3px solid #006786;

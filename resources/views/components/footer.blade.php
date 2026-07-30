@@ -1,6 +1,81 @@
 <footer class="bg-[#0B1426] text-gray-400 mt-0">
-    <div class="site-container pt-14 pb-8">
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-10 mb-10">
+    <div class="site-container pt-8 md:pt-14 pb-8">
+        {{-- Simplified mobile footer --}}
+        <div class="md:hidden">
+            <div class="text-center">
+                <a href="{{ route('home') }}" class="inline-flex items-center justify-center mb-3">
+                    <img
+                        src="{{ asset('images/site_logo/Logo.webp') }}"
+                        alt="LITUS Connect"
+                        class="h-10 w-auto object-contain"
+                    >
+                </a>
+                <p class="mx-auto max-w-sm text-sm leading-relaxed text-gray-400">
+                    Authentic electronics, trusted service, and island-wide delivery.
+                </p>
+            </div>
+
+            <nav class="grid grid-cols-2 gap-2 mt-6" aria-label="Footer navigation">
+                @foreach ([
+                    ['label' => 'Shop', 'route' => 'shop', 'icon' => 'shopping-bag'],
+                    ['label' => 'Offers', 'route' => 'offers', 'icon' => 'tag'],
+                    ['label' => 'Contact Us', 'route' => 'contact', 'icon' => 'message-circle'],
+                    ['label' => auth('member')->check() ? 'My Account' : 'Login', 'route' => auth('member')->check() ? 'account' : 'login', 'icon' => 'user'],
+                ] as $link)
+                    <a
+                        href="{{ route($link['route']) }}"
+                        class="flex min-h-12 items-center gap-2.5 rounded-xl border border-white/10 bg-white/5 px-3 text-sm font-semibold text-white hover:bg-white/10 transition-colors"
+                    >
+                        <x-lucide :name="$link['icon']" :size="16" class="text-primary shrink-0" />
+                        {{ $link['label'] }}
+                    </a>
+                @endforeach
+            </nav>
+
+            <div class="grid grid-cols-1 min-[420px]:grid-cols-2 gap-2 mt-5">
+                <a
+                    href="tel:+9603322295"
+                    class="flex min-h-12 items-center justify-center gap-2 rounded-xl bg-primary text-sm font-bold text-white hover:bg-[#005266] transition-colors"
+                >
+                    <x-lucide name="phone" :size="16" />
+                    +960 332 2295
+                </a>
+                <a
+                    href="mailto:sales@litusgroup.mv"
+                    class="flex min-h-12 items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/5 text-sm font-semibold text-white hover:bg-white/10 transition-colors"
+                >
+                    <x-lucide name="mail" :size="16" class="text-primary" />
+                    Email Us
+                </a>
+            </div>
+
+            <div class="flex items-center justify-center gap-2 mt-5">
+                @foreach (['facebook', 'instagram', 'tiktok', 'youtube'] as $icon)
+                    <a
+                        href="#"
+                        class="w-11 h-11 rounded-full bg-white/5 hover:bg-primary flex items-center justify-center transition-colors border border-white/10"
+                        aria-label="{{ ucfirst($icon) }}"
+                    >
+                        <x-lucide :name="$icon" :size="15" class="text-white" />
+                    </a>
+                @endforeach
+            </div>
+
+            <div class="border-t border-white/10 mt-6 pt-5">
+                <p class="text-center text-[11px] text-gray-500 mb-3">Secure payments accepted</p>
+                <div class="flex flex-wrap items-center justify-center gap-2">
+                    @foreach (['VISA', 'MC', 'Amex', 'PayPal'] as $card)
+                        <span class="bg-white/10 text-white/80 text-[10px] px-2.5 py-1 rounded font-bold">{{ $card }}</span>
+                    @endforeach
+                </div>
+                <p class="text-center text-xs text-gray-500 mt-5">
+                    © {{ date('Y') }} LITUS Connect. All rights reserved.
+                </p>
+            </div>
+        </div>
+
+        {{-- Full desktop footer --}}
+        <div class="hidden md:grid md:grid-cols-2 lg:grid-cols-5 gap-10 mb-10">
             {{-- Brand --}}
             <div class="sm:col-span-2 lg:col-span-1">
                 <a href="{{ route('home') }}" class="inline-flex items-center mb-4">
@@ -15,7 +90,7 @@
                 </p>
                 <div class="flex gap-2.5">
                     @foreach (['facebook', 'instagram', 'tiktok', 'youtube'] as $icon)
-                        <a href="#" class="w-9 h-9 rounded-lg bg-white/5 hover:bg-primary flex items-center justify-center transition-colors border border-white/10" aria-label="{{ ucfirst($icon) }}">
+                        <a href="#" class="w-11 h-11 rounded-lg bg-white/5 hover:bg-primary flex items-center justify-center transition-colors border border-white/10" aria-label="{{ ucfirst($icon) }}">
                             <x-lucide :name="$icon" :size="14" class="text-white" />
                         </a>
                     @endforeach
@@ -94,10 +169,10 @@
             </div>
         </div>
 
-        <div class="border-t border-white/10 pt-6 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-gray-500">
-            <span>© {{ date('Y') }} LITUS Connect. All rights reserved.</span>
-            <div class="flex items-center gap-2">
-                <span class="text-gray-500 text-[11px] mr-1">We accept:</span>
+        <div class="hidden md:flex border-t border-white/10 pt-6 flex-row items-center justify-between gap-4 text-xs text-gray-500">
+            <span class="text-center md:text-left">© {{ date('Y') }} LITUS Connect. All rights reserved.</span>
+            <div class="flex flex-wrap items-center justify-center gap-2">
+                <span class="w-full min-[420px]:w-auto text-center text-gray-500 text-[11px] min-[420px]:mr-1">We accept:</span>
                 @foreach (['VISA', 'MC', 'Amex', 'PayPal'] as $card)
                     <span class="bg-white/10 text-white/80 text-[10px] px-2.5 py-1 rounded font-bold">{{ $card }}</span>
                 @endforeach

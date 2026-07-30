@@ -14,21 +14,21 @@
             </div>
         </div>
         <div class="w-full md:w-auto md:min-w-[420px] max-w-lg">
-            <div data-newsletter-success class="hidden items-center gap-2 text-white font-bold text-sm bg-white/10 px-5 py-3 rounded-full">
+            <div data-newsletter-success class="hidden items-center gap-2 text-white font-bold text-sm bg-white/10 px-4 sm:px-5 py-3 rounded-xl sm:rounded-full">
                 <x-lucide name="check-circle" :size="18" class="text-emerald-400" />
                 You're subscribed! Welcome to LITUS Connect.
             </div>
-            <div data-newsletter-form class="flex w-full overflow-hidden rounded-full bg-white shadow-sm">
+            <div data-newsletter-form class="flex flex-col sm:flex-row w-full gap-2 sm:gap-0 sm:overflow-hidden sm:rounded-full">
                 <input
                     type="email"
                     data-newsletter-email
                     placeholder="Enter your email address"
-                    class="flex-1 min-w-0 px-5 py-3.5 text-sm outline-none bg-transparent text-gray-900 placeholder:text-gray-400"
+                    class="w-full sm:flex-1 min-w-0 px-5 py-3.5 rounded-full sm:rounded-none bg-white text-gray-900 outline-none placeholder:text-gray-400 shadow-sm focus:ring-2 focus:ring-white/40"
                 >
                 <button
                     type="button"
                     data-newsletter-submit
-                    class="bg-primary hover:bg-[#005266] text-white font-bold px-6 py-3.5 text-sm transition-colors whitespace-nowrap rounded-full"
+                    class="w-full sm:w-auto min-h-12 bg-primary hover:bg-[#005266] text-white font-bold px-6 py-3.5 text-sm transition-colors whitespace-nowrap rounded-full"
                 >
                     Subscribe
                 </button>

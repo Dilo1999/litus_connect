@@ -101,11 +101,22 @@ function initOffersPage() {
     });
   }
 
+  const closeDrawer = () => {
+    drawer?.classList.add('hidden');
+    document.body.classList.remove('overflow-hidden');
+  };
+
+  const openDrawer = () => {
+    drawer?.classList.remove('hidden');
+    document.body.classList.add('overflow-hidden');
+  };
+
   document.querySelectorAll('[data-offer-cat]').forEach((btn) => {
     btn.addEventListener('click', () => {
       state.cat = btn.getAttribute('data-offer-cat') || 'all';
       syncCatButtons();
       applyFilters();
+      if (window.innerWidth < 768) closeDrawer();
     });
   });
 
@@ -154,6 +165,7 @@ function initOffersPage() {
       state.maxDiscount = Math.max(0, Math.min(60, max));
       updateDiscountUI();
       applyFilters();
+      if (window.innerWidth < 768) closeDrawer();
     });
   });
 
@@ -169,20 +181,15 @@ function initOffersPage() {
       syncCatButtons();
       updateDiscountUI();
       applyFilters();
+      if (window.innerWidth < 768) closeDrawer();
     });
   });
 
-  document.querySelector('[data-offers-mobile-filters]')?.addEventListener('click', () => {
-    drawer?.classList.remove('hidden');
-    document.body.classList.add('overflow-hidden');
-  });
-  document.querySelector('[data-offers-drawer-close]')?.addEventListener('click', () => {
-    drawer?.classList.add('hidden');
-    document.body.classList.remove('overflow-hidden');
-  });
-  document.querySelector('[data-offers-drawer-overlay]')?.addEventListener('click', () => {
-    drawer?.classList.add('hidden');
-    document.body.classList.remove('overflow-hidden');
+  document.querySelector('[data-offers-mobile-filters]')?.addEventListener('click', openDrawer);
+  document.querySelector('[data-offers-drawer-close]')?.addEventListener('click', closeDrawer);
+  document.querySelector('[data-offers-drawer-overlay]')?.addEventListener('click', closeDrawer);
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') closeDrawer();
   });
 
   initCountdowns();

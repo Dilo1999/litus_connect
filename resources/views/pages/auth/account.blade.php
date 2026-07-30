@@ -40,9 +40,9 @@
                 <h1 class="text-2xl md:text-3xl font-extrabold text-[#011848]">Hello, {{ $customer['name'] }}</h1>
                 <p class="text-sm text-muted-foreground mt-1">Manage your orders, profile, and delivery addresses.</p>
             </div>
-            <form action="{{ route('logout') }}" method="POST">
+            <form action="{{ route('logout') }}" method="POST" class="w-full md:w-auto">
                 @csrf
-                <button type="submit" class="inline-flex items-center gap-2 h-10 px-4 rounded-lg border border-border bg-white text-sm font-bold text-[#011848] hover:border-red-300 hover:text-red-500 transition-colors">
+                <button type="submit" class="w-full md:w-auto inline-flex items-center justify-center gap-2 min-h-11 px-4 rounded-lg border border-border bg-white text-sm font-bold text-[#011848] hover:border-red-300 hover:text-red-500 transition-colors">
                     <x-lucide name="log-out" :size="15" />
                     Sign Out
                 </button>
@@ -193,7 +193,7 @@
                                 <label for="phone" class="block text-xs font-bold text-[#011848] mb-1.5">Phone Number</label>
                                 <input id="phone" type="tel" name="phone" value="{{ old('phone', $customer['phone'] ?? '') }}" class="w-full h-11 px-3.5 rounded-lg border border-border text-sm outline-none focus:border-primary focus:ring-2 focus:ring-primary/15">
                             </div>
-                            <button type="submit" class="h-11 px-5 rounded-lg bg-primary hover:bg-[#005266] text-white text-sm font-bold transition-colors">
+                            <button type="submit" class="w-full sm:w-auto min-h-11 px-5 rounded-lg bg-primary hover:bg-[#005266] text-white text-sm font-bold transition-colors">
                                 Save Changes
                             </button>
                         </form>
@@ -202,12 +202,12 @@
 
                 @if ($tab === 'addresses')
                     <div class="bg-white rounded-2xl border border-border p-5 md:p-6">
-                        <div class="flex items-center justify-between mb-5">
+                        <div class="flex flex-col min-[420px]:flex-row min-[420px]:items-center justify-between gap-3 mb-5">
                             <div>
                                 <h2 class="text-lg font-extrabold text-[#011848]">Saved Addresses</h2>
                                 <p class="text-sm text-muted-foreground mt-0.5">Manage where we deliver your orders.</p>
                             </div>
-                            <button type="button" class="h-10 px-4 rounded-lg bg-primary hover:bg-[#005266] text-white text-sm font-bold transition-colors">
+                            <button type="button" class="min-h-11 px-4 rounded-lg bg-primary hover:bg-[#005266] text-white text-sm font-bold transition-colors">
                                 Add Address
                             </button>
                         </div>
@@ -241,7 +241,7 @@
 
     <section class="bg-white border-y border-border/60">
         <div class="site-container">
-            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-y-6 gap-x-4 py-7 md:py-8">
+            <div class="grid grid-cols-1 min-[420px]:grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-y-5 md:gap-y-6 gap-x-4 py-7 md:py-8">
                 @foreach ($serviceFeatures as $feature)
                     <div class="flex items-center gap-3.5">
                         <div class="w-11 h-11 rounded-full bg-[#F3F5F9] flex items-center justify-center flex-shrink-0 text-[#011848]">

@@ -32,16 +32,16 @@
 
 <header
     id="site-header"
-    class="bg-white sticky top-0 z-50 transition-shadow duration-300 border-b border-border"
+    class="bg-white sticky top-0 z-40 transition-shadow duration-300 border-b border-border"
     data-header
 >
     {{-- Main header row --}}
-    <div class="site-container py-4 flex items-center gap-4 lg:gap-8">
+    <div class="site-container py-3 md:py-4 flex items-center gap-2 sm:gap-4 lg:gap-8">
         <a href="{{ route('home') }}" class="flex items-center flex-shrink-0">
             <img
                 src="{{ asset('images/site_logo/Logo.webp') }}"
                 alt="LITUS Connect"
-                class="h-10 md:h-12 w-auto object-contain"
+                class="h-9 sm:h-10 md:h-12 w-auto max-w-[150px] sm:max-w-none object-contain"
             >
         </a>
 
@@ -84,7 +84,7 @@
                 </div>
             @endauth
 
-            <a href="{{ route('cart') }}" class="relative flex flex-col items-center gap-0.5 px-2 py-1.5 rounded-lg hover:bg-blue-light group transition-colors">
+            <a href="{{ route('cart') }}" class="relative min-w-11 min-h-11 flex flex-col items-center justify-center gap-0.5 px-2 py-1.5 rounded-lg hover:bg-blue-light group transition-colors">
                 <x-lucide name="shopping-cart" :size="22" class="text-gray-600 group-hover:text-primary transition-colors" />
                 <span class="hidden sm:block text-[10px] font-medium text-gray-500 group-hover:text-primary">Cart</span>
                 <span data-cart-badge class="absolute -top-0.5 right-0.5 min-w-[18px] h-[18px] px-1 bg-primary text-white text-[10px] font-bold rounded-full flex items-center justify-center {{ ($cartCount ?? 0) > 0 ? '' : 'hidden' }}">{{ $cartCount ?? 0 }}</span>
@@ -92,9 +92,10 @@
 
             <button
                 type="button"
-                class="md:hidden ml-1 p-2 rounded-lg hover:bg-gray-100"
+                class="md:hidden ml-0.5 w-11 h-11 flex items-center justify-center rounded-lg hover:bg-gray-100"
                 data-mobile-menu-toggle
                 aria-expanded="false"
+                aria-controls="mobile-menu"
                 aria-label="Toggle menu"
             >
                 <span data-mobile-menu-icon="open"><x-lucide name="menu" :size="22" /></span>
@@ -131,7 +132,7 @@
                 </div>
             </div>
 
-            <div class="flex items-center overflow-x-auto">
+            <div class="flex items-center overflow-x-auto scrollbar-hide">
                 @foreach ($navLinks as $link)
                     @php
                         $href = $link['route'] ? route($link['route']) : '#';
@@ -156,13 +157,59 @@
     </nav>
 
     {{-- Mobile menu --}}
-    <div data-mobile-menu class="hidden md:hidden border-t border-border bg-white px-4 py-4">
-        <form action="#" method="get" class="flex w-full border border-border rounded-lg overflow-hidden mb-4 focus-within:border-primary">
-            <input type="search" name="q" placeholder="Search products..." class="flex-1 px-4 py-2.5 text-sm outline-none">
-            <button type="submit" class="bg-primary px-4 text-white" aria-label="Search">
+    <div
+        id="mobile-menu"
+        data-mobile-menu
+        class="hidden fixed inset-0 z-[60] md:hidden bg-white overflow-y-auto overscroll-contain"
+        aria-hidden="true"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Mobile navigation"
+    >
+        <div class="sticky top-0 z-10 flex min-h-[68px] items-center justify-between gap-3 border-b border-border bg-white/95 backdrop-blur px-4">
+            <a href="{{ route('home') }}" class="flex min-w-0 items-center">
+                <img
+                    src="{{ asset('images/site_logo/Logo.webp') }}"
+                    alt="LITUS Connect"
+                    class="h-9 w-auto max-w-[150px] object-contain"
+                >
+            </a>
+            <button
+                type="button"
+                data-mobile-menu-close
+                class="w-11 h-11 shrink-0 flex items-center justify-center rounded-lg border border-border text-gray-700 hover:bg-gray-100"
+                aria-label="Close menu"
+            >
+                <x-lucide name="x" :size="22" />
+            </button>
+        </div>
+
+        <div class="px-4 pt-4 pb-[max(1.5rem,env(safe-area-inset-bottom))]">
+        <form action="#" method="get" class="flex w-full min-h-12 border border-border rounded-lg overflow-hidden mb-4 focus-within:border-primary focus-within:ring-2 focus-within:ring-primary/15">
+            <input type="search" name="q" placeholder="Search products..." class="flex-1 min-w-0 px-4 py-3 outline-none">
+            <button type="submit" class="w-12 flex items-center justify-center bg-primary text-white" aria-label="Search">
                 <x-lucide name="search" :size="16" />
             </button>
         </form>
+
+        <details class="mb-3 rounded-xl border border-border bg-[#F7F8FA] open:bg-white">
+            <summary class="flex min-h-11 cursor-pointer list-none items-center justify-between gap-2 px-3 py-2.5 text-sm font-bold text-[#011848]">
+                All Categories
+                <x-lucide name="chevron-down" :size="16" class="text-gray-400" />
+            </summary>
+            <div class="border-t border-border px-1 py-1">
+                @foreach ($navCategories as $cat)
+                    <a
+                        href="{{ !empty($cat['route']) ? route($cat['route']) : '#' }}"
+                        class="flex min-h-11 items-center gap-3 rounded-lg px-3 py-2 text-sm font-semibold text-gray-700 hover:bg-blue-light hover:text-primary"
+                    >
+                        <x-lucide :name="$cat['icon']" :size="16" class="text-gray-400 shrink-0" />
+                        {{ $cat['label'] }}
+                    </a>
+                @endforeach
+            </div>
+        </details>
+
         @foreach ($navLinks as $link)
             @php
                 $href = $link['route'] ? route($link['route']) : '#';
@@ -171,7 +218,7 @@
             <a
                 href="{{ $href }}"
                 @class([
-                    'block py-2.5 text-sm font-semibold border-b border-gray-100 last:border-0',
+                    'flex min-h-11 items-center py-2.5 text-sm font-semibold border-b border-gray-100 last:border-0',
                     'text-primary' => $active,
                     'text-gray-700' => ! $active,
                 ])
@@ -181,14 +228,15 @@
         @endforeach
 
         @auth('member')
-            <a href="{{ route('account') }}" class="block py-2.5 text-sm font-semibold border-b border-gray-100 text-gray-700">My Account</a>
+            <a href="{{ route('account') }}" class="flex min-h-11 items-center py-2.5 text-sm font-semibold border-b border-gray-100 text-gray-700">My Account</a>
             <form action="{{ route('logout') }}" method="POST" class="py-2.5">
                 @csrf
-                <button type="submit" class="text-sm font-semibold text-red-500">Sign Out</button>
+                <button type="submit" class="min-h-11 text-sm font-semibold text-red-500">Sign Out</button>
             </form>
         @else
-            <a href="{{ route('login') }}" class="block py-2.5 text-sm font-semibold border-b border-gray-100 text-gray-700">Login</a>
-            <a href="{{ route('register') }}" class="block py-2.5 text-sm font-semibold text-gray-700">Register</a>
+            <a href="{{ route('login') }}" class="flex min-h-11 items-center py-2.5 text-sm font-semibold border-b border-gray-100 text-gray-700">Login</a>
+            <a href="{{ route('register') }}" class="flex min-h-11 items-center py-2.5 text-sm font-semibold text-gray-700">Register</a>
         @endauth
+        </div>
     </div>
 </header>

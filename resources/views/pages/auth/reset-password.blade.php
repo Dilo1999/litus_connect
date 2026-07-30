@@ -14,7 +14,7 @@
             <span class="font-bold text-[#011848]">Reset Password</span>
         </div>
 
-        <div class="max-w-lg mx-auto bg-white rounded-2xl border border-border p-6 md:p-8 shadow-sm">
+        <div class="max-w-lg mx-auto bg-white rounded-2xl border border-border p-4 sm:p-6 md:p-8 shadow-sm">
             <div class="w-12 h-12 rounded-full bg-primary/10 text-primary flex items-center justify-center mb-4">
                 <x-lucide name="lock" :size="22" />
             </div>
@@ -44,7 +44,7 @@
                     <label for="password" class="block text-xs font-bold text-[#011848] mb-1.5">New Password <span class="text-red-500">*</span></label>
                     <div class="relative">
                         <input id="password" type="password" name="password" required placeholder="At least 6 characters" data-password-input class="w-full h-11 px-3.5 pr-11 rounded-lg border border-border bg-white text-sm outline-none focus:border-primary focus:ring-2 focus:ring-primary/15 transition-all">
-                        <button type="button" data-password-toggle class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-primary transition-colors" aria-label="Show password">
+                        <button type="button" data-password-toggle class="absolute right-1 top-1/2 -translate-y-1/2 w-11 h-11 inline-flex items-center justify-center text-gray-400 hover:text-primary transition-colors" aria-label="Show password">
                             <span data-eye-show><x-lucide name="eye" :size="16" /></span>
                             <span data-eye-hide class="hidden"><x-lucide name="eye-off" :size="16" /></span>
                         </button>

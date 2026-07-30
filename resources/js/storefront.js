@@ -28,14 +28,43 @@ function initMobileMenu() {
 
   const iconOpen = toggle.querySelector('[data-mobile-menu-icon="open"]');
   const iconClose = toggle.querySelector('[data-mobile-menu-icon="close"]');
+  const closeButton = menu.querySelector('[data-mobile-menu-close]');
+  let previouslyFocused = null;
+
+  const setOpen = (open) => {
+    if (open) previouslyFocused = document.activeElement;
+    toggle.setAttribute('aria-expanded', String(open));
+    menu.classList.toggle('hidden', !open);
+    menu.setAttribute('aria-hidden', String(!open));
+    iconOpen?.classList.toggle('hidden', open);
+    iconClose?.classList.toggle('hidden', !open);
+    document.body.classList.toggle('overflow-hidden', open);
+    document.documentElement.classList.toggle('overflow-hidden', open);
+
+    if (open) {
+      requestAnimationFrame(() => closeButton?.focus());
+    } else if (previouslyFocused instanceof HTMLElement) {
+      previouslyFocused.focus();
+      previouslyFocused = null;
+    }
+  };
 
   toggle.addEventListener('click', () => {
-    const open = toggle.getAttribute('aria-expanded') === 'true';
-    const next = !open;
-    toggle.setAttribute('aria-expanded', String(next));
-    menu.classList.toggle('hidden', !next);
-    iconOpen?.classList.toggle('hidden', next);
-    iconClose?.classList.toggle('hidden', !next);
+    setOpen(toggle.getAttribute('aria-expanded') !== 'true');
+  });
+
+  closeButton?.addEventListener('click', () => setOpen(false));
+
+  menu.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => setOpen(false));
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') setOpen(false);
+  });
+
+  window.addEventListener('resize', () => {
+    if (window.innerWidth >= 768) setOpen(false);
   });
 }
 
@@ -75,6 +104,7 @@ function initHeroSlider() {
 
   let index = 0;
   let timer;
+  let touchStartX = 0;
 
   const show = (i) => {
     index = (i + slides.length) % slides.length;
@@ -124,6 +154,18 @@ function initHeroSlider() {
     });
   });
 
+  slider.addEventListener('touchstart', (event) => {
+    touchStartX = event.touches[0]?.clientX ?? 0;
+  }, { passive: true });
+
+  slider.addEventListener('touchend', (event) => {
+    const touchEndX = event.changedTouches[0]?.clientX ?? touchStartX;
+    const distance = touchEndX - touchStartX;
+    if (Math.abs(distance) < 45) return;
+    show(index + (distance < 0 ? 1 : -1));
+    start();
+  }, { passive: true });
+
   show(0);
   start();
 }
@@ -146,6 +188,176 @@ function initBrandSlider() {
   next?.addEventListener('click', () => {
     track.scrollBy({ left: scrollByAmount(), behavior: 'smooth' });
   });
+}
+
+function initPromoSlider() {
+  const root = document.querySelector('[data-promo-slider]');
+  if (!root) return;
+
+  const track = root.querySelector('[data-promo-track]');
+  const slides = [...root.querySelectorAll('[data-promo-slide]')];
+  const dots = [...root.querySelectorAll('[data-promo-dot]')];
+  if (!track || slides.length < 2) return;
+
+  const mobileQuery = window.matchMedia('(max-width: 767px)');
+  const reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+  let index = 0;
+  let timer;
+  let scrollFrame;
+
+  const updateDots = () => {
+    dots.forEach((dot, dotIndex) => {
+      const active = dotIndex === index;
+      dot.classList.toggle('w-6', active);
+      dot.classList.toggle('bg-primary', active);
+      dot.classList.toggle('w-2', !active);
+      dot.classList.toggle('bg-gray-300', !active);
+      dot.setAttribute('aria-current', String(active));
+    });
+  };
+
+  const goTo = (nextIndex, smooth = true) => {
+    index = (nextIndex + slides.length) % slides.length;
+    const trackRect = track.getBoundingClientRect();
+    const slideRect = slides[index].getBoundingClientRect();
+    const left = track.scrollLeft + slideRect.left - trackRect.left;
+    track.scrollTo({ left, behavior: smooth ? 'smooth' : 'auto' });
+    updateDots();
+  };
+
+  const stop = () => clearInterval(timer);
+  const start = () => {
+    stop();
+    if (!mobileQuery.matches || reducedMotionQuery.matches || document.hidden) return;
+    timer = setInterval(() => goTo(index + 1), 3500);
+  };
+
+  dots.forEach((dot) => {
+    dot.addEventListener('click', () => {
+      goTo(Number(dot.getAttribute('data-promo-dot')));
+      start();
+    });
+  });
+
+  track.addEventListener('scroll', () => {
+    cancelAnimationFrame(scrollFrame);
+    scrollFrame = requestAnimationFrame(() => {
+      const trackCenter = track.getBoundingClientRect().left + track.clientWidth / 2;
+      index = slides.reduce((closest, slide, slideIndex) => {
+        const rect = slide.getBoundingClientRect();
+        const distance = Math.abs(rect.left + rect.width / 2 - trackCenter);
+        return distance < closest.distance ? { index: slideIndex, distance } : closest;
+      }, { index: 0, distance: Number.POSITIVE_INFINITY }).index;
+      updateDots();
+    });
+  }, { passive: true });
+
+  track.addEventListener('touchstart', stop, { passive: true });
+  track.addEventListener('touchend', start, { passive: true });
+  track.addEventListener('pointerenter', stop);
+  track.addEventListener('pointerleave', start);
+
+  const handleViewportChange = () => {
+    if (!mobileQuery.matches) {
+      stop();
+      track.scrollTo({ left: 0, behavior: 'auto' });
+      index = 0;
+      updateDots();
+      return;
+    }
+    goTo(index, false);
+    start();
+  };
+
+  mobileQuery.addEventListener('change', handleViewportChange);
+  document.addEventListener('visibilitychange', start);
+  handleViewportChange();
+}
+
+function initTestimonialsSlider() {
+  const root = document.querySelector('[data-testimonials-slider]');
+  if (!root) return;
+
+  const track = root.querySelector('[data-testimonials-track]');
+  const slides = [...root.querySelectorAll('[data-testimonial-slide]')];
+  const dots = [...root.querySelectorAll('[data-testimonial-dot]')];
+  if (!track || slides.length < 2) return;
+
+  const mobileQuery = window.matchMedia('(max-width: 767px)');
+  const reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+  let index = 0;
+  let timer;
+  let scrollFrame;
+
+  const updateDots = () => {
+    dots.forEach((dot, dotIndex) => {
+      const active = dotIndex === index;
+      dot.classList.toggle('w-6', active);
+      dot.classList.toggle('bg-primary', active);
+      dot.classList.toggle('w-2', !active);
+      dot.classList.toggle('bg-gray-300', !active);
+      dot.setAttribute('aria-current', String(active));
+    });
+  };
+
+  const goTo = (nextIndex, smooth = true) => {
+    index = (nextIndex + slides.length) % slides.length;
+    const trackRect = track.getBoundingClientRect();
+    const slideRect = slides[index].getBoundingClientRect();
+    track.scrollTo({
+      left: track.scrollLeft + slideRect.left - trackRect.left,
+      behavior: smooth ? 'smooth' : 'auto',
+    });
+    updateDots();
+  };
+
+  const stop = () => clearInterval(timer);
+  const start = () => {
+    stop();
+    if (!mobileQuery.matches || reducedMotionQuery.matches || document.hidden) return;
+    timer = setInterval(() => goTo(index + 1), 4500);
+  };
+
+  dots.forEach((dot) => {
+    dot.addEventListener('click', () => {
+      goTo(Number(dot.getAttribute('data-testimonial-dot')));
+      start();
+    });
+  });
+
+  track.addEventListener('scroll', () => {
+    cancelAnimationFrame(scrollFrame);
+    scrollFrame = requestAnimationFrame(() => {
+      const trackCenter = track.getBoundingClientRect().left + track.clientWidth / 2;
+      index = slides.reduce((closest, slide, slideIndex) => {
+        const rect = slide.getBoundingClientRect();
+        const distance = Math.abs(rect.left + rect.width / 2 - trackCenter);
+        return distance < closest.distance ? { index: slideIndex, distance } : closest;
+      }, { index: 0, distance: Number.POSITIVE_INFINITY }).index;
+      updateDots();
+    });
+  }, { passive: true });
+
+  track.addEventListener('touchstart', stop, { passive: true });
+  track.addEventListener('touchend', start, { passive: true });
+  track.addEventListener('pointerenter', stop);
+  track.addEventListener('pointerleave', start);
+
+  const handleViewportChange = () => {
+    if (!mobileQuery.matches) {
+      stop();
+      track.scrollTo({ left: 0, behavior: 'auto' });
+      index = 0;
+      updateDots();
+      return;
+    }
+    goTo(index, false);
+    start();
+  };
+
+  mobileQuery.addEventListener('change', handleViewportChange);
+  document.addEventListener('visibilitychange', start);
+  handleViewportChange();
 }
 
 function initNewsletter() {
@@ -179,6 +391,8 @@ function initStorefront() {
   initMobileMenu();
   initCategoriesDropdown();
   initHeroSlider();
+  initPromoSlider();
+  initTestimonialsSlider();
   initBrandSlider();
   initNewsletter();
 }

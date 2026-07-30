@@ -55,10 +55,10 @@
                 </div>
             @endforeach
 
-            <button type="button" data-hero-prev class="absolute left-3 md:left-6 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur flex items-center justify-center text-white transition-colors border border-white/15 z-20" aria-label="Previous slide">
+            <button type="button" data-hero-prev class="hidden sm:flex absolute left-3 md:left-6 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur items-center justify-center text-white transition-colors border border-white/15 z-20" aria-label="Previous slide">
                 <x-lucide name="chevron-left" :size="18" />
             </button>
-            <button type="button" data-hero-next class="absolute right-3 md:right-6 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur flex items-center justify-center text-white transition-colors border border-white/15 z-20" aria-label="Next slide">
+            <button type="button" data-hero-next class="hidden sm:flex absolute right-3 md:right-6 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur items-center justify-center text-white transition-colors border border-white/15 z-20" aria-label="Next slide">
                 <x-lucide name="chevron-right" :size="18" />
             </button>
 
@@ -83,13 +83,13 @@
     {{-- Service Features --}}
     <section class="bg-[#F7F8FA] border-y border-border/60">
         <div class="site-container">
-            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-y-6 gap-x-4 py-7 md:py-8">
+            <div class="grid grid-cols-1 min-[420px]:grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-y-5 md:gap-y-6 gap-x-4 py-7 md:py-8">
                 @foreach ($serviceFeatures as $feature)
                     <div class="flex items-center gap-3.5">
                         <div class="w-11 h-11 rounded-full bg-white shadow-[0_2px_10px_rgba(11,20,38,0.08)] flex items-center justify-center flex-shrink-0 text-[#0B1426]">
                             <x-lucide :name="$feature['icon']" :size="18" />
                         </div>
-                        <div>
+                        <div class="min-w-0">
                             <p class="text-sm font-bold text-[#0B1426]">{{ $feature['title'] }}</p>
                             <p class="text-[11px] text-muted-foreground leading-tight">{{ $feature['sub'] }}</p>
                         </div>
@@ -118,10 +118,17 @@
     </section>
 
     {{-- Promo Banners --}}
-    <section class="site-container pb-4">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+    <section class="site-container pb-4" data-promo-slider>
+        <div
+            data-promo-track
+            class="flex md:grid md:grid-cols-3 gap-4 overflow-x-auto md:overflow-visible scroll-smooth snap-x snap-mandatory md:snap-none scrollbar-hide"
+        >
             @foreach ($promoBanners as $banner)
-                <div class="rounded-2xl p-6 flex items-center justify-between gap-4 overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-lg cursor-pointer group" style="background: {{ $banner['bg'] }}">
+                <div
+                    data-promo-slide
+                    class="min-w-full md:min-w-0 snap-start rounded-2xl p-5 sm:p-6 flex items-center justify-between gap-4 overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-lg cursor-pointer group"
+                    style="background: {{ $banner['bg'] }}"
+                >
                     <div class="min-w-0">
                         <h3 class="font-extrabold text-lg text-[#0B1426] leading-tight">{{ $banner['title'] }}</h3>
                         <p class="text-sm text-gray-600 mt-1 mb-4">{{ $banner['sub'] }}</p>
@@ -138,6 +145,18 @@
                 </div>
             @endforeach
         </div>
+
+        <div class="flex md:hidden items-center justify-center gap-2 pt-3" aria-label="Promotion slides">
+            @foreach ($promoBanners as $index => $banner)
+                <button
+                    type="button"
+                    data-promo-dot="{{ $index }}"
+                    class="h-2 rounded-full transition-all {{ $index === 0 ? 'w-6 bg-primary' : 'w-2 bg-gray-300' }}"
+                    aria-label="Show promotion {{ $index + 1 }}"
+                    aria-current="{{ $index === 0 ? 'true' : 'false' }}"
+                ></button>
+            @endforeach
+        </div>
     </section>
 
     {{-- Best Selling Products --}}
@@ -148,14 +167,14 @@
             @foreach ($products as $product)
                 <a
                     href="{{ route('product.show', $product['id']) }}"
-                    class="flex flex-col items-center text-center p-5 bg-white rounded-xl border border-border hover:border-primary hover:shadow-md transition-all group"
+                    class="flex flex-col items-center text-center p-3 sm:p-5 bg-white rounded-xl border border-border hover:border-primary hover:shadow-md transition-all group"
                     data-product-card
                     data-product-id="{{ $product['id'] }}"
                     data-product-name="{{ $product['name'] }}"
                     data-product-price="{{ $product['price'] }}"
                     data-product-img="{{ $product['img'] }}"
                 >
-                    <div class="relative w-20 h-20 mb-3 rounded-xl bg-[#F7F9FC] flex items-center justify-center overflow-hidden">
+                    <div class="relative w-20 h-20 mb-3 rounded-xl bg-[#F7F9FC] flex items-center justify-center">
                         @if (!empty($product['badge']))
                             <span @class([
                                 'absolute top-1 left-1 text-white text-[9px] font-bold px-1.5 py-0.5 rounded z-10',
@@ -167,7 +186,7 @@
                         <img
                             src="{{ $product['img'] }}"
                             alt="{{ $product['name'] }}"
-                            class="w-20 h-20 object-contain group-hover:scale-105 transition-transform"
+                            class="w-20 h-20 object-contain scale-[1.3] group-hover:scale-[1.38] transition-transform duration-300"
                             loading="lazy"
                         >
                     </div>
@@ -185,7 +204,7 @@
     <section class="site-container pb-10">
         <x-section-heading title="Featured Products" link-text="View All" :href="route('shop')" />
 
-        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4">
             @foreach ($randomProducts as $product)
                 <x-product-card
                     :id="$product['id']"
@@ -234,7 +253,7 @@
             <button
                 type="button"
                 data-brands-prev
-                class="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 z-10 w-9 h-9 md:w-10 md:h-10 rounded-full bg-white border border-border text-gray-500 hover:text-primary hover:border-primary flex items-center justify-center transition-colors shadow-sm"
+                class="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 z-10 w-9 h-9 md:w-10 md:h-10 rounded-full bg-white border border-border text-gray-500 hover:text-primary hover:border-primary items-center justify-center transition-colors shadow-sm"
                 aria-label="Previous brands"
             >
                 <x-lucide name="chevron-left" :size="18" />
@@ -243,7 +262,7 @@
             <button
                 type="button"
                 data-brands-next
-                class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 z-10 w-9 h-9 md:w-10 md:h-10 rounded-full bg-white border border-border text-gray-500 hover:text-primary hover:border-primary flex items-center justify-center transition-colors shadow-sm"
+                class="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 z-10 w-9 h-9 md:w-10 md:h-10 rounded-full bg-white border border-border text-gray-500 hover:text-primary hover:border-primary items-center justify-center transition-colors shadow-sm"
                 aria-label="Next brands"
             >
                 <x-lucide name="chevron-right" :size="18" />
@@ -255,26 +274,32 @@
     <section class="site-container pb-10">
         <x-section-heading title="Why Shop With LITUS Connect?" :show-link="false" />
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
             @foreach ($whyUs as $item)
-                <div class="bg-white rounded-2xl border border-border px-6 py-8 flex flex-col items-center text-center hover:shadow-md hover:border-primary/30 transition-all">
-                    <div class="w-14 h-14 rounded-full bg-blue-light text-primary flex items-center justify-center mb-4">
-                        <x-lucide :name="$item['icon']" :size="24" />
+                <div class="bg-white rounded-xl sm:rounded-2xl border border-border px-3 py-5 sm:px-6 sm:py-8 flex flex-col items-center justify-center text-center hover:shadow-md hover:border-primary/30 transition-all min-h-[170px] sm:min-h-0">
+                    <div class="w-11 h-11 sm:w-14 sm:h-14 rounded-full bg-blue-light text-primary flex items-center justify-center mb-3 sm:mb-4">
+                        <x-lucide :name="$item['icon']" :size="20" />
                     </div>
-                    <h3 class="font-extrabold text-sm md:text-base text-[#0B1426] mb-1.5">{{ $item['title'] }}</h3>
-                    <p class="text-xs text-muted-foreground leading-relaxed">{{ $item['sub'] }}</p>
+                    <h3 class="font-extrabold text-xs sm:text-sm md:text-base text-[#0B1426] leading-snug mb-1.5">{{ $item['title'] }}</h3>
+                    <p class="text-[10px] sm:text-xs text-muted-foreground leading-relaxed">{{ $item['sub'] }}</p>
                 </div>
             @endforeach
         </div>
     </section>
 
     {{-- Testimonials --}}
-    <section class="site-container pb-10">
+    <section class="site-container pb-10" data-testimonials-slider>
         <x-section-heading title="What Our Customers Say" :show-link="false" />
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+        <div
+            data-testimonials-track
+            class="flex md:grid md:grid-cols-3 gap-4 md:gap-5 overflow-x-auto md:overflow-visible scroll-smooth snap-x snap-mandatory md:snap-none scrollbar-hide"
+        >
             @foreach ($testimonials as $testimonial)
-                <div class="bg-white rounded-xl border border-border p-6 hover:shadow-md transition-shadow">
+                <div
+                    data-testimonial-slide
+                    class="min-w-[88%] sm:min-w-[70%] md:min-w-0 snap-start bg-white rounded-xl border border-border p-5 sm:p-6 hover:shadow-md transition-shadow"
+                >
                     <div class="flex items-center gap-3 mb-4">
                         <img
                             src="{{ $testimonial['avatar'] }}"
@@ -294,6 +319,18 @@
                     </div>
                     <p class="text-sm text-gray-600 leading-relaxed">"{{ $testimonial['text'] }}"</p>
                 </div>
+            @endforeach
+        </div>
+
+        <div class="flex md:hidden items-center justify-center gap-2 pt-4" aria-label="Testimonial slides">
+            @foreach ($testimonials as $index => $testimonial)
+                <button
+                    type="button"
+                    data-testimonial-dot="{{ $index }}"
+                    class="h-2 rounded-full transition-all {{ $index === 0 ? 'w-6 bg-primary' : 'w-2 bg-gray-300' }}"
+                    aria-label="Show testimonial {{ $index + 1 }}"
+                    aria-current="{{ $index === 0 ? 'true' : 'false' }}"
+                ></button>
             @endforeach
         </div>
     </section>

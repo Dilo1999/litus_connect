@@ -51,7 +51,7 @@
 
                 {{-- Hero banner --}}
                 <div class="relative overflow-hidden rounded-2xl mb-6 min-h-[200px] md:min-h-[240px] flex items-center" style="background: linear-gradient(120deg, #011848 0%, #0a2a6e 55%, #006786 100%)">
-                    <div class="relative z-10 px-6 md:px-10 py-8 max-w-lg">
+                    <div class="relative z-10 px-4 sm:px-6 md:px-10 py-7 sm:py-8 max-w-lg">
                         <span class="inline-flex text-[10px] font-bold uppercase tracking-wider bg-red-500 text-white px-2.5 py-1 rounded-md mb-3">Limited Time Only!</span>
                         <h2 class="text-2xl md:text-3xl font-extrabold text-white leading-tight mb-2">Mega Tech Sale<br>Up to 50% Off</h2>
                         <p class="text-white/75 text-sm mb-5">Phones, watches, audio & accessories — exclusive LITUS Connect deals this week.</p>
@@ -68,7 +68,7 @@
                 </div>
 
                 {{-- Category quick links --}}
-                <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 mb-8">
+                <div class="grid grid-cols-1 min-[420px]:grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 mb-8">
                     @foreach ($quickCategories as $cat)
                         <a href="{{ $cat['route'] ? route($cat['route']) : '#' }}" class="bg-white rounded-xl border border-border hover:border-primary/40 hover:shadow-sm transition-all p-3 flex items-center gap-3 group">
                             <div class="w-12 h-12 rounded-lg bg-[#F3F5F9] flex items-center justify-center overflow-hidden shrink-0">
@@ -88,7 +88,7 @@
                         <h2 class="text-xl font-extrabold text-[#011848]">Top Deals</h2>
                         <a href="{{ route('shop') }}" class="text-sm font-bold text-primary hover:underline">View All Deals</a>
                     </div>
-                    <div class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-3 md:gap-4" data-offers-grid="top">
+                    <div class="grid grid-cols-1 min-[420px]:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-3 md:gap-4" data-offers-grid="top">
                         @foreach ($topDeals as $deal)
                             @include('components.offers_page.offer-card', ['deal' => $deal])
                         @endforeach
@@ -99,14 +99,14 @@
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
                     @foreach ($midPromos as $promo)
                         <div class="relative overflow-hidden rounded-2xl min-h-[150px] p-5 flex flex-col justify-between text-white" style="background: {{ $promo['bg'] }}">
-                            <div class="relative z-10">
+                            <div class="relative z-10 pr-20 sm:pr-24">
                                 <p class="text-lg font-extrabold leading-tight">{{ $promo['title'] }}</p>
                                 <p class="text-white/85 text-sm mt-1">{{ $promo['sub'] }}</p>
                             </div>
-                            <a href="{{ route($promo['route']) }}" class="relative z-10 inline-flex self-start mt-4 text-xs font-bold bg-white/95 text-[#011848] px-3.5 py-2 rounded-full hover:bg-white transition-colors">
+                            <a href="{{ route($promo['route']) }}" class="relative z-10 inline-flex self-start mt-4 min-h-10 items-center text-xs font-bold bg-white/95 text-[#011848] px-3.5 py-2 rounded-full hover:bg-white transition-colors">
                                 Shop Now
                             </a>
-                            <img src="{{ $promo['img'] }}" alt="" class="absolute right-2 bottom-2 h-24 w-24 object-contain opacity-90 drop-shadow-lg" loading="lazy">
+                            <img src="{{ $promo['img'] }}" alt="" class="absolute right-2 bottom-2 h-16 w-16 sm:h-24 sm:w-24 object-contain opacity-90 drop-shadow-lg pointer-events-none" loading="lazy">
                         </div>
                     @endforeach
                 </div>
@@ -117,7 +117,7 @@
                         <h2 class="text-xl font-extrabold text-[#011848]">Hot Offers</h2>
                         <a href="{{ route('shop') }}" class="text-sm font-bold text-primary hover:underline">View All Offers</a>
                     </div>
-                    <div class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-3 md:gap-4" data-offers-grid="hot">
+                    <div class="grid grid-cols-1 min-[420px]:grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-3 md:gap-4" data-offers-grid="hot">
                         @foreach ($hotOffers as $deal)
                             @include('components.offers_page.offer-card', ['deal' => $deal])
                         @endforeach
@@ -139,7 +139,7 @@
 
     <section class="bg-white border-y border-border/60">
         <div class="site-container">
-            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-y-6 gap-x-4 py-7 md:py-8">
+            <div class="grid grid-cols-1 min-[420px]:grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-y-5 md:gap-y-6 gap-x-4 py-7 md:py-8">
                 @foreach ($serviceFeatures as $feature)
                     <div class="flex items-center gap-3.5">
                         <div class="w-11 h-11 rounded-full bg-[#F3F5F9] flex items-center justify-center flex-shrink-0 text-[#011848]">
@@ -165,10 +165,10 @@
 {{-- Mobile filters drawer --}}
 <div data-offers-drawer class="fixed inset-0 z-50 md:hidden hidden">
     <div data-offers-drawer-overlay class="absolute inset-0 bg-black/50"></div>
-    <div class="absolute right-0 top-0 bottom-0 w-80 max-w-[90vw] bg-[#F3F5F9] overflow-y-auto p-4 shadow-2xl">
+    <div class="absolute right-0 top-0 bottom-0 w-80 max-w-[92vw] bg-[#F3F5F9] overflow-y-auto overscroll-contain p-4 pb-[max(1rem,env(safe-area-inset-bottom))] shadow-2xl">
         <div class="flex items-center justify-between mb-4">
             <h2 class="font-extrabold text-base text-[#011848]">Filters</h2>
-            <button type="button" data-offers-drawer-close class="w-9 h-9 rounded-lg border border-border bg-white flex items-center justify-center">
+            <button type="button" data-offers-drawer-close class="w-11 h-11 rounded-lg border border-border bg-white flex items-center justify-center" aria-label="Close filters">
                 <x-lucide name="x" :size="16" />
             </button>
         </div>

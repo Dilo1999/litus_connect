@@ -135,6 +135,9 @@ function initBlogPage() {
     openBtn?.addEventListener('click', openDrawer);
     closeBtn?.addEventListener('click', closeDrawer);
     overlay?.addEventListener('click', closeDrawer);
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') closeDrawer();
+    });
 
     // Decorative pagination buttons
     root.querySelectorAll('[data-blog-page-btn]').forEach((btn) => {

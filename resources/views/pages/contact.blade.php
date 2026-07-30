@@ -220,14 +220,14 @@
                 loading="lazy"
                 referrerpolicy="no-referrer-when-downgrade"
             ></iframe>
-            <div class="absolute left-4 bottom-4 md:left-6 md:bottom-6 z-10 w-[min(100%-2rem,280px)] bg-white rounded-xl border border-border shadow-lg p-4">
+            <div class="absolute left-3 right-3 bottom-3 md:left-6 md:right-auto md:bottom-6 z-10 md:w-[min(100%-2rem,280px)] bg-white/95 backdrop-blur rounded-xl border border-border shadow-lg p-3 sm:p-4">
                 <p class="text-sm font-extrabold text-[#011848] mb-1">LITUS Connect</p>
-                <p class="text-xs text-muted-foreground leading-relaxed mb-3">{{ $storeAddress }}</p>
+                <p class="text-xs text-muted-foreground leading-relaxed mb-3 line-clamp-2 md:line-clamp-none">{{ $storeAddress }}</p>
                 <a
                     href="{{ $mapDirectionsUrl }}"
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="inline-flex items-center gap-2 w-full justify-center bg-primary hover:bg-[#005266] text-white text-xs font-bold px-4 py-2.5 rounded-lg transition-colors"
+                    class="inline-flex items-center gap-2 w-full justify-center min-h-11 bg-primary hover:bg-[#005266] text-white text-xs font-bold px-4 py-2.5 rounded-lg transition-colors"
                 >
                     <x-lucide name="map-pin" :size="14" />
                     Get Directions
@@ -239,7 +239,7 @@
     {{-- Trust bar --}}
     <section class="bg-white border-y border-border/60">
         <div class="site-container">
-            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-y-6 gap-x-4 py-7 md:py-8">
+            <div class="grid grid-cols-1 min-[420px]:grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-y-5 md:gap-y-6 gap-x-4 py-7 md:py-8">
                 @foreach ($serviceFeatures as $feature)
                     <div class="flex items-center gap-3.5">
                         <div class="w-11 h-11 rounded-full bg-[#F3F5F9] flex items-center justify-center flex-shrink-0 text-[#011848]">
@@ -287,29 +287,29 @@
 
             <div class="flex flex-col gap-5">
                 <div class="relative overflow-hidden rounded-2xl border border-border bg-gradient-to-br from-[#E8F0FE] to-[#F5F8FF] p-6 md:p-7">
-                    <div class="relative z-10 max-w-[70%]">
+                    <div class="relative z-10 max-w-none sm:max-w-[70%]">
                         <h3 class="text-lg font-extrabold text-[#011848] mb-1.5">Need Immediate Help?</h3>
-                        <p class="text-sm text-muted-foreground mb-4 leading-relaxed">Chat with our support team for quick answers about orders, products, and warranty.</p>
-                        <a href="tel:+9603322295" class="inline-flex items-center gap-2 bg-primary hover:bg-[#005266] text-white text-sm font-bold px-5 py-2.5 rounded-lg transition-colors">
-                            <x-lucide name="message-circle" :size="15" />
-                            Start Live Chat
+                        <p class="text-sm text-muted-foreground mb-4 leading-relaxed">Call our support team for quick answers about orders, products, and warranty.</p>
+                        <a href="tel:+9603322295" class="inline-flex items-center gap-2 min-h-11 bg-primary hover:bg-[#005266] text-white text-sm font-bold px-5 py-2.5 rounded-lg transition-colors">
+                            <x-lucide name="phone" :size="15" />
+                            Call Support
                         </a>
                     </div>
-                    <div class="absolute right-4 bottom-4 md:right-6 md:bottom-6 text-primary/25">
+                    <div class="absolute right-4 bottom-4 md:right-6 md:bottom-6 text-primary/25 hidden sm:block">
                         <x-lucide name="message-square" :size="88" />
                     </div>
                 </div>
 
                 <div class="relative overflow-hidden rounded-2xl border border-border bg-white p-6 md:p-7">
-                    <div class="relative z-10 max-w-[75%]">
+                    <div class="relative z-10 max-w-none sm:max-w-[75%]">
                         <h3 class="text-lg font-extrabold text-[#011848] mb-1.5">Bulk Orders / Corporate Inquiries</h3>
                         <p class="text-sm text-muted-foreground mb-3 leading-relaxed">Planning a business purchase or volume order? Our sales team can help with pricing and availability.</p>
-                        <a href="mailto:sales@litusgroup.mv" class="inline-flex items-center gap-1.5 text-sm font-bold text-primary hover:underline">
+                        <a href="mailto:sales@litusgroup.mv" class="inline-flex items-center gap-1.5 min-h-11 text-sm font-bold text-primary hover:underline">
                             sales@litusgroup.mv
                             <x-lucide name="arrow-right" :size="14" />
                         </a>
                     </div>
-                    <div class="absolute right-4 bottom-4 md:right-6 md:bottom-6 text-gray-200">
+                    <div class="absolute right-4 bottom-4 md:right-6 md:bottom-6 text-gray-200 hidden sm:block">
                         <x-lucide name="briefcase" :size="80" />
                     </div>
                 </div>

@@ -72,7 +72,7 @@
 
                 <div data-shop-chips class="flex flex-wrap gap-2 mb-4 hidden"></div>
 
-                <div data-shop-grid class="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4"></div>
+                <div data-shop-grid class="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4"></div>
                 <div data-shop-list class="hidden flex-col gap-4"></div>
 
                 <div data-shop-empty class="hidden flex-col items-center justify-center py-24 bg-white rounded-xl border border-border text-center">
@@ -94,10 +94,10 @@
     {{-- Mobile filter drawer --}}
     <div data-shop-drawer class="fixed inset-0 z-50 md:hidden hidden">
         <div data-shop-drawer-overlay class="absolute inset-0 bg-black/50"></div>
-        <div class="absolute right-0 top-0 bottom-0 w-80 max-w-[90vw] bg-[#F3F5F9] overflow-y-auto p-4 shadow-2xl">
+        <div class="absolute right-0 top-0 bottom-0 w-80 max-w-[92vw] bg-[#F3F5F9] overflow-y-auto overscroll-contain p-4 pb-[max(1rem,env(safe-area-inset-bottom))] shadow-2xl">
             <div class="flex items-center justify-between mb-4">
                 <h2 class="font-extrabold text-base text-[#0B1426]">Filters</h2>
-                <button type="button" data-shop-drawer-close class="w-9 h-9 rounded-lg border border-border bg-white flex items-center justify-center">
+                <button type="button" data-shop-drawer-close class="w-11 h-11 rounded-lg border border-border bg-white flex items-center justify-center" aria-label="Close filters">
                     <x-lucide name="x" :size="16" />
                 </button>
             </div>
@@ -113,7 +113,7 @@
     {{-- Service features --}}
     <section class="bg-[#F7F8FA] border-y border-border/60">
         <div class="site-container">
-            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-y-6 gap-x-4 py-7 md:py-8">
+            <div class="grid grid-cols-1 min-[420px]:grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-y-5 md:gap-y-6 gap-x-4 py-7 md:py-8">
                 @foreach ($serviceFeatures as $feature)
                     <div class="flex items-center gap-3.5">
                         <div class="w-11 h-11 rounded-full bg-white shadow-[0_2px_10px_rgba(11,20,38,0.08)] flex items-center justify-center flex-shrink-0 text-[#0B1426]">

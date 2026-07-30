@@ -56,7 +56,7 @@
                     </div>
 
                     <div class="flex-1 min-w-0">
-                        <div class="relative bg-white rounded-2xl border border-border p-6 md:p-12 min-h-[420px] md:min-h-[580px] lg:min-h-[640px] flex items-center justify-center overflow-hidden">
+                        <div class="relative bg-white rounded-2xl border border-border p-3 sm:p-6 md:p-12 min-h-[300px] sm:min-h-[420px] md:min-h-[580px] lg:min-h-[640px] flex items-center justify-center overflow-hidden">
                             @if (!empty($product['badge']))
                                 <span @class([
                                     'absolute top-4 left-4 text-white text-[10px] font-bold px-2.5 py-1 rounded-md tracking-wide uppercase z-10',
@@ -102,7 +102,7 @@
 
             {{-- Buy box --}}
             <div class="lg:col-span-6 xl:col-span-5">
-                <div class="bg-white rounded-2xl border border-border p-5 md:p-6">
+                <div class="bg-white rounded-2xl border border-border p-4 sm:p-5 md:p-6">
                     <div class="flex flex-wrap items-center gap-2 mb-3">
                         <span class="inline-flex items-center px-2.5 py-1 rounded-md bg-blue-light text-primary text-xs font-bold">{{ $product['brand'] ?? 'LITUS Connect' }}</span>
                         @if (!empty($product['bestSeller']))
@@ -132,8 +132,10 @@
                         @endif
                     </div>
 
-                    <p class="flex items-center gap-1.5 text-xs text-muted-foreground mb-4">
-                        or 3 interest-free payments of <span class="font-bold text-[#011848]">MVR {{ number_format($installment) }}</span> with
+                    <p class="flex flex-wrap items-center gap-x-1.5 gap-y-1 text-xs text-muted-foreground mb-4">
+                        <span>or 3 interest-free payments of</span>
+                        <span class="font-bold text-[#011848]">MVR {{ number_format($installment) }}</span>
+                        <span>with</span>
                         <span class="font-extrabold text-[#011848]">KOKO</span>
                         <x-lucide name="info" :size="13" class="text-gray-400" />
                     </p>
@@ -186,8 +188,8 @@
                         </div>
                     @endif
 
-                    <div class="flex items-center gap-3 mb-3">
-                        <div class="inline-flex items-center border border-border rounded-lg overflow-hidden bg-white h-12 shrink-0">
+                    <div class="flex flex-col min-[380px]:flex-row min-[380px]:items-center gap-3 mb-3">
+                        <div class="inline-flex items-center justify-center border border-border rounded-lg overflow-hidden bg-white h-12 shrink-0">
                             <button type="button" data-qty-minus class="w-10 h-full flex items-center justify-center text-gray-500 hover:text-primary hover:bg-blue-light transition-colors" aria-label="Decrease quantity">
                                 <x-lucide name="minus" :size="15" />
                             </button>
@@ -202,7 +204,7 @@
                             data-product-add-cart
                             @disabled(! $product['inStock'])
                             @class([
-                                'flex-1 h-12 rounded-lg text-sm font-bold transition-colors inline-flex items-center justify-center gap-2',
+                                'w-full min-[380px]:flex-1 h-12 rounded-lg text-sm font-bold transition-colors inline-flex items-center justify-center gap-2',
                                 'bg-primary text-white hover:bg-[#005266]' => $product['inStock'],
                                 'bg-gray-200 text-gray-500 cursor-not-allowed' => ! $product['inStock'],
                             ])
@@ -258,7 +260,7 @@
 
         {{-- Tabs --}}
         <div class="bg-white rounded-2xl border border-border overflow-hidden mb-10" data-product-tabs>
-            <div class="flex flex-wrap gap-1 border-b border-border px-2 md:px-4 overflow-x-auto">
+            <div class="flex flex-nowrap gap-1 border-b border-border px-2 md:px-4 overflow-x-auto scrollbar-hide">
                 @foreach ([
                     ['id' => 'description', 'label' => 'Description'],
                     ['id' => 'specs', 'label' => 'Specifications'],
@@ -371,13 +373,13 @@
                         </div>
                     @endforeach
                 </div>
-                <div class="overflow-hidden rounded-xl border border-border">
-                    <table class="w-full text-sm">
+                <div class="overflow-x-auto rounded-xl border border-border">
+                    <table class="w-full min-w-[320px] text-sm">
                         <tbody>
                             @foreach ($product['specs'] as $label => $value)
                                 <tr class="border-b border-border last:border-0 odd:bg-[#F7F8FA]">
-                                    <th class="text-left font-bold text-[#011848] px-4 py-3 w-40 md:w-56">{{ $label }}</th>
-                                    <td class="px-4 py-3 text-muted-foreground">{{ $value }}</td>
+                                    <th class="text-left font-bold text-[#011848] px-3 sm:px-4 py-3 w-32 sm:w-40 md:w-56 align-top break-words">{{ $label }}</th>
+                                    <td class="px-3 sm:px-4 py-3 text-muted-foreground break-words">{{ $value }}</td>
                                 </tr>
                             @endforeach
                         </tbody>
@@ -471,7 +473,7 @@
                     <h2 class="text-xl md:text-2xl font-extrabold text-[#011848]">You May Also Like</h2>
                     <a href="{{ route('shop') }}" class="text-sm font-bold text-primary hover:underline">View All</a>
                 </div>
-                <div class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-4">
+                <div class="grid grid-cols-1 min-[420px]:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-4">
                     @foreach ($related as $item)
                         <div
                             class="bg-white rounded-xl border border-border hover:shadow-md transition-all group overflow-hidden flex flex-col"
@@ -506,8 +508,8 @@
                                             <span class="text-[11px] text-gray-400 line-through">MVR {{ number_format($item['original']) }}</span>
                                         @endif
                                     </div>
-                                    <button type="button" data-add-to-cart class="w-8 h-8 rounded-lg border border-border text-primary hover:bg-primary hover:text-white hover:border-primary transition-colors flex items-center justify-center shrink-0" aria-label="Add to cart">
-                                        <span data-cart-default><x-lucide name="shopping-cart" :size="14" /></span>
+                                    <button type="button" data-add-to-cart class="w-11 h-11 rounded-lg border border-border text-primary hover:bg-primary hover:text-white hover:border-primary transition-colors flex items-center justify-center shrink-0" aria-label="Add to cart">
+                                        <span data-cart-default><x-lucide name="shopping-cart" :size="15" /></span>
                                         <span data-cart-added class="hidden text-xs font-bold">✓</span>
                                     </button>
                                 </div>
