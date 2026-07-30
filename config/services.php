@@ -31,4 +31,13 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'instagram' => [
+        'user_id' => env('INSTAGRAM_USER_ID'),
+        'access_token' => env('INSTAGRAM_ACCESS_TOKEN'),
+        'api_url' => env('INSTAGRAM_API_URL', 'https://graph.instagram.com'),
+        'api_version' => env('INSTAGRAM_API_VERSION', 'v25.0'),
+        'profile_url' => env('INSTAGRAM_PROFILE_URL', 'https://www.instagram.com/litusconnect/'),
+        'cache_minutes' => (int) env('INSTAGRAM_CACHE_MINUTES', 30),
+    ],
+
 ];

@@ -270,6 +270,46 @@
         </div>
     </section>
 
+    {{-- Store Experience Video --}}
+    <section class="w-full pb-10">
+        <div class="relative w-full aspect-video md:aspect-auto md:h-[480px] lg:h-[560px] overflow-hidden bg-[#011848]">
+            <iframe
+                src="https://www.youtube-nocookie.com/embed/t-j3dXD2vA8?autoplay=1&mute=1&loop=1&playlist=t-j3dXD2vA8&controls=0&disablekb=1&fs=0&playsinline=1&rel=0&modestbranding=1"
+                title="LITUS Connect store experience"
+                class="absolute left-1/2 top-1/2 w-full min-w-full min-h-full aspect-video -translate-x-1/2 -translate-y-1/2 pointer-events-none"
+                allow="autoplay; encrypted-media; picture-in-picture"
+                referrerpolicy="strict-origin-when-cross-origin"
+                loading="lazy"
+            ></iframe>
+
+            <div class="absolute inset-0 bg-black/45"></div>
+            <div class="absolute inset-0 flex items-center justify-center px-5 text-center">
+                <div class="text-white drop-shadow-lg">
+                    <p class="text-[11px] sm:text-xs font-bold uppercase tracking-[0.2em] text-white/80 mb-2">
+                        Discover LITUS Connect
+                    </p>
+                    <h2 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold leading-tight">
+                        Experience Our Flagship Store
+                    </h2>
+                    <p class="mt-2 text-xs sm:text-sm md:text-base text-white/85">
+                        Connecting you to the future
+                    </p>
+                </div>
+            </div>
+
+            <a
+                href="https://youtu.be/t-j3dXD2vA8?si=0r798sWQuZI-F3gk"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="absolute bottom-3 right-3 z-10 inline-flex min-h-10 items-center gap-2 rounded-full bg-black/40 px-3 text-xs font-semibold text-white backdrop-blur hover:bg-black/60 transition-colors"
+                aria-label="Watch the store video on YouTube"
+            >
+                <x-lucide name="youtube" :size="15" />
+                <span class="hidden sm:inline">Watch on YouTube</span>
+            </a>
+        </div>
+    </section>
+
     {{-- Why Shop With LITUS Connect --}}
     <section class="site-container pb-10">
         <x-section-heading title="Why Shop With LITUS Connect?" :show-link="false" />
@@ -287,8 +327,82 @@
         </div>
     </section>
 
+    {{-- Instagram Gallery --}}
+    @php
+        $instagramProfileUrl = config('services.instagram.profile_url', 'https://www.instagram.com/litusconnect/');
+        $hasLiveInstagramMedia = !empty($instagramMedia);
+        $instagramTiles = $hasLiveInstagramMedia
+            ? array_slice($instagramMedia, 0, 12)
+            : collect(array_slice($products, 0, 12))->map(fn ($product) => [
+                'caption' => $product['name'],
+                'image' => $product['img'],
+                'permalink' => $instagramProfileUrl,
+                'is_video' => false,
+            ])->all();
+        $instagramBackgrounds = [
+            'linear-gradient(145deg, #E8F1FF, #F7FBFF)',
+            'linear-gradient(145deg, #F3E8FF, #FBF7FF)',
+            'linear-gradient(145deg, #E6F8F1, #F5FFFB)',
+            'linear-gradient(145deg, #FFF0E6, #FFF9F5)',
+            'linear-gradient(145deg, #E8F7FA, #F5FCFE)',
+        ];
+    @endphp
+    <section class="bg-[#F7F7F7] py-9 md:py-12">
+        <div class="site-container">
+            <div class="text-center mb-6 md:mb-8">
+                <h2 class="text-2xl md:text-3xl font-extrabold text-[#0B1426]">
+                    Follow Us on Instagram!
+                </h2>
+                <a
+                    href="{{ $instagramProfileUrl }}"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex min-h-10 items-center gap-2 mt-2 text-sm font-bold text-primary hover:underline"
+                >
+                    <x-lucide name="instagram" :size="17" />
+                    @litusconnect
+                </a>
+            </div>
+
+            <div class="flex sm:grid sm:grid-cols-6 gap-2 overflow-x-auto sm:overflow-visible snap-x snap-mandatory sm:snap-none scrollbar-hide pb-2 sm:pb-0">
+                @foreach ($instagramTiles as $index => $media)
+                    <a
+                        href="{{ $media['permalink'] }}"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="relative min-w-[42%] sm:min-w-0 aspect-square snap-start overflow-hidden rounded-lg group border border-black/5"
+                        style="background: {{ $hasLiveInstagramMedia ? '#E9EDF3' : $instagramBackgrounds[$index % count($instagramBackgrounds)] }}"
+                        aria-label="View {{ \Illuminate\Support\Str::limit(strip_tags($media['caption']), 60) }} on Instagram"
+                    >
+                        <img
+                            src="{{ $media['image'] }}"
+                            alt="{{ \Illuminate\Support\Str::limit(strip_tags($media['caption']), 100) }}"
+                            @class([
+                                'w-full h-full group-hover:scale-110 transition-transform duration-500',
+                                'object-cover' => $hasLiveInstagramMedia,
+                                'object-contain p-4 md:p-5' => ! $hasLiveInstagramMedia,
+                            ])
+                            loading="lazy"
+                        >
+                        <span class="absolute inset-0 bg-black/0 group-hover:bg-black/25 transition-colors"></span>
+                        <span class="absolute top-2 right-2 w-8 h-8 rounded-full bg-white/90 text-[#0B1426] flex items-center justify-center shadow-sm">
+                            <x-lucide name="instagram" :size="15" />
+                        </span>
+                        @if ($media['is_video'])
+                            <span class="absolute inset-0 flex items-center justify-center pointer-events-none">
+                                <span class="w-11 h-11 rounded-full bg-black/55 text-white flex items-center justify-center backdrop-blur-sm">
+                                    <x-lucide name="play" :size="18" class="fill-current ml-0.5" />
+                                </span>
+                            </span>
+                        @endif
+                    </a>
+                @endforeach
+            </div>
+        </div>
+    </section>
+
     {{-- Testimonials --}}
-    <section class="site-container pb-10" data-testimonials-slider>
+    <section class="site-container pt-10 md:pt-12 pb-10" data-testimonials-slider>
         <x-section-heading title="What Our Customers Say" :show-link="false" />
 
         <div

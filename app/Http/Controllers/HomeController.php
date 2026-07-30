@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Http;
+
 class HomeController extends Controller
 {
     public function index()
@@ -19,6 +22,7 @@ class HomeController extends Controller
             'randomProducts' => collect($this->products())->shuffle()->values()->all(),
             'brands' => $this->brands(),
             'whyUs' => $this->whyUs(),
+            'instagramMedia' => $this->instagramMedia(),
             'testimonials' => $this->testimonials(),
             'blogPosts' => $this->blogPosts(),
         ]);
@@ -237,5 +241,56 @@ class HomeController extends Controller
                 'img' => 'https://images.unsplash.com/photo-1609091839311-d5365f9ff1c5?w=400&h=240&fit=crop&auto=format',
             ],
         ];
+    }
+
+    private function instagramMedia(): array
+    {
+        $userId = config('services.instagram.user_id');
+        $accessToken = config('services.instagram.access_token');
+
+        if (! $userId || ! $accessToken) {
+            return [];
+        }
+
+        $apiUrl = rtrim((string) config('services.instagram.api_url'), '/');
+        $apiVersion = trim((string) config('services.instagram.api_version'), '/');
+        $cacheMinutes = max(5, (int) config('services.instagram.cache_minutes', 30));
+        $cacheKey = 'instagram_media_v2_'.md5($userId);
+
+        return Cache::remember($cacheKey, now()->addMinutes($cacheMinutes), function () use ($apiUrl, $apiVersion, $userId, $accessToken) {
+            try {
+                $response = Http::acceptJson()
+                    ->timeout(8)
+                    ->get("{$apiUrl}/{$apiVersion}/{$userId}/media", [
+                        'fields' => 'id,caption,media_type,media_url,thumbnail_url,permalink,timestamp',
+                        'limit' => 12,
+                        'access_token' => $accessToken,
+                    ]);
+
+                if (! $response->successful()) {
+                    return [];
+                }
+
+                return collect($response->json('data', []))
+                    ->map(function (array $media): array {
+                        $mediaType = strtoupper((string) ($media['media_type'] ?? 'IMAGE'));
+
+                        return [
+                            'id' => $media['id'] ?? null,
+                            'caption' => $media['caption'] ?? 'LITUS Connect on Instagram',
+                            'type' => $mediaType,
+                            'image' => $media['thumbnail_url'] ?? $media['media_url'] ?? null,
+                            'permalink' => $media['permalink'] ?? config('services.instagram.profile_url'),
+                            'timestamp' => $media['timestamp'] ?? null,
+                            'is_video' => in_array($mediaType, ['VIDEO', 'REELS'], true),
+                        ];
+                    })
+                    ->filter(fn (array $media): bool => filled($media['image']) && filled($media['permalink']))
+                    ->values()
+                    ->all();
+            } catch (\Throwable) {
+                return [];
+            }
+        });
     }
 }
